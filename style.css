@@ -33,6 +33,36 @@ body{
     margin: 20px 0;
 }
 
+.remember-forget {
+    position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    font-weight: 400;
+
+}
+.remember-me {
+    display: flex;
+    width: 50%;
+    font-size: 13px;
+    justify-content: end;
+    
+}
+
+.remember-me label {
+    position: absolute;
+    top: 15px;
+    left: 21px; 
+
+}
+
+.remember-forget input {
+    position: relative;
+    transform: scale(0.6);
+    top: 3px;
+    left: -68px;
+}
+
 .container span{
     font-size: 12px;
 }
@@ -45,7 +75,7 @@ body{
 }
 
 .container button{
-    background-color: #512da8;
+    background-color: #0011ff;
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -61,6 +91,11 @@ body{
 .container button.hidden{
     background-color: transparent;
     border-color: #fff;
+}
+
+.container button.hidden:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transition: 0.4s;
 }
 
 .container form{
@@ -159,9 +194,9 @@ body{
 }
 
 .toggle{
-    background-color: #512da8;
+    background-color: #0011ff;
     height: 100%;
-    background: linear-gradient(to right, #5c6bc0, #512da8);
+    background: linear-gradient(to right, #11057c, #0011ff);
     color: #fff;
     position: relative;
     left: -100%;
