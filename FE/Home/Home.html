@@ -43,43 +43,49 @@
                 <span class="icon">
                     <i class="fas fa-home"></i>
                 </span>
-                Feed
+                <span class="hide">Feed</span>
+                
             </a>
             <a href="#">
                 <span class="icon">
                     <i class="fas fa-search"></i>
                 </span>
-                Search
+                <span class="hide">Search</span>
+                
             </a>
             <a href="#">
                 <span class="icon">
                     <i class="fas fa-bell"></i>
                 </span>
-                Notification
+                <span class="hide">Notification</span>
+                
             </a>
             <a href="#">
                 <span class="icon">
                     <i class="fas fa-comments"></i>
                 </span>
-                Message
+                <span class="hide">Message</span>
+                
             </a>
             <a href="#">
                 <span class="icon">
                     <i class="fas fa-plus-circle"></i>
                 </span>
-                Post
+                <span class="hide">Post</span>
+                
             </a>
-            <a href="#">
-                <span class="icon">
+            <a href="#" class="hide setting">
+                <span class="icon hide">
                     <i class="fas fa-cog"></i>
                 </span>
-                Settings
+                <span class="hide">Settings</span>
+                
             </a>
-            <a href="#">
+            <a href="#" class="hide logout">
                 <span class="icon">
                     <i class="fas fa-sign-out-alt"></i>
                 </span>
-                Logout
+                <span class="hide">Logout</span>
             </a>
         </div>
     </div>    
@@ -89,6 +95,18 @@
             <div class="search">
                 <i class="fas fa-search"></i>
                 <input type="text" placeholder="search">
+            </div>
+            <div class="setting-logout">
+                <a href="#" class="hide setting">
+                    <span class="icon hide">
+                        <i class="fas fa-cog"></i>
+                    </span>
+                </a>
+                <a href="#" class="hide logout">
+                    <span class="icon">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </span>
+                </a>
             </div>
         </div>
         <!-- Feed -->
@@ -113,7 +131,7 @@
                 <img src="./Image/hinh1.jpg" alt="">
                 <div class="post-info">
                     <div class="likes">
-                        <i class="far fa-heart"></i>
+                        <i class="far fa-heart" onclick="liked(this)"></i>
                     </div>
                     <div class="comments">
                         <i class="far fa-comment-dots"></i>
@@ -127,118 +145,11 @@
                     </div>
                 </div>
             </div>
+            
 
-            <!-- box1 -->
-            <div class="post-box">
-                <div class="post-profile">
-                    <div class="post-img">
-                        <img src="./Image/hinh1.jpg" alt="">
-                    </div>
-                    <h3>Jesica</h3>
-                    <span>23 hours</span>
-                </div>
-                <img src="./Image/hinh1.jpg" alt="">
-                <div class="post-info">
-                    <div class="likes">
-                        <i class="far fa-heart"></i>
-                    </div>
-                    <div class="comments">
-                        <i class="far fa-comment-dots"></i>
-                    </div>
-                </div>
-                <div class="likes-comments-info">
-                    <span>778 Likes</span>
-                    <div class="write-comments">
-                        <input type="text" placeholder="Write a comment...">
-                        <i class="far fa-paper-plane"></i>
-                    </div>
-                </div>
-            </div>
-            <!-- box1 -->
-            <div class="post-box">
-                <div class="post-profile">
-                    <div class="post-img">
-                        <img src="./Image/hinh1.jpg" alt="">
-                    </div>
-                    <h3>Jesica</h3>
-                    <span>23 hours</span>
-                </div>
-                <img src="./Image/hinh1.jpg" alt="">
-                <div class="post-info">
-                    <div class="likes">
-                        <i class="far fa-heart"></i>
-                    </div>
-                    <div class="comments">
-                        <i class="far fa-comment-dots"></i>
-                    </div>
-                </div>
-                <div class="likes-comments-info">
-                    <span>778 Likes</span>
-                    <div class="write-comments">
-                        <input type="text" placeholder="Write a comment...">
-                        <i class="far fa-paper-plane"></i>
-                    </div>
-                </div>
-            </div>
-            <!-- box1 -->
-            <div class="post-box">
-                <div class="post-profile">
-                    <div class="post-img">
-                        <img src="./Image/hinh1.jpg" alt="">
-                    </div>
-                    <h3>Jesica</h3>
-                    <span>23 hours</span>
-                </div>
-                <img src="./Image/hinh1.jpg" alt="">
-                <div class="post-info">
-                    <div class="likes">
-                        <i class="far fa-heart"></i>
-                    </div>
-                    <div class="comments">
-                        <i class="far fa-comment-dots"></i>
-                    </div>
-                </div>
-                <div class="likes-comments-info">
-                    <span>778 Likes</span>
-                    <div class="write-comments">
-                        <input type="text" placeholder="Write a comment...">
-                        <i class="far fa-paper-plane"></i>
-                    </div>
-                </div>
-            </div>
-            <!-- box1 -->
-            <div class="post-box">
-                <div class="post-profile">
-                    <div class="post-img">
-                        <img src="./Image/hinh1.jpg" alt="">
-                    </div>
-                    <h3>Jesica</h3>
-                    <span>23 hours</span>
-                </div>
-                <img src="./Image/hinh1.jpg" alt="">
-                <div class="post-info">
-                    <div class="likes">
-                        <i class="far fa-heart"></i>
-                    </div>
-                    <div class="comments">
-                        <i class="far fa-comment-dots"></i>
-                    </div>
-                </div>
-                <div class="likes-comments-info">
-                    <span>778 Likes</span>
-                    <div class="write-comments">
-                        <input type="text" placeholder="Write a comment...">
-                        <i class="far fa-paper-plane"></i>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
-
-
-
+    <script src="Home.js"></script>
 </body>
-<script src="Home.js"></script>
-</div>
-
 </html>
