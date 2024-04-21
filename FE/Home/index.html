@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css    "
+        />
+        <link rel="stylesheet" href="./style.css" />
+        <title>Home</title> 
+    </head>
+
+    <body>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="profile">
+                <div class="profile-img">
+                    <img src="./Image/avatar.jpg" alt="avatar" />
+                </div>
+                <div class="name">
+                    <h3>Nhật Toàn</h3>
+                </div>
+                <span>@NToan324</span>
+            </div>
+            <div class="about">
+                <div class="box">
+                    <h3>89</h3>
+                    <span>Posts</span>
+                </div>
+                <div class="box">
+                    <h3>14.3k</h3>
+                    <span>Followers</span>
+                </div>
+                <div class="box">
+                    <h3>14</h3>
+                    <span>Following</span>
+                </div>
+            </div>
+            <div class="menu">
+                <a href="#">
+                    <span class="icon">
+                        <i class="fas fa-home"></i>
+                        <span class="tooltip">Home</span>
+                    </span>
+                    <span class="hide">Feed</span>
+                </a>
+                <a href="#">
+                    <span class="icon">
+                        <i class="fas fa-search"></i>
+                        <span class="tooltip">Search</span>
+                    </span>
+                    <span class="hide">Search</span>
+                </a>
+                <a href="#">
+                    <span class="icon">
+                        <i class="fas fa-bell"></i>
+                        <span class="tooltip">Notification</span>
+                    </span>
+                    <span class="hide">Notification</span>
+                </a>
+                <a href="#">
+                    <span class="icon">
+                        <i class="fas fa-comments"></i>
+                        <span class="tooltip">Message</span>
+                    </span>
+                    <span class="hide">Message</span>
+                </a>
+                <a href="#">
+                    <span class="icon">
+                        <i class="fas fa-plus-circle"></i>
+                        <span class="tooltip">Post</span>
+                    </span>
+                    <span class="hide">Post</span>
+                </a>
+                <a href="#" class="setting">
+                    <span class="icon">
+                        <i class="fas fa-cog"></i>
+                        <span class="tooltip">Settings</span>
+                    </span>
+                    <span class="hide">Settings</span>
+                </a>
+                <a href="#" class="logout">
+                    <span class="icon">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="tooltip">Logout</span>
+                    </span>
+                    <span class="hide">Logout</span>
+                </a>
+            </div>
+        </div>
+        <!-- Main Home -->
+        <div class="main-home">
+            <div class="header">
+                <div class="search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="search" />
+                </div>
+                <div class="setting-logout">
+                    <a href="#" class="hide setting">
+                        <span class="icon hide">
+                            <i class="fas fa-cog"></i>
+                        </span>
+                    </a>
+                    <a href="#" class="hide logout">
+                        <span class="icon">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <!-- Feed -->
+            <div class="feed">
+                <h1>Feed</h1>
+                <div class="feed-text">
+                    <h2>Latest</h2>
+                    <span>Popular</span>
+                </div>
+            </div>
+            <!-- Post -->
+            <div class="main-posts">
+                <!-- box1 -->
+                <div class="post-box">
+                    <div class="post-profile">
+                        <div class="post-img">
+                            <img src="./Image/hinh1.jpg" alt="" />
+                        </div>
+                        <h3>Jesica</h3>
+                        <span>23 hours</span>
+                    </div>
+                    <div class="caption">
+                        <p>Good morning, Have a good day!</p>
+                    </div>
+                    <img src="./Image/hinh1.jpg" alt="" />
+                    <div class="post-info">
+                        <div class="likes">
+                            <i class="far fa-heart" onclick="liked(this)"></i>
+                        </div>
+                        <div class="comments">
+                            <i class="far fa-comment-dots"></i>
+                        </div>
+                    </div>
+                    <div class="likes-comments-info">
+                        <span>778 Likes</span>
+                        <div class="comments-show">
+                            <h4>Nhật Toàn</h4>
+                            <p>You are so beautiful</p>
+                        </div>
+                        <div class="write-comments">
+                            <input
+                                type="text"
+                                placeholder="Write a comment..."
+                            />
+                            <i class="far fa-paper-plane"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- box1 -->
+                <div class="post-box">
+                    <div class="post-profile">
+                        <div class="post-img">
+                            <img src="./Image/hinh1.jpg" alt="" />
+                        </div>
+                        <h3>Jesica</h3>
+                        <span>23 hours</span>
+                    </div>
+                    <div class="caption">
+                        <p>Good morning, Have a good day!</p>
+                    </div>
+                    <img src="./Image/hinh1.jpg" alt="" />
+                    <div class="post-info">
+                        <div class="likes">
+                            <i class="far fa-heart" onclick="liked(this)"></i>
+                        </div>
+                        <div class="comments">
+                            <i class="far fa-comment-dots"></i>
+                        </div>
+                    </div>
+                    <div class="likes-comments-info">
+                        <span>778 Likes</span>
+                        <div class="comments-show">
+                            <h4>Nhật Toàn</h4>
+                            <p>You are so beautiful</p>
+                        </div>
+                        <div class="write-comments">
+                            <input
+                                type="text"
+                                placeholder="Write a comment..."
+                            />
+                            <i class="far fa-paper-plane"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- box1 -->
+                <div class="post-box">
+                    <div class="post-profile">
+                        <div class="post-img">
+                            <img src="./Image/hinh1.jpg" alt="" />
+                        </div>
+                        <h3>Jesica</h3>
+                        <span>23 hours</span>
+                    </div>
+                    <div class="caption">
+                        <p>Good morning, Have a good day!</p>
+                    </div>
+                    <img src="./Image/hinh1.jpg" alt="" />
+                    <div class="post-info">
+                        <div class="likes">
+                            <i class="far fa-heart" onclick="liked(this)"></i>
+                        </div>
+                        <div class="comments">
+                            <i class="far fa-comment-dots"></i>
+                        </div>
+                    </div>
+                    <div class="likes-comments-info">
+                        <span>778 Likes</span>
+                        <div class="comments-show">
+                            <h4>Nhật Toàn</h4>
+                            <p>You are so beautiful</p>
+                        </div>
+                        <div class="write-comments">
+                            <input
+                                type="text"
+                                placeholder="Write a comment..."
+                            />
+                            <i class="far fa-paper-plane"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- box1 -->
+                <div class="post-box">
+                    <div class="post-profile">
+                        <div class="post-img">
+                            <img src="./Image/hinh1.jpg" alt="" />
+                        </div>
+                        <h3>Jesica</h3>
+                        <span>23 hours</span>
+                    </div>
+                    <div class="caption">
+                        <p>Good morning, Have a good day!</p>
+                    </div>
+                    <img src="./Image/hinh1.jpg" alt="" />
+                    <div class="post-info">
+                        <div class="likes">
+                            <i class="far fa-heart" onclick="liked(this)"></i>
+                        </div>
+                        <div class="comments">
+                            <i class="far fa-comment-dots"></i>
+                        </div>
+                    </div>
+                    <div class="likes-comments-info">
+                        <span>778 Likes</span>
+                        <div class="comments-show">
+                            <h4>Nhật Toàn</h4>
+                            <p>You are so beautiful</p>
+                        </div>
+                        <div class="write-comments">
+                            <input
+                                type="text"
+                                placeholder="Write a comment..."
+                            />
+                            <i class="far fa-paper-plane"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="./script.js"></script>
+    </body>
+</html>
