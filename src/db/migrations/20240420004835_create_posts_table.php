@@ -12,6 +12,7 @@ final class CreatePostsTable extends AbstractMigration
         $posts->addColumn('post_id', 'integer', ['identity' => true])
             ->addColumn('user_id', 'integer')
             ->addColumn('content', 'text')
+            ->addColumn('total_likes', 'integer')
             ->addColumn('image', 'string', ['limit' => 255, 'null' => true])
             ->addColumn('created_at', 'datetime', ['default' => 'CURRENT_TIMESTAMP'])
             ->addColumn('updated_at', 'datetime', ['default' => 'CURRENT_TIMESTAMP', 'update' => 'CURRENT_TIMESTAMP'])
