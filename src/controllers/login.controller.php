@@ -1,29 +1,34 @@
-<?php namespace App\Controller;
-
-require_once __DIR__ . '/../../vendor/autoload.php';
-
-use App\Models\User;
-use Exception;
+<?php
 
 class LoginController
 {
+    public function showLogin()
+    {
+        // TODO: render login page
+    }
+
     public function login($email, $password)
     {
         header('Content-type: application/json');
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             $res = array(
                 'success' => false,
-                'message' => 'POST method is required. You\'re not using POST method'
+                'message' => 'POST method is required for login. You\'re not using POST method'
             );
             die(json_encode($res));
         }
 
         try {
             if (isset($_POST['email']) && isset($_POST['password'])) {
+                require_once __DIR__ . '/../models/User.php';
+                require_once './config/db.conn.php';
+
+                $name = $_POST['name'];
                 $email = $_POST['email'];
                 $password = $_POST['password'];
-                echo json_encode([$email, $password]);
-                require_once './config/db.conn.php';
+                $avatar = $_POST['avatar']; // TODO: add default value 
+                $birthday = $_POST['birthday'];
+                // echo json_encode([$email, $password]);
 
                 $user = new User($conn);
                 $auth = $user->authenticate($email, $password);
@@ -31,8 +36,8 @@ class LoginController
                 if ($auth) {
                     $res = array(
                         'success' => true,
-                        'data' => $auth,
-                        'message' => 'Login successfully'
+                        'message' => 'Login successfully',
+                        'data' => $auth
                     );
 
                     echo json_encode($res);

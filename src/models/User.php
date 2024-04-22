@@ -1,6 +1,4 @@
-<?php namespace App\Models;
-
-use PDO;
+<?php
 
 class User
 {
@@ -20,8 +18,8 @@ class User
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // Get user by username
-    public function getByEmail($email)
+    // Get user by name
+    public function findByEmail($email)
     {
         $query = "SELECT * FROM users WHERE email = ?";
         $stmt = $this->conn->prepare($query);
@@ -30,20 +28,32 @@ class User
     }
 
     // Insert new user
-    public function create($username, $email, $password)
+    public function create($name, $email, $password)
     {
-        $query = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
-        $stmt = $this->conn->prepare($query);
-        return $stmt->execute([$username, $email, $password]);
+        try {
+            $user = $this->findByEmail($email);
+
+            if ($user) {
+                throw new Exception('Email is already taken');
+            }
+
+            $query = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
+            $stmt = $this->conn->prepare($query);
+            $success = $stmt->execute([$name, $email, $password]);
+
+            if (!$success) {
+                throw new Exception("Failed to create user");
+            }
+
+            return array($name, $email, $password);
+            
+        } catch (PDOException $e) {
+            throw $e;
+        } catch (Exception $e) {
+            throw $e;
+        }
     }
 
-    // Update user by ID
-    public function update($id, $username, $email, $password)
-    {
-        $query = "UPDATE users SET username = ?, email = ?, password = ? WHERE id = ?";
-        $stmt = $this->conn->prepare($query);
-        return $stmt->execute([$username, $email, $password, $id]);
-    }
 
     // Delete user by ID
     public function delete($id)
@@ -62,7 +72,7 @@ class User
         }
 
         // Get user by email
-        $user = $this->getByEmail($email);
+        $user = $this->findByEmail($email);
 
         // Check if user exists
         if (!$user) {

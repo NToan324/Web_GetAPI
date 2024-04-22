@@ -1,15 +1,12 @@
 <?php
 session_start();
-require_once './controllers/login.controller.php';
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/controllers/login.controller.php';
+require_once __DIR__ . '/controllers/signup.controller.php';
 
-use App\Controller\LoginController;
 
 $request = $_SERVER['REQUEST_URI'];
 $split_request = explode("?", $request);
 $request_parts = explode('/', $split_request[0]);
-
-
 
 switch ($request_parts[1]) {
     case "login": {
@@ -20,6 +17,18 @@ switch ($request_parts[1]) {
                 $loginController->login($email, $password);
             } else {
                 $signInController->showSignInPage();
+            }
+            break;
+        }
+    case "signUp": {
+            $signUpController = new SignUpController();
+            if (isset($_POST['submit'])) {
+                $name = $_POST['name'];
+                $email = $_POST['email'];
+                $password = $_POST['password'];
+                $signUpController->signUp($name, $email, $password);
+            } else {
+                // $signUpController->showSignInPage();
             }
             break;
         }
