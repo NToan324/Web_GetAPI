@@ -1,5 +1,4 @@
 <?php
-
 class User
 {
     private $conn;
@@ -46,7 +45,7 @@ class User
             }
 
             return array($name, $email, $password);
-            
+
         } catch (PDOException $e) {
             throw $e;
         } catch (Exception $e) {

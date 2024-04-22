@@ -1,0 +1,20 @@
+{
+    "name": "luhtri/demo-app",
+    "description": "stupid app",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "Vendor\\": "vendor/"
+        }
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.6",
+        "robmorgan/phinx": "^0.16.0"
+    },
+    "scripts": {
+        "migrate": "vendor/bin/phinx migrate -e development",
+        "create": "vendor/bin/phinx create",
+        "rollback": "vendor/bin/phinx rollback",
+        "rollback-all": "vendor/bin/phinx rollback -t 0"
+    }
+}
