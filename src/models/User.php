@@ -63,28 +63,5 @@ class User
     }
 
     // Authenticate user
-    public function authenticate($email, $password)
-    {
-        // Check if email is empty
-        if (empty($email)) {
-            throw new \InvalidArgumentException("Username cannot be empty");
-        }
 
-        // Get user by email
-        $user = $this->findByEmail($email);
-
-        // Check if user exists
-        if (!$user) {
-            throw new \Exception("User not found");
-        }
-
-        // Verify password
-        // if (!password_verify($password, $user["password"])) {
-        if (!($password === $user["password"])) {
-            throw new \Exception("Incorrect password");
-        }
-
-        // Authentication successful, return user details
-        return $user;
-    }
 }
