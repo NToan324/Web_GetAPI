@@ -1,5 +1,9 @@
 <?php
+define('SESSION_EXPIRED_DAY', 60 * 60 * 24);
+
+session_set_cookie_params(SESSION_EXPIRED_DAY);
 session_start();
+require_once __DIR__ . '/controllers/home.controller.php';
 require_once __DIR__ . '/controllers/login.controller.php';
 require_once __DIR__ . '/controllers/signup.controller.php';
 
@@ -8,15 +12,21 @@ $request = $_SERVER['REQUEST_URI'];
 $split_request = explode("?", $request);
 $request_parts = explode('/', $split_request[0]);
 
+$homeController = new HomeController();
+$loginController = new LoginController();
+
 switch ($request_parts[1]) {
+    case "": {
+        $homeController->showHome();
+        break;
+    }
     case "login": {
-            $loginController = new LoginController();
             if (isset($_POST['submit'])) {
                 $email = $_POST['email'];
                 $password = $_POST['password'];
                 $loginController->login($email, $password);
             } else {
-                $signInController->showSignInPage();
+                $loginController->showLogin();
             }
             break;
         }
@@ -28,7 +38,7 @@ switch ($request_parts[1]) {
                 $password = $_POST['password'];
                 $signUpController->signUp($name, $email, $password);
             } else {
-                // $signUpController->showSignInPage();
+                // $signUpController->showSignUpPage();
             }
             break;
         }
