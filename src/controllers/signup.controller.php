@@ -2,7 +2,8 @@
 require_once __DIR__ . '/../models/User.php';
 class SignUpController
 {
-    public function showSignUp() {
+    public function showSignUp()
+    {
         // TODO: render sign up page
     }
 
