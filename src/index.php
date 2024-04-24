@@ -15,6 +15,7 @@ $request_parts = explode('/', $split_request[0]);
 $homeController = new HomeController();
 $loginController = new LoginController();
 
+// routing
 switch ($request_parts[1]) {
     case "": {
         $homeController->showHome();

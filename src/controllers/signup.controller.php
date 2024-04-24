@@ -30,7 +30,7 @@ class SignUpController
                         'data' => $success
                     );
 
-                    // echo json_encode($res);
+                    echo json_encode($res);
                     return;
                 }
             } else {

@@ -38,7 +38,7 @@ class User
                 throw new Exception("Failed to create user");
             }
 
-            return array($name, $email, $password);
+            return $success;
 
         } catch (PDOException $e) {
             throw $e;
