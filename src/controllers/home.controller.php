@@ -10,4 +10,12 @@ class HomeController {
         header('Location: /');
     }
 
+    public function search($name) {
+        // TODO: search by user name
+    }
+
+    public function logout() {
+        
+    }
+
 }
