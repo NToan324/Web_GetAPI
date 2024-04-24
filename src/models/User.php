@@ -30,12 +30,6 @@ class User
     public function create($name, $email, $password)
     {
         try {
-            $user = $this->findByEmail($email);
-
-            if ($user) {
-                throw new Exception('Email is already taken');
-            }
-
             $query = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
             $stmt = $this->conn->prepare($query);
             $success = $stmt->execute([$name, $email, $password]);

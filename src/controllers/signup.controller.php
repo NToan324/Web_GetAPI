@@ -2,11 +2,6 @@
 require_once __DIR__ . '/../models/User.php';
 class SignUpController
 {
-    public function showSignUp()
-    {
-        // TODO: render sign up page
-    }
-
     public function signUp($name, $email, $password)
     {
         header('Content-type: application/json');
@@ -31,11 +26,11 @@ class SignUpController
                 if ($success) {
                     $res = array(
                         'success' => true,
-                        'message' => 'Login successfully',
+                        'message' => 'Create new user successfully',
                         'data' => $success
                     );
 
-                    echo json_encode($res);
+                    // echo json_encode($res);
                     return;
                 }
             } else {

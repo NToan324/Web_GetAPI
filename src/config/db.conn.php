@@ -9,5 +9,10 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     // echo 'Database connected!';
 } catch (PDOException $e) {
-    die("Error: " . $e->getMessage());
+    $res = array(
+        "succes" => false,
+        "message" => $e->getMessage()
+    );
+    
+    echo json_encode($res);
 }

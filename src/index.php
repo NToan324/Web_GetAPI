@@ -20,6 +20,7 @@ switch ($request_parts[1]) {
         $homeController->showHome();
         break;
     }
+
     case "login": {
             if (isset($_POST['submit'])) {
                 $email = $_POST['email'];
@@ -30,6 +31,7 @@ switch ($request_parts[1]) {
             }
             break;
         }
+
     case "signUp": {
             $signUpController = new SignUpController();
             if (isset($_POST['submit'])) {
@@ -42,11 +44,13 @@ switch ($request_parts[1]) {
             }
             break;
         }
+
     case 'test-db': {
             require_once './config/db.conn.php';
             break;
         }
         // default: require __DIR__ . '/views/404.php';
+        
     default:
         header('Content-Type: application/json');
         $res = array(
