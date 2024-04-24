@@ -22,4 +22,23 @@ composer.* -> thư mục này của thư viện
     Tức là: localhost:PORT/path/to/src là tên miền gốc
     Ví dụ src nằm trong web_restapi thì domain là localhost:PORT/web_restapi/src
     Để dùng api thì gọi domain/"đường dẫn của api"
+
+
+--- API RESPONESE --- 
+api response theo chuẩn định dạng JSON (chưa biết thì google coi khoảng 3p)
+
+success:
+{
+    "success": true,        // trạng thái có thành công hay không
+    "message": "message if success",      // thông điệp khi thành công
+    "data": data từ cái request             // ví dụ nếu request đăng kí thì data là dữ liệu từ cái form đăng kí
+}
+
+failed:
+{
+    "success": false,
+    "message": thông điệp khi không thành công
+}
+
+
     
