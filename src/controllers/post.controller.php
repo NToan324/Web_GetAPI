@@ -22,4 +22,16 @@ class PostController {
     public function like($postId, $userId) {
 
     }
+
+    public function unlike() {
+        
+    }
+
+    public function comment() {
+
+    }
+
+    public function deleteComment() {
+
+    }
 }
