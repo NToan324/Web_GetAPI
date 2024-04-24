@@ -1,13 +1,16 @@
 $(document).ready(function () {
     let submitBtn = $('#login-submit-btn')
     //bắt sự kiện click nút đăng nhập
+    let rememberMe = $('#remember-me').val()
+    console.log(rememberMe)
     submitBtn.click(function (e) {
         // chặn hành vi gửi form mặc định của button
         e.preventDefault()
         let email = $('#email').val()
         let password = $('#password').val()
 
-        // TODO: validate user input and show error
+        console.log(email, password, rememberMe)
+
 
         if (!email) {
             $('#messageError-login').text('Email is required')
@@ -36,12 +39,11 @@ $(document).ready(function () {
         //call api kiểm tra đăng nhập
         $.post(
             `/login`,
-            { email, password, submit: true },
-            function (data) {
-                console.log(data)
-                if (!data.success) {
-                    //không thành công thì hiện lỗi
-                    $('#messageError-login').text(data.message)
+            { email, password, rememberMe, submit: true },
+            function (res) {
+                console.log(res)
+                if (!res.success) {
+                    $('#messageError-login').text(res.message)
                 } else {
                     window.location.href = '/'
                 }

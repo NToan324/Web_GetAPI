@@ -22,7 +22,7 @@ class LoginController
             if (isset($_POST['email']) && isset($_POST['password'])) {
                 $email = $_POST['email'];
                 $password = $_POST['password'];
-                // echo json_encode([$email, $password]);
+                echo json_encode([$email, $password, $_POST['rememberMe']]);
 
                 $auth = $this->authenticate($email, $password);
 
@@ -33,6 +33,10 @@ class LoginController
                     $_SESSION['logged_in'] = TRUE;
                     $_SESSION['email'] = $auth->email;
                     $_SESSION['id'] = $auth->id;
+
+                    if (isset($_POST['rememberMe'])) {
+                        setcookie('email', $email, time() + SESSION_EXPIRED_DAY, '/');
+                    }
 
                     $res = array(
                         'success' => true,
