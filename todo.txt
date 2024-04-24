@@ -1,3 +1,5 @@
 -- Trí Lưu --
 1. Password hashing 
 2. Chuyển mấy chổ echo json thành die
+
+Ai có todo j thêm vô đây hehee
