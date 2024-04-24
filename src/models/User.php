@@ -30,6 +30,11 @@ class User
     public function create($name, $email, $password)
     {
         try {
+            // Check if the user already exists
+            if ($this->isUserExist($email)) {
+                throw new Exception('Email already taken. Please try again with another email');
+            }
+
             $query = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
             $stmt = $this->conn->prepare($query);
             $success = $stmt->execute([$name, $email, $password]);
@@ -38,13 +43,22 @@ class User
                 throw new Exception("Failed to create user");
             }
 
-            return $success;
-
+            return array($name, $email, $password);
         } catch (PDOException $e) {
             throw $e;
         } catch (Exception $e) {
             throw $e;
         }
+    }
+
+    public function isUserExist($email)
+    {
+        $query = "SELECT COUNT(*) FROM users WHERE email = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([$email]);
+        $count = $stmt->fetchColumn();
+
+        return $count > 0;
     }
 
 
