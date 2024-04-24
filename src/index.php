@@ -3,6 +3,7 @@ define('SESSION_EXPIRED_DAY', 60 * 60 * 24);
 
 session_set_cookie_params(SESSION_EXPIRED_DAY);
 session_start();
+
 require_once __DIR__ . '/controllers/home.controller.php';
 require_once __DIR__ . '/controllers/login.controller.php';
 require_once __DIR__ . '/controllers/signup.controller.php';
@@ -32,6 +33,13 @@ switch ($request_parts[1]) {
             }
             break;
         }
+
+    case 'logout': {
+        // if (isset($_POST['logout_btn'])) {
+            $homeController->logout();
+        // }
+        break;
+    }
 
     case "signUp": {
             $signUpController = new SignUpController();
