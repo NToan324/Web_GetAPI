@@ -36,7 +36,7 @@ $(document).ready(function () {
         //call api kiểm tra đăng nhập
         $.post(
             `/login`,
-            {email, password, submit: true},
+            { email, password, submit: true },
             function (data) {
                 console.log(data)
                 if (!data.success) {

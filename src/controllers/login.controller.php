@@ -40,8 +40,7 @@ class LoginController
                         'data' => $auth
                     );
 
-                    echo json_encode($res);
-                    return;
+                    die(json_encode($res));
                 }
             } else {
                 throw new Exception('Email and password are required.');
@@ -51,7 +50,8 @@ class LoginController
                 'success' => false,
                 'message' => $e->getMessage()
             );
-            // echo json_encode($res);
+            die(json_encode($res));
+
         }
     }
 

@@ -241,7 +241,7 @@ body {
     transform: translateX(200%);
 }
 
-#messageError,
+#messageError-signup,
 #messageError-login {
     color: red;
     font-size: 12px;
