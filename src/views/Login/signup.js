@@ -1,47 +1,78 @@
-
 $(document).ready(function () {
-    let submitBtn = $("#signup-submit-btn")
-    //bắt sự kiện click nút đăng nhập
+    const loginBtn = $('#login')
+    const submitBtn = $('#signup-submit-btn')
+    const signupError = $('#messageError-signup')
+
+    // Catch user submit sign up form event
     submitBtn.click(function (e) {
-        // chặn hành vi gửi form mặc định của button
+        // Prevent form submition envent
         e.preventDefault()
-        let email = $("#signup-email").val()
-        let password = $("#signup-password").val()
-        let name = $("#signup-name").val()
+        const name = $('#signup-name').val()
+        const email = $('#signup-email').val()
+        const password = $('#signup-password').val()
 
-        // TODO: Validate user input
-        /* 
-            Kiểm tra input đầu vào của người dùng có hợp lệ không, không thì báo lỗi luôn
-        */
+        if (!validateUserInput(name, email, password)) {
+            return;
+        }
 
-        // Call api đăng kí
-        $.post(`/signUp`, { name, email, password, submit: true }, function (res) {
-            console.log(res)
-            if (!res.success) { // Sign up failed
-                //* res.message là thông báo lỗi
-                // TODO: error when sign up, show error here
-                /* 
-                    Khi đăng kí lỗi thì hiển thị thông báo lỗi ở đây, lỗi lấy trong message ra
-                */
-                console.log(res.messagge)
-            } else { // Sign up successfully
-                // window.location.href = '/'
-                // * res.data là object chứa name, email, password
-                // TODO: back to login form with sign up data
-                /* 
-                    Chổ này đagnw nhập thành cônng nè, đem data quay về tragn login
-                */
+        signupError.text('')
 
+        // Call api đăng kí tài khoản
+        $.post(
+            `/signUp`,
+            { name, email, password, submit: true },
+            function (res) {
                 console.log(res)
-            }
-        }, "json");
-    })
+                if (!res.success) { // Sign up failed
+                    signupError.text(res.message)
+                    console.log(res.message)
+                } else { // Sign up successfully
+                    // Back to login form and show sign up success message
+                    loginBtn.click()
+                    $('#email').val(email)
+                    $('#password').val(password)
+                    $('#messageError-login').text('Sign up successfully, please login')
 
-    $(".txt_field input").keydown(function () {
-        $(".warningBox").text("").removeClass("shake-horizontal")
-        $(".label-input").removeClass('text-warning')
-        $(".txt_field").removeClass('warning')
-    })
+                    console.log(res)
+                }
+            },
+            'json'
+        )
 
-    
+    })
 })
+
+function validateEmail(email) {
+    var re =
+        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    return re.test(email.toLowerCase())
+}
+
+function validateUserInput(name, email, password) {
+    if (!name) {
+        signupError.text('Name is required')
+        return
+    }
+
+    if (!email) {
+        signupError.text('Email is required')
+        return
+    }
+
+    if (!validateEmail(email)) {
+        signupError.text('Email is invalid')
+        return
+    }
+
+    if (!password) {
+        signupError.text('Password is required')
+        return
+    }
+
+    if (password.length < 6) {
+        signupError.text('Password must be at least 6 characters')
+        return
+    }
+
+    return true
+}

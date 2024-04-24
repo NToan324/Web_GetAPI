@@ -22,7 +22,7 @@ class LoginController
             if (isset($_POST['email']) && isset($_POST['password'])) {
                 $email = $_POST['email'];
                 $password = $_POST['password'];
-                echo json_encode([$email, $password, $_POST['rememberMe']]);
+                // echo json_encode([$email, $password, $_POST['rememberMe']]);
 
                 $auth = $this->authenticate($email, $password);
 
