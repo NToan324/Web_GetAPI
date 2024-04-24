@@ -51,7 +51,7 @@ class LoginController
                 'success' => false,
                 'message' => $e->getMessage()
             );
-            echo json_encode($res);
+            // echo json_encode($res);
         }
     }
 
