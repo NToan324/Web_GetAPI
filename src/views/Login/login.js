@@ -3,12 +3,12 @@ $(document).ready(function () {
     //bắt sự kiện click nút đăng nhập
     let rememberMe = $('#remember-me').val()
     console.log(rememberMe)
+
     submitBtn.click(function (e) {
         // chặn hành vi gửi form mặc định của button
         e.preventDefault()
         let email = $('#email').val()
         let password = $('#password').val()
-
 
         if (!email) {
             $('#messageError-login').text('Email is required')
@@ -37,13 +37,15 @@ $(document).ready(function () {
         //call api kiểm tra đăng nhập
         $.post(
             `/login`,
-            { email, password, rememberMe, submit: true },
+            {email, password, rememberMe, submit: true},
             function (res) {
                 console.log(res)
+                console.log(res.success)
                 if (!res.success) {
                     $('#messageError-login').text(res.message)
                 } else {
-                    window.location.href = '/'
+                    console.log('login success')
+                    window.location.href = './index.html'
                 }
             },
             'json'
