@@ -8,12 +8,12 @@ require_once SERVER_PATH . '/controllers/home.controller.php';
 require_once SERVER_PATH . '/controllers/User.controller.php';
 
 
+
 $request = $_SERVER['REQUEST_URI'];
 $split_request = explode("?", $request);
 $request_parts = explode('/', $split_request[0]);
 
 $homeController = new HomeController();
-// $userController = new LoginController();
 $userController = new UserController();
 
 // routing
