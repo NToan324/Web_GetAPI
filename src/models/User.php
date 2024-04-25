@@ -20,10 +20,19 @@ class User
     // Get user by name
     public function findByEmail($email)
     {
-        $query = "SELECT * FROM users WHERE email = ?";
-        $stmt = $this->conn->prepare($query);
-        $stmt->execute([$email]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        try {
+            $query = "SELECT * FROM users WHERE email = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute([$email]);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            $res = array(
+                'success' => false,
+                'message' => $e->getMessage()
+            );
+
+            die(json_encode($res));
+        }
     }
 
     // Insert new user

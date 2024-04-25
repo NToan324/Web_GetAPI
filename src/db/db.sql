@@ -79,7 +79,7 @@ VALUES
     (10, 'This is the content of post 10.', 'image10.jpg');
 
 -- Chèn dữ liệu mẫu cho bảng COMMENTS
-INSERT INTO COMMENTS (post_id, user_id, comment)
+INSERT INTO COMMENTS (post_id, user_id, content)
 VALUES 
     (1, 2, 'Nice post!'),
     (1, 3, 'Great content!'),
