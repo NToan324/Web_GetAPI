@@ -35,9 +35,9 @@ switch ($request_parts[1]) {
         }
 
     case 'logout': {
-        // if (isset($_POST['logout_btn'])) {
+        if (isset($_POST['logoutBtn'])) {
             $homeController->logout();
-        // }
+        }
         break;
     }
 

@@ -35,17 +35,15 @@ $(document).ready(function () {
         $('#messageError-login').text('')
 
         //call api kiểm tra đăng nhập
-        $.post(
-            `/login`,
-            { email, password, rememberMe, submit: true },
-            function (res) {
-                console.log(res)
-                if (!res.success) {
-                    $('#messageError-login').text(res.message)
-                } else {
-                    window.location.href = '/'
-                }
-            },
+        const formData = { email, password, rememberMe, submit: true }
+        $.post(`/login`, formData, function (res) {
+            console.log(res)
+            if (!res.success) {
+                $('#messageError-login').text(res.message)
+            } else {
+                window.location.href = '/'
+            }
+        },
             'json'
         )
     })
