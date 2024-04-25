@@ -1,6 +1,5 @@
 <?php
-
-class LoginController
+class UserController
 {
     public function showLogin()
     {
@@ -55,14 +54,78 @@ class LoginController
                 'message' => $e->getMessage()
             );
             die(json_encode($res));
-
         }
+    }
+
+    public function signUp($name, $email, $password)
+    {
+        header('Content-type: application/json');
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $res = array(
+                'success' => false,
+                'message' => 'POST method is required for sign up. You\'re not using POST method'
+            );
+            die(json_encode($res));
+        }
+
+        try {
+            if (isset($_POST['email']) && isset($_POST['password'])) {
+                require_once './src/models/User.php';
+                require_once './src/config/db.conn.php';
+
+                $name = $_POST['name'];
+                $email = $_POST['email'];
+                $password = $_POST['password'];
+
+                $user = new User($conn);
+                $success = $user->create($name, $email, $password);
+
+                if ($success) {
+                    $res = array(
+                        'success' => true,
+                        'message' => 'Create new user successfully',
+                        'data' => $success
+                    );
+
+                    echo json_encode($res);
+                    return;
+                }
+            } else {
+                throw new Exception('All field has not been filled yet');
+            }
+        } catch (Exception $e) {
+            $res = array(
+                'success' => false,
+                'message' => $e->getMessage()
+            );
+            echo json_encode($res);
+        }
+    }
+
+    public function logout()
+    {
+        session_start();
+        $_SESSION = array();
+        session_destroy();
+
+        if (isset($_COOKIE['email'])) {
+            unset($_COOKIE['email']);
+            setcookie('email', '', time() - 3600, '/');
+        }
+
+        $res = array(
+            'success' => true,
+            'message' => 'Logout successfully'
+        );
+
+        header('Content-Type: application/json');
+        die(json_encode($res));
     }
 
     public function authenticate($email, $password)
     {
-        require_once __DIR__ . '/../models/User.php';
-        require_once './config/db.conn.php';
+        require_once './src/models/User.php';
+        require_once './src/config/db.conn.php';
 
         // Check if email is empty
         if (empty($email)) {

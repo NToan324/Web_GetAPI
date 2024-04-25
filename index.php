@@ -1,12 +1,11 @@
 <?php
 define('SESSION_EXPIRED_DAY', 60 * 60 * 24);
-
+define('SERVER_PATH', __DIR__ . '/src');
 session_set_cookie_params(SESSION_EXPIRED_DAY);
 session_start();
 
-require_once __DIR__ . '/controllers/home.controller.php';
-require_once __DIR__ . '/controllers/login.controller.php';
-require_once __DIR__ . '/controllers/signup.controller.php';
+require_once SERVER_PATH . '/controllers/home.controller.php';
+require_once SERVER_PATH . '/controllers/User.controller.php';
 
 
 $request = $_SERVER['REQUEST_URI'];
@@ -14,7 +13,8 @@ $split_request = explode("?", $request);
 $request_parts = explode('/', $split_request[0]);
 
 $homeController = new HomeController();
-$loginController = new LoginController();
+// $userController = new LoginController();
+$userController = new UserController();
 
 // routing
 switch ($request_parts[1]) {
@@ -27,29 +27,28 @@ switch ($request_parts[1]) {
             if (isset($_POST['submit'])) {
                 $email = $_POST['email'];
                 $password = $_POST['password'];
-                $loginController->login($email, $password);
+                $userController->login($email, $password);
             } else {
-                $loginController->showLogin();
+                $userController->showLogin();
             }
             break;
         }
 
     case 'logout': {
         if (isset($_POST['logoutBtn'])) {
-            $homeController->logout();
+            $userController->logout();
         }
         break;
     }
 
     case "signUp": {
-            $signUpController = new SignUpController();
             if (isset($_POST['submit'])) {
                 $name = $_POST['name'];
                 $email = $_POST['email'];
                 $password = $_POST['password'];
-                $signUpController->signUp($name, $email, $password);
+                $userController->signUp($name, $email, $password);
             } else {
-                // $signUpController->showSignUpPage();
+                // $userController->showSignUpPage();
             }
             break;
         }
