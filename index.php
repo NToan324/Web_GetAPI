@@ -53,8 +53,14 @@ switch ($request_parts[1]) {
             break;
         }
 
-    case 'test-db': {
-            require_once './config/db.conn.php';
+    case 'checkhealth': {
+            $res = array(
+                'success' => true,
+                'message' => 'Health is good'
+            );
+
+            header('Content-Type: applicatin/json');
+            die(json_encode($res));
             break;
         }
         // default: require __DIR__ . '/views/404.php';

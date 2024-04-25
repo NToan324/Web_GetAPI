@@ -119,7 +119,7 @@ class UserController
         );
 
         header('Content-Type: application/json');
-        die(json_encode($res));
+        echo (json_encode($res));
     }
 
     public function authenticate($email, $password)

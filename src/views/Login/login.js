@@ -1,8 +1,7 @@
 $(document).ready(function () {
     let submitBtn = $('#login-submit-btn')
     //bắt sự kiện click nút đăng nhập
-    let rememberMe = $('#remember-me').val()
-    console.log(rememberMe)
+    let rememberMe = $('#remember-me').is(':checked')
 
     submitBtn.click(function (e) {
         // chặn hành vi gửi form mặc định của button
@@ -39,7 +38,6 @@ $(document).ready(function () {
             `/login`,
             {email, password, rememberMe, submit: true},
             function (res) {
-                console.log(res)
                 if (!res.success) {
                     $('#messageError-login').text(res.message)
                 } else {

@@ -1,11 +1,10 @@
 $(document).ready(function() {
     const logoutBtn = $('#logout-btn')
-    console.log(logoutBtnj)
 
     logoutBtn.click(function() {
         $.post('/logout', {logoutBtn: true}), (res) => {
             if (res.success) {
-                console.log(res)
+                window.location.href = '/'
             } else {
                 console.error(res)
             }
