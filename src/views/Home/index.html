@@ -254,104 +254,68 @@
         <!-- Post -->
         <div class="main-posts">
             <!-- box1 -->
-            <div class="post-box">
-                <div class="post-profile">
-                    <div class="post-img">
-                        <img src="src/views/Home/Image/hinh1.jpg" alt="" />
-                    </div>
-                    <h3>Jesica</h3>
-                    <span>23 hours</span>
-                </div>
-                <div class="caption">
-                    <p>Good morning, Have a good day!</p>
-                </div>
-                <img src="src/views/Home/Image/hinh1.jpg" alt="" />
-                <div class="post-info">
-                    <div class="likes">
-                        <i class="far fa-heart" onclick="liked(this)"></i>
-                    </div>
-                    <div class="comments">
-                        <i class="far fa-comment-dots"></i>
-                    </div>
-                </div>
-                <div class="likes-comments-info">
-                    <span>778 Likes</span>
-                    <div class="comments-show">
-                        <h4>Nhật Toàn</h4>
-                        <p>You are so beautiful</p>
-                    </div>
-                    <div class="write-comments">
-                        <input type="text" placeholder="Write a comment..." />
-                        <i class="far fa-paper-plane"></i>
-                    </div>
-                </div>
-            </div>
-            <!-- box2 -->
-            <div class="post-box">
-                <div class="post-profile">
-                    <div class="post-img">
-                        <img src="src/views/Home/Image/hinh1.jpg" alt="" />
-                    </div>
-                    <h3>Jesica</h3>
-                    <span>23 hours</span>
-                </div>
-                <div class="caption">
-                    <p>Good morning, Have a good day!</p>
-                </div>
-                <img src="src/views/Home/Image/hinh1.jpg" alt="" />
-                <div class="post-info">
-                    <div class="likes">
-                        <i class="far fa-heart" onclick="liked(this)"></i>
-                    </div>
-                    <div class="comments">
-                        <i class="far fa-comment-dots"></i>
-                    </div>
-                </div>
-                <div class="likes-comments-info">
-                    <span>778 Likes</span>
-                    <div class="comments-show">
-                        <h4>Nhật Toàn</h4>
-                        <p>You are so beautiful</p>
-                    </div>
-                    <div class="write-comments">
-                        <input type="text" placeholder="Write a comment..." />
-                        <i class="far fa-paper-plane"></i>
-                    </div>
-                </div>
-            </div>
+
             <!-- box1 -->
-            <div class="post-box">
-                <div class="post-profile">
-                    <div class="post-img">
-                        <img src="src/views/Home/Image/hinh1.jpg" alt="" />
-                    </div>
-                    <h3>Jesica</h3>
-                    <span>23 hours</span>
-                </div>
-                <div class="caption">
-                    <p>Good morning, Have a good day!</p>
-                </div>
-                <img src="src/views/Home/Image/hinh1.jpg" alt="" />
-                <div class="post-info">
-                    <div class="likes">
-                        <i class="far fa-heart" onclick="liked(this)"></i>
-                    </div>
-                    <div class="comments">
-                        <i class="far fa-comment-dots"></i>
-                    </div>
-                </div>
-                <div class="likes-comments-info">
-                    <span>778 Likes</span>
-                    <div class="comments-show">
-                        <h4>Nhật Toàn</h4>
-                        <p>You are so beautiful</p>
-                    </div>
-                    <div class="write-comments">
-                        <input type="text" placeholder="Write a comment..." />
-                        <i class="far fa-paper-plane"></i>
-                    </div>
-                </div>
-            </div>
+            <script>
+                function renderPosts(posts) {
+                    posts.forEach(post => {
+                        let html = `
+                            <div class="post-box">
+                            <div class="post-profile">
+                                <div class="post-img">
+                                    <img src="${post.image}" alt="" />
+                                </div>
+                                <h3>Jesica</h3>
+                                <span>23 hours</span>
+                            </div>
+                            <div class="caption">
+                                <p>Good morning, Have a good day!</p>
+                            </div>
+                            <img src="src/views/Home/Image/hinh1.jpg" alt="" />
+                            <div class="post-info">
+                                <div class="likes">
+                                    <i class="far fa-heart" onclick="liked(this)"></i>
+                                </div>
+                                <div class="comments">
+                                    <i class="far fa-comment-dots"></i>
+                                </div>
+                            </div>
+                            <div class="likes-comments-info">
+                                <span>${post.total_likes} Likes</span>
+                                <div class="comments-show">
+                                    <h4>Nhật Toàn</h4>
+                                    <p>You are so beautiful</p>
+                                </div>
+                                <div class="write-comments">
+                                    <input type="text" placeholder="Write a comment..." />
+                                    <i class="far fa-paper-plane"></i>
+                                </div>
+                            </div>
+                        </div>
+                        `
+                    });
+                }
+
+                async function fetchPosts() {
+                    try {
+                        const response = await fetch('http://localhost:8001/loadAllPost');
+                        const data = await response.json();
+
+                        if (data.success) {
+                            return data.data;
+                        } else {
+                            throw new Error(data.message);
+                        }
+                    } catch (error) {
+                        console.error('Error loading posts:', error);
+                        return [];
+                    }
+                }
+
+                const data = fetchPosts()
+                console.log(data)
+
+            </script>
             <!-- box1 -->
             <div class="post-box">
                 <div class="post-profile">

@@ -4,8 +4,9 @@ define('SERVER_PATH', __DIR__ . '/src');
 session_set_cookie_params(SESSION_EXPIRED_DAY);
 session_start();
 
-require_once SERVER_PATH . '/controllers/home.controller.php';
+require_once SERVER_PATH . '/controllers/Home.controller.php';
 require_once SERVER_PATH . '/controllers/User.controller.php';
+require_once SERVER_PATH . '/controllers/Post.controller.php';
 
 
 
@@ -15,13 +16,14 @@ $request_parts = explode('/', $split_request[0]);
 
 $homeController = new HomeController();
 $userController = new UserController();
+$postController = new PostController();
 
 // routing
 switch ($request_parts[1]) {
     case "": {
-        $homeController->showHome();
-        break;
-    }
+            $homeController->showHome();
+            break;
+        }
 
     case "login": {
             if (isset($_POST['submit'])) {
@@ -35,11 +37,11 @@ switch ($request_parts[1]) {
         }
 
     case 'logout': {
-        if (isset($_POST['logoutBtn'])) {
-            $userController->logout();
+            if (isset($_POST['logoutBtn'])) {
+                $userController->logout();
+            }
+            break;
         }
-        break;
-    }
 
     case "signUp": {
             if (isset($_POST['submit'])) {
@@ -53,6 +55,10 @@ switch ($request_parts[1]) {
             break;
         }
 
+    case 'loadAllPost': {
+            $postController->loadAllPost();
+        }
+
     case 'checkhealth': {
             $res = array(
                 'success' => true,
@@ -63,8 +69,7 @@ switch ($request_parts[1]) {
             die(json_encode($res));
             break;
         }
-        // default: require __DIR__ . '/views/404.php';
-        
+
     default:
         header('Content-Type: application/json');
         $res = array(
@@ -74,6 +79,3 @@ switch ($request_parts[1]) {
         echo json_encode($res);
         break;
 }
-
-
-
