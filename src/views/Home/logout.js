@@ -1,3 +1,14 @@
-// TODO: lắng nghe sự kiện logout, request POST /logout và điều hướng về login
+$(document).ready(function() {
+    const logoutBtn = $('#logout-btn')
+    console.log(logoutBtnj)
 
-// code hết api rồi chỉ cần điều hướng với request post nữa thôi
+    logoutBtn.click(function() {
+        $.post('/logout', {logoutBtn: true}), (res) => {
+            if (res.success) {
+                console.log(res)
+            } else {
+                console.error(res)
+            }
+        }
+    })
+})

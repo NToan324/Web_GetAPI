@@ -40,12 +40,10 @@ $(document).ready(function () {
             {email, password, rememberMe, submit: true},
             function (res) {
                 console.log(res)
-                console.log(res.success)
                 if (!res.success) {
                     $('#messageError-login').text(res.message)
                 } else {
-                    console.log('login success')
-                    window.location.href = './index.html'
+                    window.location.href = '/'
                 }
             },
             'json'
