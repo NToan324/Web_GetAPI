@@ -113,13 +113,13 @@ class UserController
             setcookie('email', '', time() - 3600, '/');
         }
 
-        $res = array(
+        header('Content-Type: application/json');
+        echo json_encode(array(
             'success' => true,
             'message' => 'Logout successfully'
-        );
+        ));
 
-        header('Content-Type: application/json');
-        echo (json_encode($res));
+        // header('Location: /login');
     }
 
     public function authenticate($email, $password)
