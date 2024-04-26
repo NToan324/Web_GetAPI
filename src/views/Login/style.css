@@ -15,6 +15,10 @@ body {
     height: 100vh;
 }
 
+.action h1 {
+    text-align: center;
+}
+
 .container {
     background-color: #fff;
     border-radius: 30px;
