@@ -653,6 +653,146 @@ span.icon {
     }
 
 }
+
+/* Post show page */
+.container-post.active {
+    visibility: visible;
+    left: 70px;
+    animation: RigthShow 1s;
+    transition: 1s;
+
+}
+
+.container-post {
+    visibility: hidden;
+    top: 0;
+    position: fixed;
+    left: -70%;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    z-index: 10;
+    transition: 0.7s ease-in;
+}
+
+
+.header-post {
+    border-bottom: 1px solid #ddd;
+}
+
+.header-post h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.container-post form {
+    border: 2px solid #e0e0e0 ;
+    background-color:white;
+    padding: 15px;
+    border-radius: 15px;
+    width: 500px;
+    height: 430px; 
+}
+
+.body-post table {
+    width: 100%;
+}
+
+.body-post td {
+    padding: 5px;
+}
+
+.profile-post {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-img-post {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+}
+
+.profile-img-post img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+}
+
+.body-post td .name-post {
+    text-align: left;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.body-post textarea {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    font-size: 25px;
+    resize: none;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 10px;
+    scrollbar-width: thin; /* Điều chỉnh chiều rộng của thanh cuộn */
+    scrollbar-color: #999 #eee;
+}
+
+.body-post td select {
+    padding: 0.2em  0.5em 0.2em 1.5em;
+	background-image: url( https://static-00.iconduck.com/assets.00/settings-icon-1964x2048-8nigtrtt.png );
+    background-repeat: no-repeat;
+	background-size: 1em auto;
+	background-position: 0.4em center;
+    border-radius: 7px;
+    background-color: #eeeeee;
+    border-color: #eeeeee;
+    margin-top: 5px;
+}
+
+.add-post {
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+}
+
+.add-post table {
+    margin: 2px 0 0 10px;
+}
+
+.img-add-post {
+    width: 30px;
+    height: 30px;
+    padding-right: 5px;
+}
+
+.body-post table .img-add-post{
+    text-align: right;
+    cursor: pointer;
+}
+
+.btn-post {
+    width: 100%;
+    margin: 10px 10px 0 0;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    height: 40px;
+    font-size: 15px;
+    background-color: rgb(21, 0, 255);
+    color: aliceblue;
+    cursor: pointer;
+}
+
 /* MOBILE VERSION */
 @media only screen and (max-width: 740px) {
 
@@ -869,6 +1009,43 @@ span.icon {
         border-radius: 5px;
 
     }
+
+    /*Post-Mobile*/
+    .container-post.active-mobile {
+        visibility: visible;
+        animation: UpShow 1s;
+        transition: 1s;
+        top:20%;
+
+    }
+    
+    .container-post {
+        width: 100%;
+        position: fixed;
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        list-style: none;
+        text-decoration: none;
+        z-index: 10;
+        transition: 0.7s ease-in;
+        left: 0px;
+        top: 100%;
+        height: 600px;
+    }
+    
+    .container-post form {
+        position: absolute;
+        bottom:0;
+        background-color: white;
+        padding: 30px;
+        border-radius: 20px;
+        height: 80%;
+        width: 100%;
+        overflow: auto;
+    }
+
     @keyframes UpShow {
         0% {
             top: 100%;

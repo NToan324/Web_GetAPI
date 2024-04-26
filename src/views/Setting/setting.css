@@ -1,4 +1,10 @@
-.container {
+body {
+    background-color: #eeeded;
+    justify-content: center;
+    display: flex;   
+}
+
+.container-setting {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
@@ -13,7 +19,7 @@ h2 {
     font-size: 28px;
 }
 
-.container form {
+.container-setting form {
     border: 2px solid #e0e0e0 ;
     background-color:white;
     padding: 15px;
@@ -22,20 +28,15 @@ h2 {
     height: 600px; 
 }
 
-body {
-    background-color: #eeeded;
-    justify-content: center;
-    display: flex;   
-}
 
-table {
+.body-setting table {
     width: 100%;
     border-collapse: collapse;
 
 }
 
 
-td {
+.body-setting td {
     padding: 15px;
     border-bottom: 1px solid #ddd;
 }
@@ -46,7 +47,7 @@ td {
     margin-bottom: 5px;
 }
 
-table .name-profile {
+.body-setting table .name-profile {
     font-weight: bold;
 }
 
@@ -54,9 +55,10 @@ table .name-profile {
     color: rgb(21, 0, 255);
     margin: 185px;
     text-align: center;
+    text-decoration: none;
 }
 
-input {
+.body-setting input {
     border: none;
     outline: none;
     background: transparent;
@@ -65,7 +67,7 @@ input {
     box-sizing: border-box;
 }
 
-button {
+.btn-setting {
     width: 70px;
     text-align: center;
     border-radius: 10px;
@@ -78,6 +80,6 @@ button {
     margin: 10px 215px;
 }
 
-tr:hover {
+.body-setting tr:hover {
     background-color: #ddd;
 }

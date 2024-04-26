@@ -54,13 +54,13 @@
                 </span>
                 <span class="hide">Message</span>
             </a>
-            <a href="#">
+            <a href="#" id="a-post">
                 <span class="icon">
                     <i class="fas fa-plus-circle"></i>
                     <span class="tooltip">Post</span>
                 </span>
                 <span class="hide">Post</span>
-            </a>
+            </a >
             <a href="#" class="setting">
                 <span class="icon">
                     <i class="fas fa-cog"></i>
@@ -273,6 +273,50 @@
                             </tr>
                         </table>  
                     </div>  
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Post show page -->
+    <div class="container-post" id="container-post">
+        <div class="form-container-post">
+            <form action="" class="action">
+                <div class="header-post">
+                    <h2>Create Post</h2>
+                </div>
+    
+                <div class="body-post">
+                    <div class="profile-post">
+                        <table>
+                            <tr>
+                                <td width="10%"> 
+                                    <img class="profile-img-post" src="/storage/posts/image2.jpg" alt="avatar">
+                                </td>
+                                <td>
+                                    <p class="name-post">Yen Ngoc</p>
+                                    <select name="select-object">
+                                        <option>Public</option>
+                                        <option>Private</option>
+                                        <option>Friends</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>  
+                        <textarea rows="5" cols="50" placeholder="What are you thinking?"></textarea>
+                    </div> 
+                    
+                    <div class="add-post">
+                        <table>
+                            <tr>
+                                <td>Add to your post</td>
+                                <td width="20%">
+                                    <img class="img-add-post" src="/storage/posts/post1.jpg">
+                                    <img class="img-add-post" src="/storage/posts/post2.jpg">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <button class="btn-post">Post</button>
                 </div>
             </form>
         </div>

@@ -1,4 +1,10 @@
-.container {
+/* body {
+    background-color: #eeeded;
+    justify-content: center;
+    display: flex;   
+} */
+
+.container-post {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
@@ -9,21 +15,11 @@
     border-bottom: 1px solid #ddd;
 }
 
-h2 {
+.header-post h2 {
     font-size: 28px;
 }
 
-.search input {
-    border: none;
-    outline: none;
-    background: transparent;
-    margin-left: 7px;
-    width: 100%;
-    padding: 10px; /* Điều chỉnh khoảng cách giữa nội dung và viền */
-    box-sizing: border-box;
-}
-
-.container form {
+.container-post form {
     border: 2px solid #e0e0e0 ;
     background-color:white;
     padding: 15px;
@@ -32,17 +28,11 @@ h2 {
     height: 450px; 
 }
 
-body {
-    background-color: #eeeded;
-    justify-content: center;
-    display: flex;   
-}
-
-table {
+.body-post table {
     width: 100%;
 }
 
-td {
+.body-post td {
     padding: 5px;
 }
 
@@ -66,7 +56,7 @@ td {
     border-radius: 50px;
 }
 
-td .name-post {
+.body-post td .name-post {
     text-align: left;
     font-weight: bold;
     font-size: 14px;
@@ -79,9 +69,10 @@ td .name-post {
     margin-left: 20px;
     font-family: 'Poppins', sans-serif;
     font-size: 25px;
+    resize: none;
 }
 
-td select {
+.body-post td select {
     padding: 0.2em  0.5em 0.2em 1.5em;
 	background-image: url( https://static-00.iconduck.com/assets.00/settings-icon-1964x2048-8nigtrtt.png );
     background-repeat: no-repeat;
@@ -111,12 +102,12 @@ td select {
     padding-right: 5px;
 }
 
-table .img-add-post{
+.body-post table .img-add-post{
     text-align: right;
     cursor: pointer;
 }
 
-button {
+.btn-post {
     width: 100%;
     margin: 10px 10px 0 0;
     text-align: center;

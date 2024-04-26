@@ -47,7 +47,11 @@ document.getElementById('a-notification').addEventListener('click', function() {
 document.getElementById('a-search').addEventListener('click', function() {
     toggleElement('container-search', 'active');
 });
+//Post
+document.getElementById('a-post').addEventListener('click', function() {
+    toggleElement('container-post', 'active');
 
+});
 
 
 
