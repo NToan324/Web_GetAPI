@@ -14,7 +14,7 @@ class UserController
                 'success' => false,
                 'message' => 'POST method is required for login. You\'re not using POST method'
             );
-            die(json_encode($res));
+            echo(json_encode($res));
         }
 
         try {
@@ -26,8 +26,8 @@ class UserController
                 $auth = $this->authenticate($email, $password);
 
                 if ($auth) {
-                    session_start();
                     // Create new session
+                    session_start();
                     session_regenerate_id();
                     $_SESSION['logged_in'] = TRUE;
                     $_SESSION['email'] = $auth->email;
@@ -43,7 +43,7 @@ class UserController
                         'data' => $auth
                     );
 
-                    die(json_encode($res));
+                    echo(json_encode($res));
                 }
             } else {
                 throw new Exception('Email and password are required.');
@@ -53,7 +53,7 @@ class UserController
                 'success' => false,
                 'message' => $e->getMessage()
             );
-            die(json_encode($res));
+            echo(json_encode($res));
         }
     }
 
@@ -65,7 +65,7 @@ class UserController
                 'success' => false,
                 'message' => 'POST method is required for sign up. You\'re not using POST method'
             );
-            die(json_encode($res));
+            echo(json_encode($res));
         }
 
         try {

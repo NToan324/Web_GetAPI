@@ -1,6 +1,5 @@
 $(document).ready(function () {
     let submitBtn = $('#login-submit-btn')
-    //bắt sự kiện click nút đăng nhập
     let rememberMe = $('#remember-me').is(':checked')
 
     submitBtn.click(function (e) {
@@ -36,12 +35,12 @@ $(document).ready(function () {
         //call api kiểm tra đăng nhập
         $.post(
             `/login`,
-            {email, password, rememberMe, submit: true},
+            { email, password, rememberMe, submit: true },
             function (res) {
-                if (!res.success) {
-                    $('#messageError-login').text(res.message)
-                } else {
+                if (res.success) {
                     window.location.href = '/'
+                } else {
+                    $('#messageError-login').text(res.message)
                 }
             },
             'json'
