@@ -8,13 +8,16 @@ class Post
     {
         $this->conn = $conn;
     }
-    // TODO: post class, modify function args if needed
+
     public function findAll()
     {
-        $stmt = $this->conn->query("SELECT * FROM posts");
+        $stmt = $this->conn->query("
+            SELECT posts.*, users.name AS user_name, users.avatar AS avatar
+            FROM posts
+            JOIN users ON posts.user_id = users.user_id
+        ");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
     public function findById($post_id)
     {
         $stmt = $this->conn->prepare("SELECT * FROM posts WHERE post_id = ?");
@@ -35,7 +38,8 @@ class Post
         return $stmt->execute([$post_id]);
     }
 
-    public function like($post_id, $user_id) {
+    public function like($post_id, $user_id)
+    {
         // Increase total_likes column in the posts table
         $stmt = $this->conn->prepare("UPDATE posts SET total_likes = total_likes + 1 WHERE post_id = ?");
         $stmt->execute([$post_id]);
@@ -65,6 +69,4 @@ class Post
         $stmt = $this->conn->prepare("DELETE FROM comments WHERE comment_id = ?");
         return $stmt->execute([$comment_id]);
     }
-
-    // and more function for modify post
 }

@@ -57,6 +57,7 @@ switch ($request_parts[1]) {
 
     case 'loadAllPost': {
             $postController->loadAllPost();
+            break;
         }
 
     case 'checkhealth': {

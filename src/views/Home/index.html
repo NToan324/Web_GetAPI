@@ -258,20 +258,21 @@
             <!-- box1 -->
             <script>
                 function renderPosts(posts) {
+                    const postContainer = $('.main-posts')
                     posts.forEach(post => {
                         let html = `
                             <div class="post-box">
                             <div class="post-profile">
                                 <div class="post-img">
-                                    <img src="${post.image}" alt="" />
+                                    <img src="../../../storage/users/${post.avatar}" alt="" />
                                 </div>
-                                <h3>Jesica</h3>
+                                <h3>${post.user_name}</h3>
                                 <span>23 hours</span>
                             </div>
                             <div class="caption">
-                                <p>Good morning, Have a good day!</p>
+                                <p>${post.content}</p>
                             </div>
-                            <img src="src/views/Home/Image/hinh1.jpg" alt="" />
+                            <img src="../../../storage/posts/${post.image}" alt="" />
                             <div class="post-info">
                                 <div class="likes">
                                     <i class="far fa-heart" onclick="liked(this)"></i>
@@ -284,7 +285,7 @@
                                 <span>${post.total_likes} Likes</span>
                                 <div class="comments-show">
                                     <h4>Nhật Toàn</h4>
-                                    <p>You are so beautiful</p>
+                                    <p>${post.content}</p>
                                 </div>
                                 <div class="write-comments">
                                     <input type="text" placeholder="Write a comment..." />
@@ -293,31 +294,22 @@
                             </div>
                         </div>
                         `
+
+                        postContainer.append(html)
+                        
                     });
                 }
 
-                async function fetchPosts() {
-                    try {
-                        const response = await fetch('http://localhost:8001/loadAllPost');
-                        const data = await response.json();
-
-                        if (data.success) {
-                            return data.data;
-                        } else {
-                            throw new Error(data.message);
-                        }
-                    } catch (error) {
-                        console.error('Error loading posts:', error);
-                        return [];
+                $.get('/loadAllPost', (res) => {
+                    if (res.success) {
+                        renderPosts(res.data)
+                    } else {
+                        console.log(res)
                     }
-                }
-
-                const data = fetchPosts()
-                console.log(data)
-
+                })
             </script>
             <!-- box1 -->
-            <div class="post-box">
+            <!-- <div class="post-box">
                 <div class="post-profile">
                     <div class="post-img">
                         <img src="src/views/Home/Image/hinh1.jpg" alt="" />
@@ -348,7 +340,7 @@
                         <i class="far fa-paper-plane"></i>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <script src="src/views/Home/script.js"></script>

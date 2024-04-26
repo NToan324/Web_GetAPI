@@ -11,7 +11,7 @@ class PostController
                 'success' => false,
                 'message' => 'POST method is required for login. You\'re not using POST method'
             );
-            die(json_encode($res));
+            echo (json_encode($res));
         }
 
         try {
@@ -28,7 +28,7 @@ class PostController
                     'data' => $posts
                 );
 
-                die(json_encode($res));
+                echo (json_encode($res));
             } else {
                 $res = array(
                     'success' => false,
@@ -41,7 +41,7 @@ class PostController
                 'message' => $e->getMessage()
             );
 
-            die(json_encode($res));
+            echo (json_encode($res));
         }
     }
 

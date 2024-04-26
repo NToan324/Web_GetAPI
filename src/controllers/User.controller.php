@@ -118,8 +118,6 @@ class UserController
             'success' => true,
             'message' => 'Logout successfully'
         ));
-
-        // header('Location: /login');
     }
 
     public function authenticate($email, $password)
