@@ -1,10 +1,11 @@
 $(document).ready(function () {
     let submitBtn = $('#login-submit-btn')
-    let rememberMe = $('#remember-me').is(':checked')
-
+    
     submitBtn.click(function (e) {
+        console.log('clicked')
         // chặn hành vi gửi form mặc định của button
         e.preventDefault()
+        let rememberMe = $('#remember-me').is(':checked')
         let email = $('#email').val()
         let password = $('#password').val()
 
@@ -33,18 +34,24 @@ $(document).ready(function () {
         $('#messageError-login').text('')
 
         //call api kiểm tra đăng nhập
-        $.post(
-            `/login`,
-            { email, password, rememberMe, submit: true },
-            function (res) {
+        $.ajax({
+            url: '/login',
+            method: 'POST',
+            dataType: 'json',
+            data: { email, password, rememberMe, submit: true },
+            success: function(res) {
+                console.log(res.success);
                 if (res.success) {
-                    window.location.href = '/'
+                    window.location.href = '/';
                 } else {
-                    $('#messageError-login').text(res.message)
+                    $('#messageError-login').text(res.message);
                 }
             },
-            'json'
-        )
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+        
     })
 })
 

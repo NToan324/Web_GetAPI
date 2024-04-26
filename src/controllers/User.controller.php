@@ -14,7 +14,7 @@ class UserController
                 'success' => false,
                 'message' => 'POST method is required for login. You\'re not using POST method'
             );
-            echo(json_encode($res));
+            echo (json_encode($res));
         }
 
         try {
@@ -27,23 +27,20 @@ class UserController
 
                 if ($auth) {
                     // Create new session
-                    session_start();
                     session_regenerate_id();
                     $_SESSION['logged_in'] = TRUE;
-                    $_SESSION['email'] = $auth->email;
-                    $_SESSION['id'] = $auth->id;
+                    $_SESSION['email'] = $auth['email'];
+                    $_SESSION['id'] = $auth['user_id'];
 
                     if (isset($_POST['rememberMe'])) {
                         setcookie('email', $email, time() + SESSION_EXPIRED_DAY, '/');
                     }
 
-                    $res = array(
+                    echo (json_encode(array(
                         'success' => true,
                         'message' => 'Login successfully',
                         'data' => $auth
-                    );
-
-                    echo(json_encode($res));
+                    )));
                 }
             } else {
                 throw new Exception('Email and password are required.');
@@ -53,7 +50,7 @@ class UserController
                 'success' => false,
                 'message' => $e->getMessage()
             );
-            echo(json_encode($res));
+            echo (json_encode($res));
         }
     }
 
@@ -65,7 +62,7 @@ class UserController
                 'success' => false,
                 'message' => 'POST method is required for sign up. You\'re not using POST method'
             );
-            echo(json_encode($res));
+            echo (json_encode($res));
         }
 
         try {
@@ -104,7 +101,6 @@ class UserController
 
     public function logout()
     {
-        session_start();
         $_SESSION = array();
         session_destroy();
 

@@ -1,4 +1,4 @@
-$(document).ready(function() {
+    $(document).ready(function() {
     const logoutBtn = $('#logout-btn')
 
     logoutBtn.click(function() {
