@@ -9,7 +9,7 @@ CREATE TABLE USERS (
     name VARCHAR(255),
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    birthday DATE,
+    birthday DATE DEFAULT '2004-03-02',
     avatar VARCHAR(255) DEFAULT 'default_avatar.jpg',
     bio TEXT DEFAULT '',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,

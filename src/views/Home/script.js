@@ -9,20 +9,47 @@ function liked(x) {
     }
 }
 
-// Show notification
-document.getElementById('a-notification').addEventListener('click', function () { 
+// Show Function Page
+function toggleElement(containerId, className) {
     var widthDefault = window.innerWidth;
+    var container = document.getElementById(containerId);
+    var sidebar = document.getElementById('sidebar');
+    var containers = document.querySelectorAll('.container');
+    var sidebarFlag = sidebar.classList.contains('flag');
+
+    containers.forEach(function(item) {
+        if (item.id !== containerId) {
+            item.classList.remove('active');
+        }
+    });
+
     if (widthDefault >= 740 && widthDefault <= 1024) {
-        var notification = document.getElementById('container-notification').classList.toggle('active');
+        container.classList.toggle('active');
     } else if (widthDefault > 1024) {
-        var notification = document.getElementById('sidebar').classList.toggle('change-tablet');
-        var notification = document.getElementById('sidebar').classList.toggle('active');
-        var notification = document.getElementById('container-notification').classList.toggle('active');
-    } else {
-        var notification = document.getElementById('container-notification').classList.toggle('active-mobile');
+        sidebar.classList.toggle('change-tablet');
+        sidebar.classList.toggle('active');
+        if (!sidebarFlag) {
+            sidebar.classList.add('flag');
+        }
+        container.classList.toggle('active');
+    } else if (widthDefault < 740) {
+        container.classList.toggle('active-mobile');
+        sidebar.classList.remove('flag');
     }
-    
+}
+
+// Notification
+document.getElementById('a-notification').addEventListener('click', function() {
+    toggleElement('container-notification', 'active');
+
 });
+// Search
+document.getElementById('a-search').addEventListener('click', function() {
+    toggleElement('container-search', 'active');
+});
+
+
+
 
 window.addEventListener('resize', function () {
     widthDefault = window.innerWidth;
