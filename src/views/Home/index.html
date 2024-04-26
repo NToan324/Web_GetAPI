@@ -18,7 +18,7 @@
     <div class="sidebar" id="sidebar">
         <div class="profile">
             <div class="profile-img">
-                <img src="/src/views/Home/Image/avatar.jpg" alt="avatar" />
+                <img src="/storage/posts/avatar.jpg" alt="avatar" />
             </div>
             <div class="name">
                 <h3>Nhật Toàn</h3>
@@ -33,7 +33,7 @@
                 </span>
                 <span class="hide">Feed</span>
             </a>
-            <a href="#">
+            <a href="#" id="a-search">
                 <span class="icon">
                     <i class="fas fa-search"></i>
                     <span class="tooltip">Search</span>
@@ -83,7 +83,6 @@
             <form action="" class="action-notification">
                 <div class="header-notification">
                     <h1>Notifications</h1>
-                    <p>You have <span id="name-notification">3 Notifications</span> today.</p>
                 </div>
                 <div class="body-search-notification">
                     <p class="day-notification">Today</p>
@@ -92,7 +91,7 @@
                             <tr class="hover-notification">
                                 <td width="10%">
                                     <div class="profile-img-notification">
-                                        <img src="/src/views/Home/Image/hinh2.jpg" alt="avatar">
+                                        <img src="/storage/posts/image2.jpg" alt="avatar">
                                     </div>
                                 </td>
                                 <td>
@@ -106,7 +105,7 @@
                             <tr class="hover-notification">
                                 <td width="10%">
                                     <div class="profile-img-notification">
-                                        <img src="/src/views/Home/Image/hinh3.jpg" alt="avatar">
+                                        <img src="/storage/posts/image1.jpg" alt="avatar">
                                     </div>
                                 </td>
                                 <td>
@@ -127,7 +126,7 @@
                             <tr class="hover-notification">
                                 <td width="10%">
                                     <div class="profile-img-notification">
-                                        <img src="/src/views/Home/Image/hinh1.jpg" alt="avatar">
+                                        <img src="/storage/posts/image1.jpg" alt="avatar">
                                     </div>
                                 </td>
                                 <td>
@@ -141,7 +140,7 @@
                             <tr class="hover-notification">
                                 <td width="10%">
                                     <div class="profile-img-notification">
-                                        <img src="/src/views/Home/Image/hinh4.jpg" alt="avatar">
+                                        <img src="/storage/posts/image4.jpg" alt="avatar">
                                     </div>
                                 </td>
                                 <td>
@@ -162,7 +161,7 @@
                             <tr class="hover-notification">
                                 <td width="10%">
                                     <div class="profile-img-notification">
-                                        <img src="/src/views/Home/Image/hinh1.jpg" alt="avatar">
+                                        <img src="/storage/posts/image1.jpg" alt="avatar">
                                     </div>
                                 </td>
                                 <td>
@@ -176,7 +175,7 @@
                             <tr class="hover-notification">
                                 <td width="10%">
                                     <div class="profile-img-notification">
-                                        <img src="/src/views/Home/Image/hinh4.jpg" alt="avatar">
+                                        <img src="/storage/posts/image4.jpg" alt="avatar">
                                     </div>
                                 </td>
                                 <td>
@@ -190,7 +189,7 @@
                             <tr class="hover-notification">
                                 <td width="10%">
                                     <div class="profile-img-notification">
-                                        <img src="/src/views/Home/Image/hinh2.jpg" alt="avatar">
+                                        <img src="/storage/posts/image2.jpg" alt="avatar">
                                     </div>
                                 </td>
                                 <td>
@@ -204,7 +203,7 @@
                             <tr class="hover-notification">
                                 <td width="10%">
                                     <div class="profile-img-notification">
-                                        <img src="/src/views/Home/Image/hinh3.jpg" alt="avatar">
+                                        <img src="/storage/posts/image3.jpg" alt="avatar">
                                     </div>
                                 </td>
                                 <td>
@@ -217,6 +216,63 @@
                             </tr>
                         </div>
                     </table>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Search show page -->
+    <div class="container-search" id="container-search">
+        <div class="form-container-search">
+            <form action="" class="action">
+                <div class="header-search">
+                    <h2>Search</h2>
+                    <div class="search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search">       
+                    </div>
+                </div>
+                <div class="body-search">
+                    <div class="head-body-search">
+                        <table>
+                            <tr>
+                                <td>Recently</td>
+                                <td></td>
+                                <td id="delete-search"><a href="#"> Delete all </a></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="profile-search">
+                        <table >
+                            <tr class="hover-search">
+                                <td width="10%"> 
+                                    <div class="profile-img-search">
+                                        <img src="/storage/posts/image2.jpg" alt="avatar">
+                                    </div>
+                                </td>
+                                <td>
+                                    <p id="name-search">katiee.04</p>
+                                </td>
+                                <td id="x" width="5%">
+                                    <a style="color: gray" href="#" onclick=""><i class="fa-solid fa-x"></i></a>
+                                    
+                                </td>
+                            </tr>
+                            <tr class="hover-search">
+                                <td width="10%"> 
+                                    <div class="profile-img-search">
+                                        <img src="/storage/posts/image3.jpg" alt="avatar">
+                                    </div>
+                                </td>
+                                <td>
+                                    <p id="name-search">typical__</p>
+                                </td>
+                                <td id="x" width="5%">
+                                    <a style="color: gray" href="#" onclick=""><i class="fa-solid fa-x"></i></a>
+                                    
+                                </td>
+                            </tr>
+                        </table>  
+                    </div>  
                 </div>
             </form>
         </div>
@@ -252,8 +308,6 @@
         <!-- Post -->
         <div class="main-posts">
             <!-- box1 -->
-
-            <!-- box1 -->
             <script>
                 function renderPosts(posts) {
                     const postContainer = $('.main-posts')
@@ -282,8 +336,10 @@
                             <div class="likes-comments-info">
                                 <span>${post.total_likes} Likes</span>
                                 <div class="comments-show">
-                                    <h4>${post.user_name}}</h4>
-                                    <p>${post.content}</p>
+                                    <div class ="comments-user">
+                                        <h4>Nhật Toàn</h4>
+                                        <p>${post.content}</p>
+                                    </div>  
                                 </div>
                                 <div class="write-comments">
                                     <input type="text" placeholder="Write a comment..." />
