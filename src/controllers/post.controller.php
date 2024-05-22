@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . '/../models/Post.php';
 
+use App\Models\Post;
+
 class PostController
 {
     public function loadAllPost()

@@ -1,11 +1,20 @@
 <?php
 
+namespace App\Models;
+
+require_once __DIR__ . '/../models/Like.php';
+
+use PDO;
+use PDOException;
+use App\Models\Like;
+
 class Post
 {
     private $conn;
 
-    public function __construct($conn)
+    public function __construct()
     {
+        require_once __DIR__ . '/../config/db.conn.php';
         $this->conn = $conn;
     }
 
@@ -45,7 +54,7 @@ class Post
         $stmt->execute([$post_id]);
 
         // Add a like to the likes table
-        $like = new Like($this->conn);
+        $like = new Like();
         $like->create($post_id, $user_id);
     }
 
@@ -54,7 +63,7 @@ class Post
         $stmt = $this->conn->prepare("UPDATE posts SET total_likes = total_likes - 1 WHERE post_id = ?");
         return $stmt->execute([$post_id]);
 
-        $like = new Like($this->conn);
+        $like = new Like();
         $like->delete($post_id, $user_id);
     }
 

@@ -1,6 +1,24 @@
 <?php
-class UserController
+
+namespace App\Controllers;
+
+// require_once __DIR__ .'/../services/UserService.php';
+
+// $userService = new UserService();
+use App\Models\User;
+use App\Services\UserService;
+use Exception;
+
+
+class SessionController
 {
+    public $userService;
+    
+    public function __construct()
+    {
+        $this->userService = new UserService();
+    }
+    
     public function showLogin()
     {
         require_once __DIR__ . '/../views/Login/index.html';
@@ -23,7 +41,7 @@ class UserController
                 $password = $_POST['password'];
                 // echo json_encode([$email, $password, $_POST['rememberMe']]);
 
-                $auth = $this->authenticate($email, $password);
+                $auth = $this->userService->authenticate($email, $password);
 
                 if ($auth) {
                     // Create new session
@@ -74,7 +92,7 @@ class UserController
                 $email = $_POST['email'];
                 $password = $_POST['password'];
 
-                $user = new User($conn);
+                $user = new User();
                 $success = $user->create($name, $email, $password);
 
                 if ($success) {
@@ -114,33 +132,5 @@ class UserController
             'success' => true,
             'message' => 'Logout successfully'
         ));
-    }
-
-    public function authenticate($email, $password)
-    {
-        require_once './src/models/User.php';
-        require_once './src/config/db.conn.php';
-
-        // Check if email is empty
-        if (empty($email)) {
-            throw new InvalidArgumentException("Username cannot be empty");
-        }
-
-        // Get user by email
-        $user = (new User($conn))->findByEmail($email);
-
-        // Check if user exists
-        if (!$user) {
-            throw new Exception("User not found");
-        }
-
-        // Verify password
-        // if (!password_verify($password, $user["password"])) {
-        if (!($password === $user["password"])) {
-            throw new Exception("Incorrect password");
-        }
-
-        // Authentication successful, return user details
-        return $user;
     }
 }

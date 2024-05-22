@@ -1,11 +1,14 @@
 <?php
 
+namespace App\Models;
+
 class Like
 {
     private $conn;
 
-    public function __construct($conn)
+    public function __construct()
     {
+        require_once __DIR__ . '/../config/db.conn.php';
         $this->conn = $conn;
     }
     
