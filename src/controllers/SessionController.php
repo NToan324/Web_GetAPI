@@ -1,0 +1,91 @@
+<?php
+
+namespace App\Controllers;
+
+// require_once __DIR__ .'/../services/UserService.php';
+
+use App\Models\User;
+use App\Services\UserService;
+use Exception;
+
+
+class SessionController
+{
+    public $userService;
+    
+    public function __construct()
+    {
+        $this->userService = new UserService();
+    }
+    
+    public function showLogin()
+    {
+        require_once __DIR__ . '/../views/Login/index.html';
+    }
+
+    public function login($email, $password)
+    {
+        header('Content-type: application/json');
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $res = array(
+                'success' => false,
+                'message' => 'POST method is required for login. You\'re not using POST method'
+            );
+            echo (json_encode($res));
+        }
+
+        try {
+            if (isset($_POST['email']) && isset($_POST['password'])) {
+                $email = $_POST['email'];
+                $password = $_POST['password'];
+                // echo json_encode([$email, $password, $_POST['rememberMe']]);
+
+                $auth = $this->userService->authenticate($email, $password);
+
+                if ($auth) {
+                    // Create new session
+                    session_regenerate_id();
+                    $_SESSION['logged_in'] = TRUE;
+                    $_SESSION['email'] = $auth['email'];
+                    $_SESSION['id'] = $auth['id'];
+
+                    if (isset($_POST['rememberMe'])) {
+                        setcookie('email', $email, time() + SESSION_EXPIRED_DAY, '/');
+                    }
+
+                    echo (json_encode(array(
+                        'success' => true,
+                        'message' => 'Login successfully',
+                        'data' => $auth
+                    )));
+                }
+            } else {
+                throw new Exception('Email and password are required.');
+            }
+        } catch (Exception $e) {
+            $res = array(
+                'success' => false,
+                'message' => $e->getMessage()
+            );
+            echo (json_encode($res));
+        }
+    }
+
+    
+    public function logout()
+    {
+        $_SESSION = array();
+        session_destroy();
+
+        if (isset($_COOKIE['email'])) {
+            unset($_COOKIE['email']);
+            setcookie('email', '', time() - 3600, '/');
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode(array(
+            'success' => true,
+            'message' => 'Logout successfully'
+        ));
+    }
+}

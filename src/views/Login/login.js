@@ -1,6 +1,6 @@
 $(document).ready(function () {
     let submitBtn = $('#login-submit-btn')
-    
+
     submitBtn.click(function (e) {
         console.log('clicked')
         // chặn hành vi gửi form mặc định của button
@@ -34,24 +34,25 @@ $(document).ready(function () {
         $('#messageError-login').text('')
 
         //call api kiểm tra đăng nhập
+
         $.ajax({
-            url: '/login',
+            url: '/Web_RestAPI/login',
             method: 'POST',
             dataType: 'json',
             data: { email, password, rememberMe, submit: true },
-            success: function(res) {
+            success: function (res) {
                 console.log(res.success);
                 if (res.success) {
-                    window.location.href = '/';
+                    window.location.href = '/Web_RestAPI';
                 } else {
                     $('#messageError-login').text(res.message);
                 }
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.error('Error:', error);
             }
         });
-        
+
     })
 })
 
