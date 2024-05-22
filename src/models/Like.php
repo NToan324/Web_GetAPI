@@ -2,25 +2,33 @@
 
 namespace App\Models;
 
+use PDO;
+use Exception;
+use PDOException;
+
 class Like
 {
-    private $conn;
+    private static $conn;
 
-    public function __construct()
+    public static function init()
     {
-        require_once __DIR__ . '/../config/db.conn.php';
-        $this->conn = $conn;
+        if (self::$conn === null) {
+            require_once __DIR__ . '/../config/db.conn.php';
+            self::$conn = $conn;
+        }
     }
     
-    public function create($post_id, $user_id)
+    public static function create($post_id, $user_id)
     {
-        $stmt = $this->conn->prepare("INSERT INTO likes (post_id, user_id) VALUES (?, ?)");
+        self::init();
+        $stmt = self::$conn->prepare("INSERT INTO likes (post_id, user_id) VALUES (?, ?)");
         return $stmt->execute([$post_id, $user_id]);
     }
 
-    public function delete($like_id)
+    public static function delete($like_id)
     {
-        $stmt = $this->conn->prepare("DELETE FROM likes WHERE like_id = ?");
+        self::init();
+        $stmt = self::$conn->prepare("DELETE FROM likes WHERE like_id = ?");
         return $stmt->execute([$like_id]);
     }
 }

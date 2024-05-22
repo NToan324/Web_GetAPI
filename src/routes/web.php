@@ -1,9 +1,10 @@
 <?php
-require_once SERVER_PATH . '/controllers/home.controller.php';
-require_once SERVER_PATH . '/controllers/post.controller.php';
-require_once SERVER_PATH . '/controllers/SessionController.php';
 
+use App\Controllers\HomeController;
 use App\Controllers\SessionController;
+use App\Controllers\PostController;
+use App\Controllers\AccountController;
+
 
 $request = $_SERVER['REQUEST_URI'];
 $split_request = explode("?", $request);
@@ -12,6 +13,7 @@ $request_parts = explode('/', $split_request[0]);
 $homeController = new HomeController();
 $sessionController = new SessionController();
 $postController = new PostController();
+$accountController = new AccountController();
 
 switch ($request_parts[2]) {
     case "": {
@@ -31,7 +33,7 @@ switch ($request_parts[2]) {
         }
 
     case 'loadAllPost': {
-            $postController->loadAllPost();
+            $postController->showAll();
             break;
         }
 
@@ -58,7 +60,7 @@ switch ($request_parts[2]) {
                 $name = $_POST['name'];
                 $email = $_POST['email'];
                 $password = $_POST['password'];
-                $sessionController->signUp($name, $email, $password);
+                $accountController->signUp($name, $email, $password);
             } else {
                 // $sessionController->showSignUpPage();
             }

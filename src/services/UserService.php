@@ -10,17 +10,15 @@ use InvalidArgumentException;
 
 class UserService
 {
-    public function authenticate($email, $password)
+    public static function authenticate($email, $password)
     {
-        require_once __DIR__ . '/../config/db.conn.php';
-
         // Check if email is empty
         if (empty($email)) {
             throw new InvalidArgumentException("Username cannot be empty");
         }
 
         // Get user by email
-        $user = (new User($conn))->findByEmail($email);
+        $user = User::findByEmail($email);
 
         // Check if user exists
         if (!$user) {
@@ -28,12 +26,29 @@ class UserService
         }
 
         // Verify password
-        if (!password_verify($password, $user["password"])) {
+        if (!($password === $user["password"])) {
+            // if (!password_verify($password, $user["password"])) {
             throw new Exception("Incorrect password");
         }
 
-        $conn = null;
         // Authentication successful, return user details
         return $user;
+    }
+
+    public static function signup($name, $email, $password)
+    {
+        if (empty($name) || empty($email) || empty($password)) {
+            throw new Exception('All fields are required.');
+        }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new Exception('Invalid email format.');
+        }
+        
+        if (User::findByEmail($email)) {
+            throw new Exception('Email already exists.');
+        }
+
+        return User::create($name, $email, $password);
     }
 }

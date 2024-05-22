@@ -1,49 +1,34 @@
 <?php
-require_once __DIR__ . '/../models/Post.php';
+
+namespace App\Controllers;
 
 use App\Models\Post;
+use App\Utils\HttpHelper;
+use Exception;
 
 class PostController
 {
-    public function loadAllPost()
+    public function showAll()
     {
         header('Content-type: application/json');
-        if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
-            $res = array(
-                'success' => false,
-                'message' => 'POST method is required for login. You\'re not using POST method'
-            );
-            echo (json_encode($res));
-        }
 
         try {
-            require_once './src/config/db.conn.php';
-
-            $post = new Post($conn);
-
-            $posts = $post->findAll();
+            $posts = Post::all();
 
             if ($posts) {
-                $res = array(
+                echo json_encode(array(
                     'success' => true,
                     'message' => 'Load all post successfully',
                     'data' => $posts
-                );
-
-                echo (json_encode($res));
+                ));
             } else {
-                $res = array(
-                    'success' => false,
-                    'message' => 'No post found'
-                );
+                throw new Exception('No post found');
             }
         } catch (Exception $e) {
-            $res = array(
+            echo json_encode(array(
                 'success' => false,
                 'message' => $e->getMessage()
-            );
-
-            echo (json_encode($res));
+            ));
         }
     }
 

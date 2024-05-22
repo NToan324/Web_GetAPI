@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 // require_once __DIR__ .'/../services/UserService.php';
 
-// $userService = new UserService();
 use App\Models\User;
 use App\Services\UserService;
 use Exception;
@@ -48,7 +47,7 @@ class SessionController
                     session_regenerate_id();
                     $_SESSION['logged_in'] = TRUE;
                     $_SESSION['email'] = $auth['email'];
-                    $_SESSION['id'] = $auth['user_id'];
+                    $_SESSION['id'] = $auth['id'];
 
                     if (isset($_POST['rememberMe'])) {
                         setcookie('email', $email, time() + SESSION_EXPIRED_DAY, '/');
@@ -72,51 +71,7 @@ class SessionController
         }
     }
 
-    public function signUp($name, $email, $password)
-    {
-        header('Content-type: application/json');
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            $res = array(
-                'success' => false,
-                'message' => 'POST method is required for sign up. You\'re not using POST method'
-            );
-            echo (json_encode($res));
-        }
-
-        try {
-            if (isset($_POST['email']) && isset($_POST['password'])) {
-                require_once './src/models/User.php';
-                require_once './src/config/db.conn.php';
-
-                $name = $_POST['name'];
-                $email = $_POST['email'];
-                $password = $_POST['password'];
-
-                $user = new User();
-                $success = $user->create($name, $email, $password);
-
-                if ($success) {
-                    $res = array(
-                        'success' => true,
-                        'message' => 'Create new user successfully',
-                        'data' => $success
-                    );
-
-                    echo json_encode($res);
-                    return;
-                }
-            } else {
-                throw new Exception('All field has not been filled yet');
-            }
-        } catch (Exception $e) {
-            $res = array(
-                'success' => false,
-                'message' => $e->getMessage()
-            );
-            echo json_encode($res);
-        }
-    }
-
+    
     public function logout()
     {
         $_SESSION = array();
