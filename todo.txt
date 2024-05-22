@@ -3,3 +3,4 @@
 2. Chuyển mấy chổ echo json thành die
 
 Ai có todo j thêm vô đây hehee
+hehe
