@@ -40,7 +40,7 @@ $(document).ready(function () {
 
         // Call api đăng kí tài khoản
         $.post(
-            `/signUp`,
+            `Web_RestAPI/signUp`,
             {name, email, password, submit: true},
             function (res) {
                 console.log(res)

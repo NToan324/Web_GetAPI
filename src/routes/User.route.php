@@ -7,7 +7,7 @@ $request_parts = explode('/', $split_request[0]);
 
 $userController = new UserController();
 
-switch ($request_parts[1]) {
+switch ($request_parts[2]) {
     case "login": {
             if (isset($_POST['submit'])) {
                 $email = $_POST['email'];

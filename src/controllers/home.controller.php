@@ -5,7 +5,7 @@ class HomeController
     public function showHome()
     {
         if (!isset($_SESSION['email']) && !$_SESSION['logged_in']) {
-            header('Location: /login');
+            header('Location:' . ROOT .'/login');
         }
         require_once __DIR__ . '/../views/Home/index.html';
         

@@ -7,7 +7,7 @@ $request_parts = explode('/', $split_request[0]);
 
 $homeController = new HomeController();
         
-switch ($request_parts[1]) {
+switch ($request_parts[2]) {
     case "": {
             $homeController->showHome();
             break;

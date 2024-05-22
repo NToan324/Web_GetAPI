@@ -10,7 +10,7 @@ $request_parts = explode('/', $split_request[0]);
 $postController = new PostController();
 
 
-switch ($request_parts[1]) {
+switch ($request_parts[2]) {
     case 'loadAllPost': {
             $postController->loadAllPost();
             break;
