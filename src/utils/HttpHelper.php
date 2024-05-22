@@ -5,6 +5,31 @@ namespace App\Utils;
 
 class HttpHelper
 {
+    public static function isPostRequest()
+    {
+        return $_SERVER['REQUEST_METHOD'] === 'POST';
+    }
+
+    public static function isGetRequest()
+    {
+        return $_SERVER['REQUEST_METHOD'] === 'GET';
+    }
+
+    public static function isDeleteRequest()
+    {
+        return $_SERVER['REQUEST_METHOD'] === 'DELETE';
+    }
+
+    public static function isPutRequest()
+    {
+        return $_SERVER['REQUEST_METHOD'] === 'PUT';
+    }
+
+    public static function isPatchRequest()
+    {
+        return $_SERVER['REQUEST_METHOD'] === 'PATCH';
+    }
+    
     public static function requirePostMethod()
     {
         self::requireMethod('POST');

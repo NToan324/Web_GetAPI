@@ -4,6 +4,8 @@ use App\Controllers\HomeController;
 use App\Controllers\SessionController;
 use App\Controllers\PostController;
 use App\Controllers\AccountController;
+use App\Controllers\PasswordController;
+use App\Utils\HttpHelper;
 
 
 $request = $_SERVER['REQUEST_URI'];
@@ -14,6 +16,7 @@ $homeController = new HomeController();
 $sessionController = new SessionController();
 $postController = new PostController();
 $accountController = new AccountController();
+$passwordController = new PasswordController();
 
 switch ($request_parts[2]) {
     case "": {
@@ -65,5 +68,14 @@ switch ($request_parts[2]) {
                 // $sessionController->showSignUpPage();
             }
             break;
+        }
+
+    case 'forgot-password': {
+            if (HttpHelper::isPostRequest()) {
+                $passwordController->forgot();
+                break;
+            } else {
+                $passwordController->forgetView();
+            }
         }
 }

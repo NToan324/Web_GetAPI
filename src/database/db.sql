@@ -50,6 +50,16 @@ CREATE TABLE LIKES (
     FOREIGN KEY (user_id) REFERENCES USERS(id) ON DELETE CASCADE
 );
 
+CREATE TABLE TOKENS (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    token VARCHAR(255) NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    expires_at DATETIME NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+
 -- Chèn dữ liệu mẫu cho bảng USERS
 INSERT INTO USERS (name, email, password, avatar, bio, birthday) 
 VALUES 
