@@ -409,7 +409,7 @@ span.icon {
     visibility: visible;
     left: 70px;
     animation: RigthShow 1s;
-    transition: 1s;
+    transition: 0.5s;
 
 }
 
@@ -417,7 +417,7 @@ span.icon {
     visibility: hidden;
     top: 0;
     position: fixed;
-    left: -70%;
+    left: -45%;
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
@@ -520,7 +520,7 @@ span.icon {
     visibility: visible;
     left: 70px;
     animation: RigthShow 1s;
-    transition: 1s;
+    transition: 0.5s;
 
 }
 
@@ -528,7 +528,7 @@ span.icon {
     visibility: hidden;
     top: 0;
     position: fixed;
-    left: -70%;
+    left: -45%;
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
@@ -659,7 +659,7 @@ span.icon {
     visibility: visible;
     left: 70px;
     animation: RigthShow 1s;
-    transition: 1s;
+    transition: 0.5s;
 
 }
 
@@ -667,7 +667,7 @@ span.icon {
     visibility: hidden;
     top: 0;
     position: fixed;
-    left: -70%;
+    left: -45%;
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
@@ -736,7 +736,7 @@ span.icon {
     outline: none;
     width: 100%;
     font-family: 'Poppins', sans-serif;
-    font-size: 25px;
+    font-size: 1.2rem;
     resize: none;
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -917,7 +917,7 @@ span.icon {
     .container-notification.active-mobile {
         visibility: visible;
         animation: UpShow 1s;
-        transition: 1s;
+        transition: 0,5s;
         top:20%;
     }
 
@@ -967,7 +967,7 @@ span.icon {
     .container-search.active-mobile {
         visibility: visible;
         animation: UpShow 1s;
-        transition: 1s;
+        transition: 0.5s;
         top:20%;
     
     }
@@ -1014,8 +1014,8 @@ span.icon {
     .container-post.active-mobile {
         visibility: visible;
         animation: UpShow 1s;
-        transition: 1s;
-        top:20%;
+        transition: 0.5s;
+        top:15%;
 
     }
     
