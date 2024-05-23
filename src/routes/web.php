@@ -6,7 +6,7 @@ use App\Controllers\PostController;
 use App\Controllers\AccountController;
 use App\Controllers\PasswordController;
 use App\Utils\HttpHelper;
-
+use GrahamCampbell\ResultType\Success;
 
 $request = $_SERVER['REQUEST_URI'];
 $split_request = explode("?", $request);
@@ -76,6 +76,36 @@ switch ($request_parts[2]) {
                 break;
             } else {
                 $passwordController->forgetView();
+                break;
             }
         }
+
+    case 'verify-token': {
+        if (HttpHelper::isPostRequest()) {
+            $passwordController->verifyToken();
+            break;
+        } else {
+            $passwordController->confirmTokenView();
+            break;
+        }
+    }
+
+    case 'reset-password': {
+        if (HttpHelper::isPostRequest()) {
+            $passwordController->update();
+            break;
+        } else {
+            $passwordController->resetView();
+            break;
+        }
+    }
+
+    default: {
+        header('Content-type: application/json');
+        echo json_encode([
+            'success' => true,
+            'code' => 404,
+            'message' => 'Page not found'
+        ]);
+    }
 }

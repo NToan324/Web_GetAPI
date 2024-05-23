@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Token;
 use Symfony\Component\Mailer\Transport;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mime\Email;
@@ -20,34 +21,37 @@ class MailService
         }
     }
 
-    public static function sendVerificationEmail($to, $verificationToken)
+    public static function sendVerificationEmail($user, $verificationToken)
     {
         self::init();
-
+        $mailTemplate = file_get_contents('../views/Mail/reset-password.html');
         $verificationLink = "https://yourdomain.com/verify?token=$verificationToken";
 
         $email = (new Email())
             ->from('no-reply@yourdomain.com')
-            ->to($to)
+            ->to($user['email'])
             ->subject('Email Verification')
             ->text("Please click on the following link to verify your email: $verificationLink")
-            ->html("<p>Please click on the following link to verify your email: <a href=\"$verificationLink\">$verificationLink</a></p>");
+            ->html($mailTemplate);
 
         self::$mailer->send($email);
     }
 
-    public static function sendResetPasswordEmail($to, $resetToken)
+    public static function sendResetPasswordEmail($user)
     {
         self::init();
+        $resetToken = Token::create($user['id']);
 
-        $resetLink = "http://" . DOMAIN . "/reset-password?token=$resetToken";
+        $mailTemplate = file_get_contents( __DIR__ . '/../views/Mail/reset-password.html');
+        $mailTemplate = str_replace('[USERNAME]', htmlspecialchars($user['name']), $mailTemplate);
+        $mailTemplate = str_replace('[RESET_CODE]', htmlspecialchars($resetToken), $mailTemplate);
 
         $email = (new Email())
-            ->from('no-reply@'. DOMAIN . '.com')
-            ->to($to)
+            ->from('no-reply@' . DOMAIN . '.com')
+            ->to($user['email'])
             ->subject('Password Reset Request')
-            ->html("<p>Please click on the following link to reset your password: <a href=\"$resetLink\">$resetLink</a></p>");
-            // TODO: reset password mail
+            ->html($mailTemplate);
+
         self::$mailer->send($email);
     }
 }

@@ -83,6 +83,29 @@ class User
         return $count > 0;
     }
 
+    public static function updatePassword($userId, $newPassword)
+    {
+        self::init();
+        try {
+            $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+            $query = "UPDATE users SET password = ? WHERE id = ?";
+            $stmt = self::$conn->prepare($query);
+
+            $success = $stmt->execute([$hashedPassword, $userId]);
+
+            if (!$success) {
+                throw new Exception("Failed to update password");
+            }
+
+            return true;
+        } catch (PDOException $e) {
+            throw $e;
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+
     // Delete user by ID
     public static function delete($id)
     {

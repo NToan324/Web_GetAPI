@@ -2,10 +2,8 @@
 
 namespace App\Controllers;
 
-// require_once __DIR__ .'/../services/UserService.php';
-
-use App\Models\User;
 use App\Services\UserService;
+use App\Utils\HttpHelper;
 use Exception;
 
 
@@ -25,14 +23,7 @@ class SessionController
 
     public function login($email, $password)
     {
-        header('Content-type: application/json');
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            $res = array(
-                'success' => false,
-                'message' => 'POST method is required for login. You\'re not using POST method'
-            );
-            echo (json_encode($res));
-        }
+        HttpHelper::requirePostMethod();
 
         try {
             if (isset($_POST['email']) && isset($_POST['password'])) {

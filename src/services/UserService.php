@@ -44,11 +44,29 @@ class UserService
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw new Exception('Invalid email format.');
         }
-        
+
         if (User::findByEmail($email)) {
             throw new Exception('Email already exists.');
         }
 
         return User::create($name, $email, $password);
+    }
+
+    public static function updatePassword($userId, $newPassword)
+    {
+        if (strlen($newPassword) < 8) {
+            throw new InvalidArgumentException("Password must be at least 8 characters long.");
+        }
+
+        $user = User::getById($userId);
+        if (!$user) {
+            throw new Exception("User not found.");
+        }
+
+        try {
+            return User::updatePassword($userId, $newPassword);
+        } catch (Exception $e) {
+            throw $e;
+        }
     }
 }

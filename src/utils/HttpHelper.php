@@ -1,5 +1,4 @@
 <?php
-// src/Utils/HttpHelper.php
 
 namespace App\Utils;
 

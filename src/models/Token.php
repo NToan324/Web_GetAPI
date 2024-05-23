@@ -1,7 +1,10 @@
 <?php
+
 namespace App\Models;
 
+use App\Utils\StringHelper;
 use Exception;
+use PDO;
 
 class Token
 {
@@ -10,15 +13,26 @@ class Token
     private static function init()
     {
         if (self::$conn === null) {
-            require_once __DIR__ . '/../config/db.conn.php';
+            require __DIR__ . '/../config/db.conn.php';
             self::$conn = $conn;
         }
     }
+    public static function find($token)
+    {
+        self::init();
+
+        $stmt = self::$conn->prepare("SELECT * FROM tokens WHERE token = ?");
+        $stmt->execute([$token]);
+        $record = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $record;
+    }
+
 
     public static function create($userId, $expiry = TOKEN_EXPIRED_TIME)
     {
         self::init();
-        $token = rand(1000, 9999);
+        $token = StringHelper::randCode();
         $expiresAt = date('Y-m-d H:i:s', time() + $expiry);
 
         $stmt = self::$conn->prepare("
@@ -53,5 +67,25 @@ class Token
         }
 
         return strtotime($expiresAt) < time();
+    }
+
+    public static function findUserByToken($token)
+    {
+        self::init();
+
+        $stmt = self::$conn->prepare("
+            SELECT u.*
+            FROM users u
+            JOIN tokens t ON u.id = t.user_id
+            WHERE t.token = ?
+        ");
+        $stmt->execute([$token]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$user) {
+            throw new Exception("User not found for the provided token");
+        }
+
+        return $user;
     }
 }

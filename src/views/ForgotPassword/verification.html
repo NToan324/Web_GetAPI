@@ -5,17 +5,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Verification</title>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="/Web_RestAPI/src/views/ForgotPassword/style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 
 <body>
     <div class="container" id="container">
         <div class="form-container">
-            <form action="./resetPassword.html" class="action">
+            <form action="" id="verification-form" class="action">
                 <h1>Email Verification</h1>
                 <h2>Get Your Code</h2>
                 <p>
-                    Please enter the 4 digit code that received from your
+                    Please enter the 6 digit code that received from your
                     email.
                 </p>
                 <div class="otp-container">
@@ -24,12 +26,18 @@
                         onkeyup="focusNext(this, 'otp3')" />
                     <input type="text" required class="space" maxlength="1" id="otp3"
                         onkeyup="focusNext(this, 'otp4')" />
-                    <input type="text" required class="space" maxlength="1" id="otp4" onkeyup="focusNext(this, null)" />
+                    <input type="text" required class="space" maxlength="1" id="otp4"
+                        onkeyup="focusNext(this, 'otp5')" />
+                    <input type="text" required class="space" maxlength="1" id="otp5"
+                        onkeyup="focusNext(this, 'otp6')" />
+                    <input type="text" required class="space" maxlength="1" id="otp6" onkeyup="focusNext(this, null)" />
                 </div>
+                
                 <p>
                     If you haven't received the code yet?
                     <a href="">Resend</a>
                 </p>
+                <p id="error-message" style="color: red;"></p> <!-- Remove display: none; -->
                 <button>Recover Password</button>
             </form>
         </div>
@@ -48,6 +56,28 @@
                 }
             }
         }
+
+        $(document).ready(function () {
+            $('#verification-form').submit(function (event) {
+                event.preventDefault();
+
+                let otpCode = '';
+                $('.otp-container input').each(function () {
+                    otpCode += $(this).val();
+                });
+
+                $.post('/Web_RestAPI/verify-token', { token: otpCode }, function (data) {
+                    if (data.success) {
+                        window.location.href = `/Web_RestAPI/reset-password?token=${otpCode}`
+                    } else {
+                        $('#error-message').text(data.message);
+                    }
+                }, 'json')
+                    .fail(function (xhr, status, error) {
+                        console.error('Request failed:', error);
+                    });
+            });
+        });
     </script>
 </body>
 

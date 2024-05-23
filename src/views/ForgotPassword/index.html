@@ -6,23 +6,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Forgot</title>
     <link rel="stylesheet" href="/Web_RestAPI/src/views/ForgotPassword/style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 
 <body>
     <div class="container" id="container">
         <div class="form-container">
-            <form action="/Web_RestAPI/forgot-password" method="post" class="action">
+            <form id="forgot-password-form" accept="/Web_RestAPI/forgot-password" method="post" class="action">
                 <h1>Forgot Password</h1>
                 <h2>Mail Address More</h2>
                 <p>
                     Enter your email and we'll send you a link to get back
                     into your account.
                 </p>
-                <input name="email" type="email" placeholder="Email" required />
-                <button>Recover Password</button>
+                <input id="email" name="email" type="email" placeholder="Email" required />
+                <button type="submit">Recover Password</button>
+                <p id="error-message" style="color: red; display: none;">Error: Please try again.</p>
             </form>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#forgot-password-form').submit(function (event) {
+                event.preventDefault();
+
+                var errorMessage = $('#error-message');
+                var email = $('#email').val();
+                console.log(email);
+                errorMessage.hide();
+
+                $.post('/Web_RestAPI/forgot-password', { email: email })
+                    .done(function (data) {
+                        console.log(data);
+                        if (data.success) {
+                            window.location.href = '/Web_RestAPI/verify-token';
+                        } else {
+                            errorMessage.show();
+                            console.error('Request failed:', data.message);
+                        }
+                    })
+                    .fail(function (xhr, status, error) {
+                        errorMessage.show();
+                        console.error('Request failed:', error);
+                    });
+            });
+        });
+
+
+
+    </script>
 </body>
 
 </html>
