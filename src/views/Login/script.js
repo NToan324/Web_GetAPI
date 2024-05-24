@@ -3,6 +3,7 @@ const registerBtn = document.getElementById('register')
 const loginBtn = document.getElementById('login')
 
 registerBtn.addEventListener('click', () => {
+    console.log('sign up')
     container.classList.add('active')
 })
 

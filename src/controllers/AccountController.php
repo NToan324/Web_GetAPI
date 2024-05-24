@@ -9,14 +9,11 @@ use Exception;
 
 class AccountController
 {
-    private $userService;
-
-    public function __construct()
+    public function settingView()
     {
-        $this->userService = new UserService();
+        require_once __DIR__ . '/../views/Setting/index.html';
     }
-    
-    
+
     public function signUp($name, $email, $password)
     {
         HttpHelper::requirePostMethod();

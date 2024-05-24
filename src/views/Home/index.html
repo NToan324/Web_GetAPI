@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css    " />
-    <link rel="stylesheet" href="/src/views/Home/style.css" />
+    <link rel="stylesheet" href="/Web_RestAPI/src/views/Home/style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -18,10 +18,10 @@
     <div class="sidebar" id="sidebar">
         <div class="profile">
             <div class="profile-img">
-                <img src="/storage/posts/avatar.jpg" alt="avatar" />
+                <img src="/Web_RestAPI/storage/users/default_avatar.jpg" alt="avatar" />
             </div>
             <div class="name">
-                <h3>Nhật Toàn</h3>
+                <h3></h3>
             </div>
         </div>
 
@@ -54,14 +54,14 @@
                 </span>
                 <span class="hide">Message</span>
             </a>
-            <a href="/src/views/Post/index.html">
+            <a href="/Web_RestAPI/src/views/Post/index.html">
                 <span class="icon">
                     <i class="fas fa-plus-circle"></i>
                     <span class="tooltip">Post</span>
                 </span>
                 <span class="hide">Post</span>
-            </a >
-            <a href="#" id="a-setting">
+            </a>
+            <a href="/Web_RestAPI/setting" id="a-setting">
                 <span class="icon">
                     <i class="fas fa-cog"></i>
                     <span class="tooltip">Settings</span>
@@ -80,9 +80,9 @@
     <!-- Confirm logout -->
     <div id="confirmBox" class="hidden">
         <div class="confirm-content">
-          <p>Are you sure want to logout?</p>
-          <button id="logoutBtn">Logout</button>
-          <button id="cancelBtn">Cancel</button>
+            <p>Are you sure want to logout?</p>
+            <button id="logoutBtn">Logout</button>
+            <button id="cancelBtn">Cancel</button>
         </div>
     </div>
     <!-- Notification show page -->
@@ -99,7 +99,7 @@
                             <tr class="hover-notification">
                                 <td width="10%">
                                     <div class="profile-img-notification">
-                                        <img src="/storage/posts/image2.jpg" alt="avatar">
+                                        <img src="/Web_RestAPI/storage/posts/image2.jpg" alt="avatar">
                                     </div>
                                 </td>
                                 <td>
@@ -113,7 +113,7 @@
                             <tr class="hover-notification">
                                 <td width="10%">
                                     <div class="profile-img-notification">
-                                        <img src="/storage/posts/image1.jpg" alt="avatar">
+                                        <img src="/Web_RestAPI/storage/posts/image1.jpg" alt="avatar">
                                     </div>
                                 </td>
                                 <td>
@@ -134,7 +134,7 @@
                             <tr class="hover-notification">
                                 <td width="10%">
                                     <div class="profile-img-notification">
-                                        <img src="/storage/posts/image1.jpg" alt="avatar">
+                                        <img src="/Web_RestAPI/storage/posts/image1.jpg" alt="avatar">
                                     </div>
                                 </td>
                                 <td>
@@ -148,7 +148,7 @@
                             <tr class="hover-notification">
                                 <td width="10%">
                                     <div class="profile-img-notification">
-                                        <img src="/storage/posts/image4.jpg" alt="avatar">
+                                        <img src="/Web_RestAPI/storage/posts/image4.jpg" alt="avatar">
                                     </div>
                                 </td>
                                 <td>
@@ -169,7 +169,7 @@
                             <tr class="hover-notification">
                                 <td width="10%">
                                     <div class="profile-img-notification">
-                                        <img src="/storage/posts/image1.jpg" alt="avatar">
+                                        <img src="/Web_RestAPI/storage/posts/image1.jpg" alt="avatar">
                                     </div>
                                 </td>
                                 <td>
@@ -183,7 +183,7 @@
                             <tr class="hover-notification">
                                 <td width="10%">
                                     <div class="profile-img-notification">
-                                        <img src="/storage/posts/image4.jpg" alt="avatar">
+                                        <img src="/Web_RestAPI/storage/posts/image4.jpg" alt="avatar">
                                     </div>
                                 </td>
                                 <td>
@@ -197,7 +197,7 @@
                             <tr class="hover-notification">
                                 <td width="10%">
                                     <div class="profile-img-notification">
-                                        <img src="/storage/posts/image2.jpg" alt="avatar">
+                                        <img src="/Web_RestAPI/storage/posts/image2.jpg" alt="avatar">
                                     </div>
                                 </td>
                                 <td>
@@ -211,7 +211,7 @@
                             <tr class="hover-notification">
                                 <td width="10%">
                                     <div class="profile-img-notification">
-                                        <img src="/storage/posts/image3.jpg" alt="avatar">
+                                        <img src="/Web_RestAPI/storage/posts/image3.jpg" alt="avatar">
                                     </div>
                                 </td>
                                 <td>
@@ -236,7 +236,7 @@
                     <h2>Search</h2>
                     <div class="search">
                         <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Search">       
+                        <input type="text" placeholder="Search">
                     </div>
                 </div>
                 <div class="body-search">
@@ -250,11 +250,11 @@
                         </table>
                     </div>
                     <div class="profile-search">
-                        <table >
+                        <table>
                             <tr class="hover-search">
-                                <td width="10%"> 
+                                <td width="10%">
                                     <div class="profile-img-search">
-                                        <img src="/storage/posts/image2.jpg" alt="avatar">
+                                        <img src="/Web_RestAPI/storage/posts/image2.jpg" alt="avatar">
                                     </div>
                                 </td>
                                 <td>
@@ -262,13 +262,13 @@
                                 </td>
                                 <td id="x" width="5%">
                                     <a style="color: gray" href="#" onclick=""><i class="fa-solid fa-x"></i></a>
-                                    
+
                                 </td>
                             </tr>
                             <tr class="hover-search">
-                                <td width="10%"> 
+                                <td width="10%">
                                     <div class="profile-img-search">
-                                        <img src="/storage/posts/image3.jpg" alt="avatar">
+                                        <img src="/Web_RestAPI/storage/posts/image3.jpg" alt="avatar">
                                     </div>
                                 </td>
                                 <td>
@@ -276,11 +276,11 @@
                                 </td>
                                 <td id="x" width="5%">
                                     <a style="color: gray" href="#" onclick=""><i class="fa-solid fa-x"></i></a>
-                                    
+
                                 </td>
                             </tr>
-                        </table>  
-                    </div>  
+                        </table>
+                    </div>
                 </div>
             </form>
         </div>
@@ -292,13 +292,14 @@
                 <div class="header-post">
                     <h2>Create Post</h2>
                 </div>
-    
+
                 <div class="body-post">
                     <div class="profile-post">
                         <table>
                             <tr>
-                                <td width="10%"> 
-                                    <img class="profile-img-post" src="/storage/posts/image2.jpg" alt="avatar">
+                                <td width="10%">
+                                    <img class="profile-img-post" src="/Web_RestAPI/storage/posts/image2.jpg"
+                                        alt="avatar">
                                 </td>
                                 <td>
                                     <p class="name-post">Yen Ngoc</p>
@@ -309,17 +310,17 @@
                                     </select>
                                 </td>
                             </tr>
-                        </table>  
+                        </table>
                         <textarea rows="5" cols="50" placeholder="What are you thinking?"></textarea>
-                    </div> 
-                    
+                    </div>
+
                     <div class="add-post">
                         <table>
                             <tr>
                                 <td>Add to your post</td>
                                 <td width="20%">
-                                    <img class="img-add-post" src="/storage/posts/post1.jpg">
-                                    <img class="img-add-post" src="/storage/posts/post2.jpg">
+                                    <img class="img-add-post" src="/Web_RestAPI/storage/posts/post1.jpg">
+                                    <img class="img-add-post" src="/Web_RestAPI/storage/posts/post2.jpg">
                                 </td>
                             </tr>
                         </table>
@@ -364,18 +365,18 @@
                         </tr>
                         <tr>
                             <td>New Password</td>
-                            <td><input type="password" placeholder="Enter New Password"</td>
+                            <td><input type="password" placeholder="Enter New Password"></td>
                         </tr>
                         <tr>
                             <td>Confirm Password</td>
-                            <td><input type="password" placeholder="Enter Confirm Password"</td>
+                            <td><input type="password" placeholder="Enter Confirm Password"></td>
                         </tr>
                     </table>
 
                     <p><a href="">Forgot Password?</a></p>
                     <button class="btn-setting">Confirm</button>
                 </div>
-                
+
             </form>
         </div>
     </div>
@@ -387,7 +388,7 @@
                 <input type="text" placeholder="search" />
             </div>
             <div class="setting-logout">
-                <a href="/src/views/Setting/index.html" class="hide setting">
+                <a href="/Web_RestAPI/src/views/Setting/index.html" class="hide setting">
                     <span class="icon hide">
                         <i class="fas fa-cog"></i>
                     </span>
@@ -411,9 +412,25 @@
         <div class="main-posts">
         </div>
     </div>
-    <script src="/src/views/Home/script.js"></script>
-    <script src="/src/views/Home/load-post.js"></script>
-    <script src="/src/views/Home/logout.js"></script>
+    <script src="/Web_RestAPI/src/views/Home/script.js"></script>
+    <script src="/Web_RestAPI/src/views/Home/load-post.js"></script>
+    <script src="/Web_RestAPI/src/views/Home/logout.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Fetch user information
+            fetch('/Web_RestAPI/getUser')
+                .then(response => response.json())
+                .then(data => {
+                    // Update profile fields with user data
+                    document.querySelector('.profile-img img').src = `/Web_RestAPI/storage/users/${data.user.avatar}`; // Assuming data.user.avatar contains the URL of the avatar image
+                    document.querySelector('.name h3').textContent = data.user.name;
+                })
+                .catch(error => {
+                    console.error('Error fetching user data:', error);
+                });
+        });
+    </script>
 </body>
 
 </html>

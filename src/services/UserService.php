@@ -26,8 +26,8 @@ class UserService
         }
 
         // Verify password
-        if (!($password === $user["password"])) {
-            // if (!password_verify($password, $user["password"])) {
+        // if (!($password === $user["password"])) {
+            if (!password_verify($password, $user["password"])) {
             throw new Exception("Incorrect password");
         }
 
@@ -67,6 +67,16 @@ class UserService
             return User::updatePassword($userId, $newPassword);
         } catch (Exception $e) {
             throw $e;
+        }
+    }
+
+    public static function updateProfile($userId, $name, $birthday, $bio)
+    {
+
+        try {
+            User::updateProfile($userId, $name, $birthday, $bio);
+        } catch (Exception $e) {
+            throw new Exception('Failed to update profile: ' . $e->getMessage());
         }
     }
 }

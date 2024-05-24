@@ -5,8 +5,8 @@ use App\Controllers\SessionController;
 use App\Controllers\PostController;
 use App\Controllers\AccountController;
 use App\Controllers\PasswordController;
+use App\Controllers\SettingController;
 use App\Utils\HttpHelper;
-use GrahamCampbell\ResultType\Success;
 
 $request = $_SERVER['REQUEST_URI'];
 $split_request = explode("?", $request);
@@ -17,6 +17,7 @@ $sessionController = new SessionController();
 $postController = new PostController();
 $accountController = new AccountController();
 $passwordController = new PasswordController();
+$settingController = new SettingController();
 
 switch ($request_parts[2]) {
     case "": {
@@ -98,6 +99,26 @@ switch ($request_parts[2]) {
             $passwordController->resetView();
             break;
         }
+    }
+    
+    case 'setting': {
+        $settingController->settingView();
+        break;
+    }
+
+    case 'getUser': {
+        $settingController->getUserInfo();
+        break;
+    }
+
+    case 'update-profile': {
+        $settingController->updateProfile();
+        break;
+    }
+
+    case 'change-password': {
+        $settingController->changePassword();
+        break;
     }
 
     default: {

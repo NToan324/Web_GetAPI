@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Config\DB;
 use PDO;
 use Exception;
 use PDOException;
@@ -14,7 +13,7 @@ class User
     private static function init()
     {
         if (self::$conn === null) {
-            require_once __DIR__ . '/../config/db.conn.php';
+            require __DIR__ . '/../config/db.conn.php';
             self::$conn = $conn;
         }
     }
@@ -113,5 +112,19 @@ class User
         $query = "DELETE FROM users WHERE id = ?";
         $stmt = self::$conn->prepare($query);
         return $stmt->execute([$id]);
+    }
+
+    public static function updateProfile($userId, $name, $birthday, $bio)
+    {
+        self::init();
+
+        try {
+            $query = "UPDATE users SET name = ?, birthday = ?, bio = ? WHERE id = ?";
+            $stmt = self::$conn->prepare($query);
+            $stmt->execute([$name, $birthday, $bio, $userId]);
+            return true; // Success
+        } catch (Exception $e) {
+            throw new Exception("Failed to update profile: " . $e->getMessage());
+        }
     }
 }
