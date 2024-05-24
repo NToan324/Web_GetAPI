@@ -1,0 +1,85 @@
+body {
+    background-color: #eeeded;
+    justify-content: center;
+    display: flex;   
+}
+
+.container-setting {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header-post {
+    border-bottom: 1px solid #ddd;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+.container-setting form {
+    border: 2px solid #e0e0e0 ;
+    background-color:white;
+    padding: 15px;
+    border-radius: 15px;
+    width: 500px;
+    height: 600px; 
+}
+
+
+.body-setting table {
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+
+.body-setting td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.body-setting #header-table {
+    font-weight: bold;
+    padding-left: 10px;
+    margin-bottom: 5px;
+}
+
+.body-setting table .name-profile {
+    font-weight: bold;
+}
+
+.body-setting a {
+    color: rgb(21, 0, 255);
+    margin: 185px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.body-setting input {
+    border: none;
+    outline: none;
+    background: transparent;
+    margin-left: 7px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.btn-setting {
+    width: 70px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    height: 40px;
+    font-size: 15px;
+    background-color: rgb(21, 0, 255);
+    color: aliceblue;
+    cursor: pointer;
+    margin: 10px 215px;
+}
+
+.body-setting tr:hover {
+    background-color: #ddd;
+}

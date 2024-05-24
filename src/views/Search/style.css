@@ -1,0 +1,114 @@
+.container {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+.header {
+    border-bottom: 1px solid #ddd;
+    padding: 0 20px 20px 20px;
+}
+h2 {
+    font-size: 28px;
+}
+.search {
+    display: flex;
+    background: #f8f8f8;
+    border-radius: 10px;
+    width: 98%;
+    padding: 14px;
+    margin-top: 20px;
+}
+
+.search input {
+    border: none;
+    outline: none;
+    background: transparent;
+    margin-left: 7px;
+}
+
+.body-search {
+    padding: 35px;
+}
+.head-body {
+    font-size: 1rem;
+}
+
+#delete {
+    text-align: right;
+}
+
+a {
+    text-decoration:none;
+    color: blue;
+    font-weight:normal;
+}
+
+.container form {
+    border: 2px solid #e0e0e0 ;
+    background-color:white;
+    padding: 15px;
+    border-radius: 15px;
+    width: 500px;
+    height: 600px; 
+}
+
+body {
+    background-color: #eeeded;
+    justify-content: center;
+    display: flex;   
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    cursor:pointer;
+}
+
+td {
+    padding: 5px;
+}
+
+.profile {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    border: 3px solid rgba(188, 188, 188, 0.473);
+}
+
+.profile-img img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+}
+
+#name{
+    text-align: left;
+    font-weight: bold;
+    font-size: 14px;
+}
+.search:hover {
+    background-color: #e7e6e6;
+}
+
+table .hover:hover {
+    background-color: #e7e6e6;
+}
+
+#num {
+    text-align: center;
+    padding: 14px;
+    margin-top: 20px;
+}

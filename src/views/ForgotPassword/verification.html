@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verification</title>
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+    <div class="container" id="container">
+        <div class="form-container">
+            <form action="./resetPassword.html" class="action">
+                <h1>Email Verification</h1>
+                <h2>Get Your Code</h2>
+                <p>
+                    Please enter the 4 digit code that received from your
+                    email.
+                </p>
+                <div class="otp-container">
+                    <input type="text" required class="space" maxlength="1" onkeyup="focusNext(this, 'otp2')" />
+                    <input type="text" required class="space" maxlength="1" id="otp2"
+                        onkeyup="focusNext(this, 'otp3')" />
+                    <input type="text" required class="space" maxlength="1" id="otp3"
+                        onkeyup="focusNext(this, 'otp4')" />
+                    <input type="text" required class="space" maxlength="1" id="otp4" onkeyup="focusNext(this, null)" />
+                </div>
+                <p>
+                    If you haven't received the code yet?
+                    <a href="">Resend</a>
+                </p>
+                <button>Recover Password</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function focusNext(current, nextInputId) {
+            const maxLength = parseInt(current.getAttribute('maxlength'))
+            const currentLength = current.value.length
+
+            if (currentLength >= maxLength) {
+                if (nextInputId) {
+                    const nextInput = document.getElementById(nextInputId)
+                    if (nextInput) {
+                        nextInput.focus()
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+.container-notification {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
+    background-color: #eeeded;
+    justify-content: center;
+    display: flex;    
+}
+
+.container-notification form {
+    border: 2px solid #cecece ;
+    background-color:white;
+    padding: 15px;
+    border-radius: 15px;
+    width: 500px;
+}
+
+.form-container-notification{
+    overflow-y:auto;
+    height: 650px;
+}
+.form-container-notification table {
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    padding-bottom: 10px;
+    border-collapse: collapse;
+    cursor:pointer;
+}
+
+.form-container-notification .profile-notification {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.form-container-notification .profile-img-notification {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    border: 3px solid rgba(188, 188, 188, 0.473);
+}
+
+.form-container-notification .profile-img-notification img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    object-fit: cover;
+}
+
+
+.form-container-notification .name-notification{
+    text-align: left;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.form-container-notification td {
+    text-align: left;
+    padding:5px;
+}
+
+.form-container-notification tr {
+    text-align: left;
+}
+
+.form-container-notification #news-notification {
+    font-weight: normal;
+}
+
+.form-container-notification.hour-notification {
+    font-size: 0.9rem;
+    color: gray;
+}
+
+.form-container-notification .hover-notification:hover {
+    background-color: #e7e6e6;
+    border-radius: 15px;
+}
+
+.form-container-notification.day-notification {
+    font-weight: bold;
+    text-align: left;
+    justify-content: left;
+    align-items: left;
+}
+
