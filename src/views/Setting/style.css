@@ -1,14 +1,21 @@
-body {
-    background-color: #eeeded;
-    justify-content: center;
-    display: flex;   
-}
-
-.container-setting {
+* {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+body {
+    background-color: #fafbfb;
+    display: flex;  
+    justify-content: center;
+    align-items: center; 
+    min-height: 100vh;
+}
+
+.form-container-setting {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .header-post {
@@ -24,8 +31,7 @@ h2 {
     background-color:white;
     padding: 15px;
     border-radius: 15px;
-    width: 500px;
-    height: 600px; 
+    width: 80%;
 }
 
 
@@ -43,8 +49,7 @@ h2 {
 
 .body-setting #header-table {
     font-weight: bold;
-    padding-left: 10px;
-    margin-bottom: 5px;
+    margin-top: 10px;
 }
 
 .body-setting table .name-profile {
@@ -53,7 +58,6 @@ h2 {
 
 .body-setting a {
     color: rgb(21, 0, 255);
-    margin: 185px;
     text-align: center;
     text-decoration: none;
 }
