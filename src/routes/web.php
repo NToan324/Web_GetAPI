@@ -31,7 +31,7 @@ switch ($request_parts[2]) {
                 'message' => 'Health is good'
             );
 
-            header('Content-Type: applicatin/json');
+            header('Content-Type: application/json');
             echo (json_encode($res));
             break;
         }

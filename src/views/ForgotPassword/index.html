@@ -54,11 +54,10 @@
                     .fail(function (xhr, status, error) {
                         errorMessage.show();
                         console.error('Request failed:', error);
-                    })
-                    .always(function () {
-                        loadingMessage.hide(); // Hide loading message regardless of success or failure
-                        submitBtn.prop('disabled', false); // Re-enable button
+                        console.error('Status:', status);
+                        console.error('XHR:', xhr);
                     });
+
             });
         });
     </script>
