@@ -7,7 +7,6 @@
     <title>Forgot</title>
     <link rel="stylesheet" href="/Web_RestAPI/src/views/ForgotPassword/style.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 </head>
 
 <body>
@@ -21,7 +20,8 @@
                     into your account.
                 </p>
                 <input id="email" name="email" type="email" placeholder="Email" required />
-                <button type="submit">Recover Password</button>
+                <p id="loading-message" style="display: none;">Sending email...</p>
+                <button id="submit-btn" type="submit">Recover Password</button>
                 <p id="error-message" style="color: red; display: none;">Error: Please try again.</p>
             </form>
         </div>
@@ -33,9 +33,13 @@
                 event.preventDefault();
 
                 var errorMessage = $('#error-message');
+                var loadingMessage = $('#loading-message');
+                var submitBtn = $('#submit-btn');
                 var email = $('#email').val();
                 console.log(email);
                 errorMessage.hide();
+                loadingMessage.show(); // Show loading message
+                submitBtn.prop('disabled', true); // Disable button
 
                 $.post('/Web_RestAPI/forgot-password', { email: email })
                     .done(function (data) {
@@ -50,12 +54,12 @@
                     .fail(function (xhr, status, error) {
                         errorMessage.show();
                         console.error('Request failed:', error);
+                        console.error('Status:', status);
+                        console.error('XHR:', xhr);
                     });
+
             });
         });
-
-
-
     </script>
 </body>
 

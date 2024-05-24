@@ -118,7 +118,12 @@ class PasswordController
             header('Content-Type: application/json');
             echo json_encode([
                 'success' => false,
-                'message' => 'All fields are required'
+                'message' => 'All fields are required',
+                'data' => [
+                    'password' => $password,
+                    'password-confirmation' => $passwordConfirmation,
+                    'password' => $password,
+                ]
             ]);
             return;
         }
@@ -128,7 +133,8 @@ class PasswordController
             header('Content-Type: application/json');
             echo json_encode([
                 'success' => false,
-                'message' => 'Passwords do not match'
+                'message' => 'Passwords do not match',
+                'data' => $_POST
             ]);
             return;
         }
