@@ -12,7 +12,7 @@ h1 {
 }
 
 h2 {
-    color: #5933b0;
+    color: #0016a4;
 }
 
 body{
@@ -72,14 +72,14 @@ body{
 }
 
 .container a{
-    color: #4c2b99;
+    color: #2f2b99;
     font-size: 13px;
     text-decoration: none;
     margin: 15px 0 10px;
 }
 
 .container button{
-    background-color: #512da8;
+    background-color: #1326a8;
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;

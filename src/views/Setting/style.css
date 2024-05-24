@@ -13,12 +13,6 @@ body {
     min-height: 100vh;
 }
 
-.form-container-setting {
-    display: flex;
-    justify-content: center;
-    align-items: center;
- 
-}
 
 .header-post {
     border-bottom: 1px solid #ddd;
@@ -32,10 +26,11 @@ h2 {
 }
 .container-setting form {
     border: 2px solid #e0e0e0 ;
-    background-color:white;
+    background-color:rgb(255, 255, 255);
     padding: 15px;
     border-radius: 15px;
-    width: 80%;
+    width: 100%;
+    min-width: 315px;
 }
 
 .body-setting table {
@@ -59,11 +54,6 @@ h2 {
     font-weight: bold;
 }
 
-.body-setting a {
-    color: rgb(21, 0, 255);
-    text-align: center;
-    text-decoration: none;
-}
 
 .body-setting input {
     border: none;
@@ -91,5 +81,37 @@ h2 {
     background-color: #ddd;
 }
 .form-container-setting #change-password-form {
+    margin-top: 10px;
     border-top: 0px;
+}
+
+textarea {
+    width: 100%;
+    height: 50px;
+    resize: none;
+}
+
+a {
+    padding-top: 10px;
+    text-decoration: none;
+    color: rgb(21, 0, 255);
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.input-change-avt {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+    align-items: center;
+}
+
+#showImage {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
 }
