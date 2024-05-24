@@ -50,7 +50,10 @@
                     .fail(function (xhr, status, error) {
                         errorMessage.show();
                         console.error('Request failed:', error);
+                        console.error('Status:', status);
+                        console.error('XHR:', xhr);
                     });
+
             });
         });
 
