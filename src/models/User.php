@@ -87,6 +87,7 @@ class User
         self::init();
         try {
             $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+            // $hashedPassword = $newPassword;
             $query = "UPDATE users SET password = ? WHERE id = ?";
             $stmt = self::$conn->prepare($query);
 
