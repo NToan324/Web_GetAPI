@@ -109,9 +109,9 @@ class PasswordController
     {
         HttpHelper::requirePostMethod();
 
-        $password = $_POST['password'];
-        $passwordConfirmation = $_POST['password-confirmation'];
-        $tokenValue = $_POST['token'];
+        $password = $_POST['password'] ?? '';
+        $passwordConfirmation = $_POST['password-confirmation'] ?? '';
+        $tokenValue = $_POST['token'] ?? '';
 
         // Validate all fields
         if (empty($password) || empty($passwordConfirmation) || empty($tokenValue)) {
@@ -122,7 +122,7 @@ class PasswordController
                 'data' => [
                     'password' => $password,
                     'password-confirmation' => $passwordConfirmation,
-                    'token' => $tokenValue,
+                    'password' => $password,
                 ]
             ]);
             return;
@@ -133,7 +133,8 @@ class PasswordController
             header('Content-Type: application/json');
             echo json_encode([
                 'success' => false,
-                'message' => 'Passwords do not match'
+                'message' => 'Passwords do not match',
+                'data' => $_POST
             ]);
             return;
         }
