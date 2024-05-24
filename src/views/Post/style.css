@@ -1,7 +1,9 @@
 body {
     background-color: #eeeded;
     justify-content: center;
-    display: flex;   
+    display: flex;  
+    align-items: center;
+    min-height: 100vh; 
 }
 
 .container-post {
@@ -123,4 +125,9 @@ input[type="file"] {
     display: none;
 }
 
-
+#img-upload {
+    display: none;
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+}

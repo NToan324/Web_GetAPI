@@ -131,7 +131,7 @@ confirmLogout('mobile-logout-btn')
 // Mode mobile
 function modeMobile(id) {
     document.getElementById(id).addEventListener('click', function () {
-        var href = '';
+            var href = '';
         var widthDefault = window.innerWidth;
         if(widthDefault < 740){
             if(id == 'a-search') {
