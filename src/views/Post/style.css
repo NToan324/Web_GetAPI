@@ -1,8 +1,8 @@
-/* body {
+body {
     background-color: #eeeded;
     justify-content: center;
     display: flex;   
-} */
+}
 
 .container-post {
     font-family: 'Poppins', sans-serif;
@@ -24,8 +24,7 @@
     background-color:white;
     padding: 15px;
     border-radius: 15px;
-    width: 500px;
-    height: 450px; 
+    width: 400px;
 }
 
 .body-post table {
@@ -59,7 +58,7 @@
 .body-post td .name-post {
     text-align: left;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 1rem;
 }
 
 .body-post textarea {
@@ -119,3 +118,9 @@
     color: aliceblue;
     cursor: pointer;
 }
+
+input[type="file"] {
+    display: none;
+}
+
+

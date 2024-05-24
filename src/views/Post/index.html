@@ -41,8 +41,15 @@
                             <tr>
                                 <td>Add to your post</td>
                                 <td width="20%">
-                                    <img class="img-add-post" src="./Image/post1.jpg">
-                                    <img class="img-add-post" src="./Image/post2.jpg">
+                                    <label for="file-upload">
+                                        <img class="img-add-post" src="./Image/post1.jpg" alt="image1">
+                                    </label>
+                                    <img class="img-add-post" src="./Image/post2.jpg" alt="image2">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <input type="file" id="file-upload" name="file-upload" accept="image/*" multiple>
                                 </td>
                             </tr>
                         </table>
@@ -52,7 +59,5 @@
             </form>
         </div>
     </div>
-    
-
 </body>
 </html>

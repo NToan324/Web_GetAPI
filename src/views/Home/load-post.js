@@ -5,7 +5,7 @@ function renderPosts(posts) {
                     <div class="post-box">
                     <div class="post-profile">
                         <div class="post-img">
-                            <img src="/Web_RestAPI/storage/users/${post.avatar}" alt="" />
+                            <img src="/storage/users/${post.avatar}" alt="" />
                         </div>
                         <h3>${post.user_name}</h3>
                         <span>23 hours</span>
@@ -13,7 +13,7 @@ function renderPosts(posts) {
                     <div class="caption">
                         <p>${post.content}</p>
                     </div>
-                    <img src="/Web_RestAPI/storage/posts/${post.image}" alt="" />
+                    <img src="/storage/posts/${post.image}" alt="" />
                     <div class="post-info">
                         <div class="likes">
                             <i class="far fa-heart" onclick="liked(this)"></i>
