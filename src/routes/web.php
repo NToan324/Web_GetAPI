@@ -124,7 +124,8 @@ switch ($request_parts[2]) {
         }
 
     case 'post':
-        if (HttpHelper::isPostRequest() && $request_parts[3] === 'update') {
+        $isUpdate = isset($request_parts[3]) && $request_parts[3] === 'update';
+        if (HttpHelper::isPostRequest() && $isUpdate) {
             $postController->update();
             break;
         } elseif (HttpHelper::isDeleteRequest()) {
