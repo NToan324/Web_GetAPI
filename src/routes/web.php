@@ -24,6 +24,9 @@ $searchController = new SearchController();
 
 switch ($request_parts[2]) {
     case "": {
+            if (!isset($_SESSION['id'])) {
+                $sessionController->showLogin();
+            }
             $homeController->showHome();
             break;
         }
@@ -147,8 +150,13 @@ switch ($request_parts[2]) {
         }
 
     case 'profile': {
-            $accountController->profileView();
-            break;
+            if (HttpHelper::isDeleteRequest()) {
+                $accountController->delete();
+                break;
+            } else {
+                $accountController->profileView();
+                break;
+            }
         }
 
     case 'load-profile': {
@@ -157,9 +165,9 @@ switch ($request_parts[2]) {
         }
 
     case 'search': {
-        $searchController->searchUser();
-        break;
-    }
+            $searchController->searchUser();
+            break;
+        }
 
 
     default: {
