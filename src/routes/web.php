@@ -82,51 +82,59 @@ switch ($request_parts[2]) {
         }
 
     case 'verify-token': {
-        if (HttpHelper::isPostRequest()) {
-            $passwordController->verifyToken();
-            break;
-        } else {
-            $passwordController->confirmTokenView();
-            break;
+            if (HttpHelper::isPostRequest()) {
+                $passwordController->verifyToken();
+                break;
+            } else {
+                $passwordController->confirmTokenView();
+                break;
+            }
         }
-    }
-
     case 'reset-password': {
-        if (HttpHelper::isPostRequest()) {
-            $passwordController->update();
-            break;
-        } else {
-            $passwordController->resetView();
+            if (HttpHelper::isPostRequest()) {
+                $passwordController->update();
+                break;
+            } else {
+                $passwordController->resetView();
+                break;
+            }
+        }
+
+    case 'setting': {
+            $settingController->settingView();
             break;
         }
-    }
-    
-    case 'setting': {
-        $settingController->settingView();
-        break;
-    }
 
     case 'getUser': {
-        $settingController->getUserInfo();
-        break;
-    }
+            $settingController->getUserInfo();
+            break;
+        }
 
     case 'update-profile': {
-        $settingController->updateProfile();
-        break;
-    }
+            $settingController->updateProfile();
+            break;
+        }
 
     case 'change-password': {
-        $settingController->changePassword();
-        break;
-    }
+            $settingController->changePassword();
+            break;
+        }
+    
+    case 'post':
+        if (HttpHelper::isPostRequest()) {
+            $postController->create();
+            break;
+        } else {
+            $postController->createView();
+            break;
+        }
 
-        default: {
-        header('Content-type: application/json');
-        echo json_encode([
-            'success' => true,
-            'code' => 404,
-            'message' => 'Page not found'
-        ]);
-    }
+    default: {
+            header('Content-type: application/json');
+            echo json_encode([
+                'success' => true,
+                'code' => 404,
+                'message' => 'Page not found'
+            ]);
+        }
 }

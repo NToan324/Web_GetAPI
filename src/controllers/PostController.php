@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Services\PostService;
 use App\Utils\HttpHelper;
 use Exception;
 
@@ -38,10 +39,34 @@ class PostController
         }
     }
 
-    public function create($userId)
+    public function createView()
     {
-        // Thêm bài viết cho một user cụ thể
-        // TODO: createPost (lam cai nay di)
+        require_once '/Web_RestAPI/src/views/Post/index.html';
+    }
+
+    public function create()
+    {
+        HttpHelper::requirePostMethod();
+
+        try {
+            $userId = $_SESSION['id']; 
+            $content = $_POST['content'];
+            $image = isset($_FILES['image']) ? $_FILES['image'] : null;
+
+
+            $result = PostService::create($userId, $content, $image);
+
+            echo json_encode(array(
+                'success' => true,
+                'message' => 'Post created successfully',
+                'data' => $result
+            ));
+        } catch (Exception $e) {
+            echo json_encode(array(
+                'success' => false,
+                'message' => $e->getMessage()
+            ));
+        }
     }
 
     public function modify()
