@@ -3,8 +3,6 @@
 namespace App\Models;
 
 use PDO;
-use Exception;
-use PDOException;
 
 class Post
 {
@@ -13,7 +11,7 @@ class Post
     private static function init()
     {
         if (self::$conn === null) {
-            require_once __DIR__ . '/../config/db.conn.php';
+            require __DIR__ . '/../config/db.conn.php';
             self::$conn = $conn;
         }
     }
@@ -22,7 +20,7 @@ class Post
     {
         self::init();
         $stmt = self::$conn->query("
-            SELECT posts.*, users.name AS user_name, users.avatar AS avatar
+            SELECT posts.*, users.name AS user_name, users.avatar AS avatar, TIMEDIFF(NOW(), posts.created_at) AS time_elapsed
             FROM posts
             JOIN users ON posts.user_id = users.id
         ");
@@ -32,7 +30,7 @@ class Post
     public static function findById($post_id)
     {
         self::init();
-        $stmt = self::$conn->prepare("SELECT * FROM posts WHERE post_id = ?");
+        $stmt = self::$conn->prepare("SELECT * FROM posts WHERE id = ?");
         $stmt->execute([$post_id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
@@ -42,7 +40,8 @@ class Post
         self::init();
         $stmt = self::$conn->prepare("INSERT INTO posts (user_id, content, image) VALUES (?, ?, ?)");
         $stmt->execute([$user_id, $content, $image]);
-        return self::$conn->lastInsertId();
+        $id = self::$conn->lastInsertId();
+        return self::findById($id);
     }
 
     public static function delete($post_id)

@@ -39,6 +39,7 @@ class SessionController
                     $_SESSION['logged_in'] = TRUE;
                     $_SESSION['email'] = $auth['email'];
                     $_SESSION['id'] = $auth['id'];
+                    $_SESSION['name'] = $auth['name'];
 
                     if (isset($_POST['rememberMe'])) {
                         setcookie('email', $email, time() + SESSION_EXPIRED_DAY, '/');
