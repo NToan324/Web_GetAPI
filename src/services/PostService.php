@@ -118,6 +118,16 @@ class PostService
         }
     }
 
+    public static function isPostLikedByUser($postId, $userId)
+    {
+        try {
+            return Post::isPostLikedByUser($postId, $userId);
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+
     public static function comment($postId, $userId, $content)
     {
 

@@ -186,6 +186,32 @@ class PostController
         }
     }
 
+    public function checkLikeStatus()
+    {
+        header('Content-type: application/json');
+
+        try {
+            $postId = $_GET['id'] ?? null;
+            $userId = $_SESSION['id'] ?? null;
+
+            if (!$postId || !$userId) {
+                throw new Exception("Post ID and user ID are required");
+            }
+
+            $liked = PostService::isPostLikedByUser($postId, $userId);
+
+            echo json_encode(array(
+                'success' => true,
+                'liked' => $liked,
+            ));
+        } catch (Exception $e) {
+            echo json_encode(array(
+                'error' => $e->getMessage()
+            ));
+        }
+    }
+
+
     public function getAllComments()
     {
 
@@ -218,7 +244,7 @@ class PostController
             $content = $_POST['content'] ?? '';
 
 
-            
+
             $success = PostService::comment($postId, $userId, $content);
 
             if ($success) {

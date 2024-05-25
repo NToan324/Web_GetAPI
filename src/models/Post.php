@@ -149,6 +149,22 @@ class Post
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public static function isPostLikedByUser($postId, $userId)
+    {
+        try {
+            self::init();
+
+            $stmt = self::$conn->prepare("SELECT COUNT(*) as count FROM likes WHERE post_id = ? AND user_id = ?");
+            $stmt->execute([$postId, $userId]);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            return $result['count'] > 0;
+        } catch (Exception $e) {
+            throw new Exception("Error checking if post is liked by user: " . $e->getMessage());
+        }
+    }
+
+
 
     public static function comment($postId, $userId, $content)
     {
@@ -179,4 +195,3 @@ class Post
     }
 }
 
-// die(var_dump(Post::deleteComment(11)));
