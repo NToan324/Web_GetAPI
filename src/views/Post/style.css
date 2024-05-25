@@ -89,11 +89,10 @@ body {
     border: 2px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    
 }
 
 .add-post table {
-    margin: 2px 0 0 10px;
+    margin: 2px 0 -5px 10px;
 }
 
 .img-add-post {
