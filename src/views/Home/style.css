@@ -312,6 +312,11 @@ span.icon {
     font-size: 1.4rem;
 }
 
+.write-comments button {
+    border: none;
+    background-color: transparent;
+}
+
 /* Like effect */
 .likes .fas {
     color: red;
