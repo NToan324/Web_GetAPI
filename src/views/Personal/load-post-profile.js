@@ -95,18 +95,20 @@ function editPost(element) {
         event.preventDefault();
     });
 
-    formElement.find('.save-button').on('click', function () {
-        const newContent = inputElement.val();
-        formElement.replaceWith(`<p class="post-content" data-content="${newContent}">${newContent}</p>`);
-
-        // TODO: Gọi API để cập nhật nội dung mới lên server
-    });
-
     inputElement.on('blur', function () {
         const newContent = inputElement.val();
         formElement.replaceWith(`<p class="post-content" data-content="${newContent}">${newContent}</p>`);
 
-        // TODO: Gọi API để cập nhật nội dung mới lên server
+        // console.log('New content:', newContent);
+
+        const postId = postBox.data('id');
+        $.post('/Web_RestAPI/edit-post', { id: postId, content: newContent }, (res) => {
+            if (res.success) {
+                console.log('Post updated successfully');
+            } else {
+                console.log(res);
+            }
+        });
     });
 }
 
@@ -117,4 +119,3 @@ $.get('/Web_RestAPI/load-profile', (res) => {
         console.log(res);
     }
 });
-
