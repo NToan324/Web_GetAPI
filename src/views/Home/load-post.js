@@ -50,7 +50,6 @@ function renderPosts(posts) {
                         </form>
                         </div>
                     </div>
-                </div>
                 `
 
         postContainer.append(html)
