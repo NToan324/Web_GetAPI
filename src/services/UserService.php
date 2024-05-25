@@ -12,26 +12,21 @@ class UserService
 {
     public static function authenticate($email, $password)
     {
-        // Check if email is empty
         if (empty($email)) {
             throw new InvalidArgumentException("Username cannot be empty");
         }
 
-        // Get user by email
         $user = User::findByEmail($email);
 
-        // Check if user exists
         if (!$user) {
             throw new Exception("User not found");
         }
 
-        // Verify password
         // if (!($password === $user["password"])) {
-            if (!password_verify($password, $user["password"])) {
+        if (!password_verify($password, $user["password"])) {
             throw new Exception("Incorrect password");
         }
 
-        // Authentication successful, return user details
         return $user;
     }
 
@@ -77,6 +72,21 @@ class UserService
             User::updateProfile($userId, $name, $birthday, $bio);
         } catch (Exception $e) {
             throw new Exception('Failed to update profile: ' . $e->getMessage());
+        }
+    }
+
+    public static function searchUsersByName($name)
+    {
+        try {
+            $users = User::searchByName($name);
+
+            if (!$users) {
+                throw new Exception('No users found');
+            }
+
+            return $users;
+        } catch (Exception $e) {
+            throw $e;
         }
     }
 }

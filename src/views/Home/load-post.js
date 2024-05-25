@@ -38,7 +38,7 @@ function renderPosts(posts, user) {
                         </div>
                     </div>
                     <div class="likes-comments-info">
-                        <span>${post.total_likes} Likes</span>
+                        <span>${post.total_likes} ${post.total_likes > 1 ? 'Likes' : 'Like'}</span>
                         <div class="comments-show">
                             <div class ="comments-user">
                                 <h4>${post.user_name}</h4>

@@ -6,6 +6,7 @@ use App\Controllers\PostController;
 use App\Controllers\AccountController;
 use App\Controllers\PasswordController;
 use App\Controllers\SettingController;
+use App\Controllers\SearchController;
 use App\Utils\HttpHelper;
 
 $request = $_SERVER['REQUEST_URI'];
@@ -18,6 +19,8 @@ $postController = new PostController();
 $accountController = new AccountController();
 $passwordController = new PasswordController();
 $settingController = new SettingController();
+$searchController = new SearchController();
+
 
 switch ($request_parts[2]) {
     case "": {
@@ -151,6 +154,11 @@ switch ($request_parts[2]) {
             $accountController->profile();
             break;
         }
+
+    case 'search': {
+        $searchController->searchUser();
+        break;
+    }
 
 
     default: {

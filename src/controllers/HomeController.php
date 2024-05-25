@@ -13,7 +13,7 @@ class HomeController
         
     }
 
-    public function search($name)
+    public function search()
     {
         // TODO: search by user name
     }

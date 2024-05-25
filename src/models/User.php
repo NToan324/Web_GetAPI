@@ -170,4 +170,12 @@ class User
             throw new Exception("Error fetching liked posts: " . $e->getMessage());
         }
     }
+
+    public static function searchByName($name)
+    {
+        self::init();
+        $stmt = self::$conn->prepare("SELECT * FROM users WHERE name LIKE ?");
+        $stmt->execute(['%' . $name . '%']);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
