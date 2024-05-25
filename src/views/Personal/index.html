@@ -13,9 +13,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-    <title>Home</title>
+    <title>Personal</title>
 
     <style>
+        .edit-form {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 10px;
+        }
+
         .edit-form {
             width: 100%;
             display: flex;
@@ -46,60 +52,70 @@
     </style>
 
 <body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="profile">
+            <div class="profile-img">
+                <a href="/Web_RestAPI/profile">
+                    <img src="/Web_RestAPI/storage/users/default_avatar.jpg" alt="avatar" />
+                </a>
+            </div>
+            <div class="name">
+                <h3></h3>
+            </div>
+        </div>
 
-
-
-    <div class="menu">
-        <a href="/Web_RestAPI">
-            <span class="icon">
-                <i class="fas fa-home"></i>
-                <span class="tooltip">Home</span>
-            </span>
-            <span class="hide">Feed</span>
-        </a>
-        <a href="#" id="a-search">
-            <span class="icon">
-                <i class="fas fa-search"></i>
-                <span class="tooltip">Search</span>
-            </span>
-            <span class="hide">Search</span>
-        </a>
-        <a href="#" id="a-notification">
-            <span class="icon">
-                <i class="fas fa-bell"></i>
-                <span class="tooltip">Notification</span>
-            </span>
-            <span class="hide">Notification</span>
-        </a>
-        <a href="#">
-            <span class="icon">
-                <i class="fas fa-comments"></i>
-                <span class="tooltip">Message</span>
-            </span>
-            <span class="hide">Message</span>
-        </a>
-        <a href="/Web_RestAPI/post">
-            <span class="icon">
-                <i class="fas fa-plus-circle"></i>
-                <span class="tooltip">Post</span>
-            </span>
-            <span class="hide">Post</span>
-        </a>
-        <a href="/Web_RestAPI/setting" id="a-setting">
-            <span class="icon">
-                <i class="fas fa-cog"></i>
-                <span class="tooltip">Settings</span>
-            </span>
-            <span class="hide">Settings</span>
-        </a>
-        <a id="logout-btn" class="logout">
-            <span class="icon">
-                <i class="fas fa-sign-out-alt"></i>
-                <span class="tooltip">Logout</span>
-            </span>
-            <span class="hide">Logout</span>
-        </a>
-    </div>
+        <div class="menu">
+            <a href="/Web_RestAPI">
+                <span class="icon">
+                    <i class="fas fa-home"></i>
+                    <span class="tooltip">Home</span>
+                </span>
+                <span class="hide">Feed</span>
+            </a>
+            <a href="#" id="a-search">
+                <span class="icon">
+                    <i class="fas fa-search"></i>
+                    <span class="tooltip">Search</span>
+                </span>
+                <span class="hide">Search</span>
+            </a>
+            <a href="#" id="a-notification">
+                <span class="icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="tooltip">Notification</span>
+                </span>
+                <span class="hide">Notification</span>
+            </a>
+            <a href="#">
+                <span class="icon">
+                    <i class="fas fa-comments"></i>
+                    <span class="tooltip">Message</span>
+                </span>
+                <span class="hide">Message</span>
+            </a>
+            <a href="/Web_RestAPI/post">
+                <span class="icon">
+                    <i class="fas fa-plus-circle"></i>
+                    <span class="tooltip">Post</span>
+                </span>
+                <span class="hide">Post</span>
+            </a>
+            <a href="/Web_RestAPI/setting" id="a-setting">
+                <span class="icon">
+                    <i class="fas fa-cog"></i>
+                    <span class="tooltip">Settings</span>
+                </span>
+                <span class="hide">Settings</span>
+            </a>
+            <a id="logout-btn" class="logout">
+                <span class="icon">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="tooltip">Logout</span>
+                </span>
+                <span class="hide">Logout</span>
+            </a>
+        </div>
     </div>
     <!-- Confirm logout -->
     <div id="confirmBox" class="hidden">
