@@ -1344,6 +1344,7 @@ input[type="file"] {
         top: 0;
         background-color: rgb(255, 255, 255);
         padding: 10px 10px 10px 18px;
+        z-index: 100;
     }
 
     /* Add border on top and bottom */
@@ -1503,6 +1504,11 @@ input[type="file"] {
     .write-comments i {
         margin-top: 10px;
         font-size: 1.4rem;
+    }
+
+    /* Personal page */
+    .personal-page {
+        margin-top: 40px;
     }
 }
 
