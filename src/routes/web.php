@@ -124,6 +124,9 @@ switch ($request_parts[2]) {
         if (HttpHelper::isPostRequest()) {
             $postController->create();
             break;
+        } elseif (HttpHelper::isDeleteRequest()) {
+            $postController->delete();
+            break;
         } else {
             $postController->createView();
             break;
@@ -134,6 +137,11 @@ switch ($request_parts[2]) {
                 $postController->like();
                 break;
             }
+        }
+
+    case 'profile': {
+            $accountController->profile();
+            break;
         }
 
     default: {

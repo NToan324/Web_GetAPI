@@ -4,7 +4,7 @@ function renderPosts(posts, user) {
         const dateB = new Date(b.created_at);
         return dateB - dateA; // Later created time comes first (descending)
     });
-    const postContainer = $('.main-posts')
+    const postContainer = $('.personal-page-post')
     posts.forEach((post) => {
         let createdAt = new Date(post.created_at)
         let now = new Date()
@@ -17,6 +17,7 @@ function renderPosts(posts, user) {
             time = createdAt.toLocaleDateString()
         }
 
+        // TODO: thêm nút xoá cho mỗi post -> rồi qua file delete-post.js
         let html = `
                     <div class="post-box">
                     <div class="post-profile">
@@ -28,6 +29,7 @@ function renderPosts(posts, user) {
                             <p>${time}</p>
                         </div>
                     </div>
+
                     <img src="/Web_RestAPI/storage/posts/${post.image}" alt="" />
                     <div class="post-info">
                         <div class="likes">
@@ -58,7 +60,7 @@ function renderPosts(posts, user) {
     })
 }
 
-$.get('/Web_RestAPI/loadAllPost', (res) => {
+$.get('/Web_RestAPI/profile', (res) => {
     if (res.success) {
         renderPosts(res.data.posts, res.data.user)
     } else {

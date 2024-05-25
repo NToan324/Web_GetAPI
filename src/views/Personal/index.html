@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css    " />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link rel="stylesheet" href="/Web_RestAPI/src/views/Home/style.css" />
     <link rel="stylesheet" href="/Web_RestAPI/src/views/Personal/style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -17,459 +17,26 @@
 </head>
 
 <body>
-    <!-- Sidebar -->
-    <div class="sidebar" id="sidebar">
-        <div class="profile">
-            <div class="profile-img">
-                <a href="/Web_RestAPI/src/views/Personal/index.html">
-                    <img src="/Web_RestAPI/storage/users/default_avatar.jpg" alt="avatar" />
-                </a>
+    <div class="personal-page">
+        <div class="personal-page-intro">
+            <div class="personal-page-img">
+                <img src="/Web_RestAPI/storage/posts/image2.jpg" alt="avatar" />
             </div>
-            <div class="name">
-                <h3></h3>
-            </div>
-        </div>
-
-        <div class="menu">
-            <a href="/Web_RestAPI/src/views/Home/index.html">
-                <span class="icon">
-                    <i class="fas fa-home"></i>
-                    <span class="tooltip">Home</span>
-                </span>
-                <span class="hide">Feed</span>
-            </a>
-            <a href="#" id="a-search">
-                <span class="icon">
-                    <i class="fas fa-search"></i>
-                    <span class="tooltip">Search</span>
-                </span>
-                <span class="hide">Search</span>
-            </a>
-            <a href="#" id="a-notification">
-                <span class="icon">
-                    <i class="fas fa-bell"></i>
-                    <span class="tooltip">Notification</span>
-                </span>
-                <span class="hide">Notification</span>
-            </a>
-            <a href="#">
-                <span class="icon">
-                    <i class="fas fa-comments"></i>
-                    <span class="tooltip">Message</span>
-                </span>
-                <span class="hide">Message</span>
-            </a>
-            <a href="/Web_RestAPI/src/views/Post/index.html">
-                <span class="icon">
-                    <i class="fas fa-plus-circle"></i>
-                    <span class="tooltip">Post</span>
-                </span>
-                <span class="hide">Post</span>
-            </a>
-            <a href="/Web_RestAPI/setting" id="a-setting">
-                <span class="icon">
-                    <i class="fas fa-cog"></i>
-                    <span class="tooltip">Settings</span>
-                </span>
-                <span class="hide">Settings</span>
-            </a>
-            <a id="logout-btn" class="logout">
-                <span class="icon">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span class="tooltip">Logout</span>
-                </span>
-                <span class="hide">Logout</span>
-            </a>
-        </div>
-    </div>
-    <!-- Confirm logout -->
-    <div id="confirmBox" class="hidden">
-        <div class="confirm-content">
-            <p>Are you sure want to logout?</p>
-            <button id="logoutBtn">Logout</button>
-            <button id="cancelBtn">Cancel</button>
-        </div>
-    </div>
-    <!-- Notification show page -->
-    <div class="container-function container-notification" id="container-notification">
-        <div class="form-container-notification ">
-            <form action="" class="action-notification">
-                <div class="header-notification">
-                    <h1>Notifications</h1>
+            <div class="personal-page-info">
+                <img src="/Web_RestAPI/storage/users/default_avatar.jpg" alt="avatar" id="personal-page-avt">
+                <div class="personal-page-name">
+                    <h1>Loading...</h1>
+                    <p></p>
                 </div>
-                <div class="body-search-notification">
-                    <p class="day-notification">Today</p>
-                    <table>
-                        <div class="profile-notification">
-                            <tr class="hover-notification">
-                                <td width="10%">
-                                    <div class="profile-img-notification">
-                                        <img src="/Web_RestAPI/storage/posts/image2.jpg" alt="avatar">
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="name-notification">katiee.04 <span id="news-notification">liked your
-                                            news.</span></p>
-                                </td>
-                                <td width="20%" class="hour-notification">
-                                    3 mins
-                                </td>
-                            </tr>
-                            <tr class="hover-notification">
-                                <td width="10%">
-                                    <div class="profile-img-notification">
-                                        <img src="/Web_RestAPI/storage/posts/image1.jpg" alt="avatar">
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="name-notification">typical__ <span id="news-notification">mentioned you in
-                                            the commnet: I love you so much. 💝</span></p>
-                                </td>
-                                <td width="20%" class="hour-notification">
-                                    2 hours
-                                </td>
-                            </tr>
-                        </div>
-                    </table>
-
-                    <p class="day-notification">Yesterday</p>
-
-                    <table>
-                        <div class="profile-notification">
-                            <tr class="hover-notification">
-                                <td width="10%">
-                                    <div class="profile-img-notification">
-                                        <img src="/Web_RestAPI/storage/posts/image1.jpg" alt="avatar">
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="name-notification">jessica <span id="news-notification">liked your
-                                            comment: Congratulation 😚</span></p>
-                                </td>
-                                <td width="20%" class="hour-notification">
-                                    23 hours
-                                </td>
-                            </tr>
-                            <tr class="hover-notification">
-                                <td width="10%">
-                                    <div class="profile-img-notification">
-                                        <img src="/Web_RestAPI/storage/posts/image4.jpg" alt="avatar">
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="name-notification">greeeny and 90 other people <span
-                                            id="news-notification">liked your post.</span></p>
-                                </td>
-                                <td width="10%" class="hour-notification">
-                                    1 day
-                                </td>
-                            </tr>
-                        </div>
-                    </table>
-
-                    <p class="day-notification">This week</p>
-
-                    <table>
-                        <div class="profile-notification">
-                            <tr class="hover-notification">
-                                <td width="10%">
-                                    <div class="profile-img-notification">
-                                        <img src="/Web_RestAPI/storage/posts/image1.jpg" alt="avatar">
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="name-notification">jessica <span id="news-notification">liked your
-                                            comment: Congratulation 😚</span></p>
-                                </td>
-                                <td width="20%" class="hour-notification">
-                                    1 day
-                                </td>
-                            </tr>
-                            <tr class="hover-notification">
-                                <td width="10%">
-                                    <div class="profile-img-notification">
-                                        <img src="/Web_RestAPI/storage/posts/image4.jpg" alt="avatar">
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="name-notification">greeeny and 90 other people <span
-                                            id="news-notification">liked your post.</span></p>
-                                </td>
-                                <td width="20%" class="hour-notification">
-                                    2 days
-                                </td>
-                            </tr>
-                            <tr class="hover-notification">
-                                <td width="10%">
-                                    <div class="profile-img-notification">
-                                        <img src="/Web_RestAPI/storage/posts/image2.jpg" alt="avatar">
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="name-notification">katiee.04 <span id="news-notification">liked your
-                                            news.</span></p>
-                                </td>
-                                <td width="20%" class="hour-notification">
-                                    2 days
-                                </td>
-                            </tr>
-                            <tr class="hover-notification">
-                                <td width="10%">
-                                    <div class="profile-img-notification">
-                                        <img src="/Web_RestAPI/storage/posts/image3.jpg" alt="avatar">
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="name-notification">typical__ <span id="news-notification">mentioned you in
-                                            the commnet: I love you so much. 💝</span></p>
-                                </td>
-                                <td width="20%" class="hour-notification">
-                                    4 days
-                                </td>
-                            </tr>
-                        </div>
-                    </table>
-                </div>
-            </form>
-        </div>
-    </div>
-    <!-- Search show page -->
-    <div class="container-function container-search" id="container-search">
-        <div class="form-container-search">
-            <form action="" class="action">
-                <div class="header-search">
-                    <h2>Search</h2>
-                    <div class="search">
-                        <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Search">
-                    </div>
-                </div>
-                <div class="body-search">
-                    <div class="head-body-search">
-                        <table>
-                            <tr>
-                                <td>Recently</td>
-                                <td></td>
-                                <td id="delete-search"><a href="#"> Delete all </a></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="profile-search">
-                        <table>
-                            <tr class="hover-search">
-                                <td width="10%">
-                                    <div class="profile-img-search">
-                                        <img src="/Web_RestAPI/storage/posts/image2.jpg" alt="avatar">
-                                    </div>
-                                </td>
-                                <td>
-                                    <p id="name-search">katiee.04</p>
-                                </td>
-                                <td id="x" width="5%">
-                                    <a style="color: gray" href="#" onclick=""><i class="fa-solid fa-x"></i></a>
-
-                                </td>
-                            </tr>
-                            <tr class="hover-search">
-                                <td width="10%">
-                                    <div class="profile-img-search">
-                                        <img src="/Web_RestAPI/storage/posts/image3.jpg" alt="avatar">
-                                    </div>
-                                </td>
-                                <td>
-                                    <p id="name-search">typical__</p>
-                                </td>
-                                <td id="x" width="5%">
-                                    <a style="color: gray" href="#" onclick=""><i class="fa-solid fa-x"></i></a>
-
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <!-- Post show page -->
-    <div class="container-function container-post" id="container-post">
-        <div class="form-container-post">
-            <form action="" class="action">
-                <div class="header-post">
-                    <h2>Create Post</h2>
-                </div>
-
-                <div class="body-post">
-                    <div class="profile-post">
-                        <table>
-                            <tr>
-                                <td width="10%">
-                                    <img class="profile-img-post" src="/Web_RestAPI/storage/posts/image2.jpg"
-                                        alt="avatar">
-                                </td>
-                                <td>
-                                    <p class="name-post">Yen Ngoc</p>
-                                    <select name="select-object">
-                                        <option>Public</option>
-                                        <option>Private</option>
-                                        <option>Friends</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </table>
-                        <textarea rows="5" cols="50" placeholder="What are you thinking?"></textarea>
-                    </div>
-
-                    <div class="add-post">
-                        <table>
-                            <tr>
-                                <td>Add to your post</td>
-                                <td width="20%">
-                                    <img class="img-add-post" src="/Web_RestAPI/storage/posts/post1.jpg">
-                                    <img class="img-add-post" src="/Web_RestAPI/storage/posts/post2.jpg">
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <button class="btn-post">Post</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    <!-- Setting show page -->
-    <div class="container-function container-setting" id="container-setting">
-        <div class="form-container-setting">
-            <form action="" class="action">
-                <div class="header-setting">
-                    <h2>Settings</h2>
-                </div>
-                <div class="body-setting">
-                    <p id="header-table">Update Profile</p>
-                    <table>
-                        <tr>
-                            <div class="input-change-avt">
-                                <div class="change-avt">Avatar</div>
-                                <img src="#" alt="Avatar" id="showImage" style="display: block;">
-                                <input type="file" name="avatar" id="change-avt">
-                                <label for="change-avt">
-                                    <i class="fa-solid fa-image"></i>
-                                </label>
-                        </tr>
-                        <tr>
-                            <td width="45%">Name</td>
-                            <td class="name-profile">Nhat Toan</td>
-                        </tr>
-                        <tr>
-                            <td>Contact</td>
-                            <td class="name-profile">nhattoan@gmail.com</td>
-                        </tr>
-                        <tr>
-                            <td>Bio</td>
-                            <td class="name-profile"></td>
-                        </tr>
-                    </table>
-                </div>
-                <button class="btn-setting">Update</button>
-
-                <div class="body-setting">
-                    <p id="header-table">Change Password</p>
-                    <table>
-                        <tr>
-                            <td>Current Password</td>
-                            <td><input type="password" placeholder="Enter Current Password"></td>
-                        </tr>
-                        <tr>
-                            <td>New Password</td>
-                            <td><input type="password" placeholder="Enter New Password"></td>
-                        </tr>
-                        <tr>
-                            <td>Confirm Password</td>
-                            <td><input type="password" placeholder="Enter Confirm Password"></td>
-                        </tr>
-                    </table>
-
-                    <p><a href="">Forgot Password?</a></p>
-                    <button class="btn-setting">Confirm</button>
-                </div>
-
-            </form>
-        </div>
-    </div>
-    <!-- Main Home -->
-    <div class="main-home">
-        <div class="header">
-            <div class="search">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="search" />
-            </div>
-            <div class="setting-logout">
-                <a href="/Web_RestAPI/src/views/Setting/index.html" class="hide setting">
-                    <span class="icon hide">
-                        <i class="fas fa-cog"></i>
-                    </span>
-                </a>
-                <a href="#" class="hide logout" id="mobile-logout-btn">
-                    <span class="icon">
-                        <i class="fas fa-sign-out-alt"></i>
-                    </span>
-                </a>
+                <button>
+                    <i class="fas fa-plus"></i>
+                    <span>Post</span>
+                </button>
             </div>
         </div>
-        <div class="personal-page">
-            <div class="personal-page-intro">
-                <div class="personal-page-img">
-                    <img src="/Web_RestAPI/storage/posts/image2.jpg" alt="avatar" />
-                </div>
-                <div class="personal-page-info">
-                    <img src="/Web_RestAPI/storage/posts/avatar.jpg" alt="avatar" id="personal-page-avt">
-                    <div class="personal-page-name">
-                        <h1>Nhat Toan</h1>
-                        <p>Hi! I'm Nhat Toan, passionate about IT. Explore my page to learn more about my work and interests. Let's connect!</p>
-                    </div>
-                    <button>
-                        <i class="fas fa-plus"></i>
-                        <span>Post</span>
-                    </button>
-                </div>
-            </div>
-            <div class="personal-page-post">
-                <div class="post-box">
-                    <div class="post-profile">
-                        <div class="post-img">
-                            <img src="/Web_RestAPI/storage/users/avatar.jpg" alt="" />
-                        </div>
-                        <div class="post-name">
-                            <h3>Nhat Toan</h3>
-                            <p>22h</p>
-                        </div>
-                    </div>
-                    <div class="caption">
-                        <p>Hinh nay that dep</p>
-                    </div>
-                    <img src="/Web_RestAPI/storage/posts/image3.jpg" alt="" />
-                    <div class="post-info">
-                        <div class="likes">
-                            <i class="far fa-heart" onclick="liked(this)"></i>
-                        </div>
-                        <div class="comments">
-                            <i class="far fa-comment-dots"></i>
-                        </div>
-                    </div>
-                    <div class="likes-comments-info">
-                        <span>5 Likes</span>
-                        <div class="comments-show">
-                            <div class ="comments-user">
-                                <h4>Nhật Toàn</h4>
-                                <p>Hi, it's so gorgeous</p>
-                            </div>  
-                        </div>
-                        <form action="">
-                            <div class="write-comments">
-                                <input type="text" placeholder="Write a comment..." />
-                                <button type="submit"><i class="far fa-paper-plane"></i></button>
-                            </div>
-                        </form>
-                    </div>
-            </div>
+
+        <div class="personal-page-post">
+
         </div>
 
     </div>
@@ -487,9 +54,27 @@
                     console.error('Error fetching user data:', error);
                 });
         });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Fetch user information
+            fetch('/Web_RestAPI/getUser')
+                .then(response => response.json())
+                .then(data => {
+                    // Update profile fields with user data
+                    document.getElementById('personal-page-avt').src = `/Web_RestAPI/storage/users/${data.user.avatar}`;
+                    document.querySelector('.personal-page-name h1').textContent = data.user.name;
+                    document.querySelector('.personal-page-name p').textContent = data.user.bio;
+                })
+                .catch(error => {
+                    console.error('Error fetching user data:', error);
+                });
+        });
+
     </script>
     <script src="/Web_RestAPI/src/views/Home/script.js"></script>
     <script src="/Web_RestAPI/src/views/Home/logout.js"></script>
+    <script src="/Web_RestAPI/src/views/Personal/load-post.js"></script>
+    <script src="/Web_RestAPI/src/views/Personal/delete-post.js"></script>
 </body>
 
 </html>

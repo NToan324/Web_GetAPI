@@ -1,0 +1,1 @@
+// TODO: bắt sự kiện nhấn nút xoá của cái post đó -> fetch to DELETE /post?id={post_id}

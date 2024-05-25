@@ -29,6 +29,20 @@ class Post
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public static function getAllPostOfUser($userId)
+    {
+        self::init();
+        $stmt = self::$conn->prepare("
+            SELECT posts.*, users.name AS user_name, users.avatar AS avatar, TIMEDIFF(NOW(), posts.created_at) AS time_elapsed
+            FROM posts
+            JOIN users ON posts.user_id = users.id
+            WHERE user_id = ?
+        ");
+        $stmt->execute([$userId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+
     public static function findById($post_id)
     {
         self::init();
@@ -49,7 +63,7 @@ class Post
     public static function delete($post_id)
     {
         self::init();
-        $stmt = self::$conn->prepare("DELETE FROM posts WHERE post_id = ?");
+        $stmt = self::$conn->prepare("DELETE FROM posts WHERE id = ?");
         return $stmt->execute([$post_id]);
     }
 

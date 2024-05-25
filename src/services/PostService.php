@@ -45,4 +45,25 @@ class PostService
             throw $e;
         }
     }
+
+    public static function deletePost($postId)
+    {
+        try {
+            $post = Post::findById($postId);
+
+            if (!$post) {
+                throw new Exception('Post not found');
+            }
+
+            $deleted = Post::delete($post['id']);
+
+            if ($deleted) {
+                return $deleted; 
+            } else {
+                throw new Exception('Failed to delete post');
+            }
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
 }
