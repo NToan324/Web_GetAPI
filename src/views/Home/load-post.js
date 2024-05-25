@@ -24,7 +24,7 @@ function renderPosts(posts, user) {
                 if (data.data && data.data.length > 0) {
                     data.data.forEach(comment => {
                         commentsHtml += `
-                            <div class="comment">
+                            <div class="comments-group">
                                 <h4>${comment.name}</h4>
                                 <p>${comment.content}</p>
                             </div>`;
@@ -86,6 +86,7 @@ $.get('/Web_RestAPI/loadAllPost', (res) => {
 
 $('#comment-form').submit(function (e) {
     e.preventDefault();
+    console.log('coment');
     let formData = $(this).serialize();
     fetch($(this).attr('action'), {
         method: 'POST',
@@ -93,7 +94,7 @@ $('#comment-form').submit(function (e) {
     })
     .then(response => response.json())
     .then(data => {
-        window. location.reload(); // Reload the page after successful comment submission
+        window.location.reload(); // Reload the page after successful comment submission
         if (data.success) {
         } else {
             console.error('Error submitting comment:', data.message);
