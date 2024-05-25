@@ -41,7 +41,7 @@ class Post
         $stmt->execute([$userId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+
 
     public static function findById($post_id)
     {
@@ -127,6 +127,15 @@ class Post
             throw new Exception("Error checking if post is liked: " . $e->getMessage());
         }
     }
+
+    public static function updatePostContent($postId, $content)
+    {
+        self::init();
+        $stmt = self::$conn->prepare("UPDATE posts SET content = ? WHERE id = ?");
+        $stmt->execute([$content, $postId]);
+        return self::findById($postId);
+    }
+
     public static function comment($post_id, $user_id, $content)
     {
         self::init();

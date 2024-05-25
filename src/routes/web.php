@@ -121,11 +121,14 @@ switch ($request_parts[2]) {
         }
 
     case 'post':
-        if (HttpHelper::isPostRequest()) {
-            $postController->create();
+        if (HttpHelper::isPostRequest() && $request_parts[3] === 'update') {
+            $postController->update();
             break;
         } elseif (HttpHelper::isDeleteRequest()) {
             $postController->delete();
+            break;
+        } elseif (HttpHelper::isPostRequest()) {
+            $postController->create();
             break;
         } else {
             $postController->createView();
