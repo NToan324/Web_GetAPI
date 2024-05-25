@@ -18,12 +18,10 @@ function toggleElement(containerId, className) {
     var containers = document.querySelectorAll('.container-function');
     var sidebarFlag = sidebar.classList.contains('flag');
 
-    var count = 1;
     if (sidebarFlag) {
         containers.forEach(function (item) {
             var itemId = item.id;
             if (clickValues[itemId] == true && containerId != itemId) {
-                console.log("Before click: " + itemId + "\nAfter click: " + containerId + "\nActive: " + clickValues[itemId] + "\nCount: " + count++);
                 document.getElementById(itemId).classList.remove('active');
                 // Check if any container is active before removing 'change-tablet'
                 var anyActive = Array.from(containers).some(function (container) {
@@ -58,17 +56,20 @@ function toggleElement(containerId, className) {
 }
 
 // Notification
-document.getElementById('a-notification').addEventListener('click', function () {
+document.getElementById('a-notification').addEventListener('click', function (e) {
+    e.preventDefault();
     toggleElement('container-notification', 'active');
 
 });
 // Search
-document.getElementById('a-search').addEventListener('click', function () {
+document.getElementById('a-search').addEventListener('click', function (e) {
+    e.preventDefault();
     toggleElement('container-search', 'active');
 });
 
 // Setting
-document.getElementById('a-setting').addEventListener('click', function () {
+document.getElementById('a-setting').addEventListener('click', function (e) {
+    e.preventDefault();
     toggleElement('container-setting', 'active');
 });
 
@@ -78,13 +79,15 @@ document.getElementById('a-setting').addEventListener('click', function () {
 //Break sidebar when resize
 function resize(id) {
     var widthDefault = window.innerWidth;
+    var idSidebar = document.getElementById('sidebar');
     if (widthDefault >= 740 && widthDefault < 1024) {
         window.addEventListener('resize', function () {
             widthAfter = window.innerWidth;
             if (widthAfter >= 1024 || widthAfter < 740) {
                 document.getElementById(id).classList.remove('active');
-                document.getElementById('sidebar').classList.remove('change-tablet');
-                document.getElementById('sidebar').classList.remove('active');
+                idSidebar.classList.remove('change-tablet');
+                idSidebar.classList.remove('active');
+                idSidebar.classList.remove('flag');
             }
         });
     } else if (widthDefault >= 1024) {
@@ -92,8 +95,9 @@ function resize(id) {
             widthAfter = window.innerWidth;
             if (widthAfter < 1024) {
                 document.getElementById(id).classList.remove('active');
-                document.getElementById('sidebar').classList.remove('change-tablet');
-                document.getElementById('sidebar').classList.remove('active');
+                idSidebar.classList.remove('change-tablet');
+                idSidebar.classList.remove('active');
+                idSidebar.classList.remove('flag');
             }
         });
     }
@@ -135,10 +139,10 @@ function modeMobile(id) {
         var widthDefault = window.innerWidth;
         if(widthDefault < 740){
             if(id == 'a-search') {
-                href = '/src/views/Search/index.html';
+                href = '/Web_RestAPI/src/views/Search/index.html';
                 window.location.href = href;
             } else if (id == 'a-notification') {
-                href = '/src/views/Notification/index.html';
+                href = '/Web_RestAPI/src/views/Notification/index.html';
                 window.location.href = href;
             }
         }
