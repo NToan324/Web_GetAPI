@@ -108,7 +108,7 @@ window.addEventListener('resize', function () {
 });
 
 // Confirm logout
-function confirmLogout (id) {
+function confirmBox (id) {
     document.getElementById(id).addEventListener('click', function () {
         document.getElementById('confirmBox').style.visibility = 'visible';
         var cancelLogout = document.getElementById('cancelBtn');
@@ -117,8 +117,8 @@ function confirmLogout (id) {
         });
     });
 }
-confirmLogout('logout-btn');
-confirmLogout('mobile-logout-btn')
+confirmBox('logout-btn');
+confirmBox('mobile-logout-btn')
 
 // Mode mobile
 function modeMobile(id) {
