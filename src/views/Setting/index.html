@@ -31,7 +31,7 @@
                                 <label for="change-avt">
                                     <i class="fa-solid fa-image"></i>
                                 </label>
-                            </div>  
+                            </div>
                         </tr>
                         <tr>
                             <td width="45%">Name</td>
@@ -78,21 +78,25 @@
                 <button type="submit" class="btn-setting">Confirm</button>
                 <p id="change-password-success" style="color: green; display: none;">Password changed successfully</p>
                 <p id="change-password-error" style="color: red; display: none;">Failed to change password</p>
-                
-                
+
+
             </form>
             <form class="delete-account">
                 <button id="delete-btn" type="submit" class="btn-delete">
-                        <span class="icon">
-                            <span>Delete Account</span>
-                            <i class="fa-solid fa-user-slash"></i>
-                        </span>
+                    <span class="icon">
+                        <span>Delete Account</span>
+                        <i class="fa-solid fa-user-slash"></i>
+                    </span>
                 </button>
             </form>
         </div>
     </div>
 
     <script>
+
+
+
+
         document.addEventListener('DOMContentLoaded', function () {
             // Fetch user information
             fetch('/Web_RestAPI/getUser')
@@ -185,6 +189,28 @@
                         document.getElementById('change-password-error').style.display = 'none';
                     }, 2000);
                 });
+        });
+
+        document.querySelector('.delete-account').addEventListener('submit', function (event) {
+            event.preventDefault();
+            if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+                fetch('/Web_RestAPI/profile', {
+                    method: 'DELETE'
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('Account deleted successfully.');
+                            window.location.href = '/Web_RestAPI/';
+                        } else {
+                            alert('Failed to delete account: ' + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error deleting account:', error);
+                        alert('An error occurred. Please try again later.');
+                    });
+            }
         });
 
     </script>

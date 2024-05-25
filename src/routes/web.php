@@ -153,19 +153,19 @@ switch ($request_parts[2]) {
         }
 
     case 'comment': {
-        if (HttpHelper::isPostRequest()) {
-            $postController->comment();
-            break;
-        } elseif (HttpHelper::isDeleteRequest()) {
-            $postController->deleteComment();
-            break;
+            if (HttpHelper::isPostRequest()) {
+                $postController->comment();
+                break;
+            } elseif (HttpHelper::isDeleteRequest()) {
+                $postController->deleteComment();
+                break;
+            }
         }
-    }
 
     case 'comments': {
-        $postController->getAllComments();
-        break;
-    }
+            $postController->getAllComments();
+            break;
+        }
 
     case 'profile': {
             if (HttpHelper::isDeleteRequest()) {
@@ -175,6 +175,10 @@ switch ($request_parts[2]) {
                 $accountController->profileView();
                 break;
             }
+        }
+    case 'check-like-status': {
+            $postController->checkLikeStatus();
+            break;
         }
 
     case 'load-profile': {

@@ -46,7 +46,7 @@ function renderPosts(posts, user) {
                         <img src="/Web_RestAPI/storage/posts/${post.image}" alt="" />
                         <div class="post-info">
                             <div class="likes">
-                                <i class="far fa-heart" onclick="liked(this)"></i>
+                                <i id="like-btn" class="far fa-heart" onclick="liked(this)"></i>
                             </div>
                             <div class="comments">
                                 <i class="far fa-comment-dots"></i>
@@ -69,6 +69,7 @@ function renderPosts(posts, user) {
                         </div>
                     </div>`;
                 postContainer.append(html);
+                checkLikeStatus(post.id)
             })
             .catch(error => {
                 console.error('Error fetching comments:', error);
@@ -84,6 +85,45 @@ $.get('/Web_RestAPI/loadAllPost', (res) => {
     }
 });
 
+// Add click event to like button
+$(document).on('click', '#like-btn', function () {
+    const postId = $(this).data('post-id'); // Get the post ID from data attribute
+    fetch('/Web_RestAPI/like', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ postId: postId }) // Send the post ID in the request body
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Update the UI to reflect the like action
+                $(this).toggleClass('liked'); // Toggle the 'liked' class to visually indicate the like status
+                // Update the like count if needed
+            } else {
+                console.error('Error liking post:', data.message);
+            }
+        })
+    
+});
+
+
+function checkLikeStatus(postId) {
+    fetch(`/Web_RestAPI/check-like-status?id=${postId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.liked) {
+                $('#like-btn').click()
+            }
+        })
+        .catch(error => {
+            console.error('Error checking like status:', error.message);
+        });
+}
+
+
+
 $('#comment-form').submit(function (e) {
     e.preventDefault();
     console.log('coment');
@@ -92,6 +132,7 @@ $('#comment-form').submit(function (e) {
         method: 'POST',
         body: formData
     })
+<<<<<<< HEAD
     .then(response => response.json())
     .then(data => {
         window.location.reload(); // Reload the page after successful comment submission
@@ -103,4 +144,19 @@ $('#comment-form').submit(function (e) {
     .catch(error => {
         console.error('Error submitting comment:', error);
     });
+=======
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.reload();
+            } else {
+                console.error('Error submitting comment:', data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error submitting comment:', error);
+        });
+>>>>>>> ea2ce91c5791a5565060fa491213ccdd0eb7b3b7
 });
+
+
