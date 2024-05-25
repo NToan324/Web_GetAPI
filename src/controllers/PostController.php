@@ -53,6 +53,10 @@ class PostController
             $content = $_POST['content'];
             $image = isset($_FILES['image']) ? $_FILES['image'] : null;
 
+            if (!$image) {
+                throw new Exception('Please choose an image.');
+            }
+
 
             $result = PostService::create($userId, $content, $image);
 
