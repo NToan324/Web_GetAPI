@@ -118,7 +118,6 @@ class User
     public static function updateProfile($userId, $name, $birthday, $bio)
     {
         self::init();
-
         try {
             $query = "UPDATE users SET name = ?, birthday = ?, bio = ? WHERE id = ?";
             $stmt = self::$conn->prepare($query);
@@ -127,5 +126,27 @@ class User
         } catch (Exception $e) {
             throw new Exception("Failed to update profile: " . $e->getMessage());
         }
+    }
+
+    public static function updateAvatarPath($userId, $avatar)
+    {
+        self::init();
+        try {
+            $query = "UPDATE users SET avatar = ? WHERE id = ?";
+            $stmt = self::$conn->prepare($query);
+            $success = $stmt->execute([$avatar, $userId]);
+
+            if (!$success) {
+                throw new Exception("Failed to update avatar path");
+            }
+
+            self::$conn = null;
+            return true;
+        } catch (PDOException $e) {
+            throw $e;
+        } catch (Exception $e) {
+            throw $e;
+        }
+
     }
 }

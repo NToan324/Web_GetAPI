@@ -1,14 +1,27 @@
 function renderPosts(posts) {
     const postContainer = $('.main-posts')
-    posts.forEach(post => {
+    posts.forEach((post) => {
+        let createdAt = new Date(post.created_at)
+        let now = new Date()
+        let diffInHours = Math.abs(now - createdAt) / 36e5
+        let time = ''
+
+        if (diffInHours < 24) {
+            time = Math.floor(diffInHours) + ' hours ago'
+        } else {
+            time = createdAt.toLocaleDateString()
+        }
+
         let html = `
                     <div class="post-box">
                     <div class="post-profile">
                         <div class="post-img">
                             <img src="/Web_RestAPI/storage/users/${post.avatar}" alt="" />
                         </div>
-                        <h3>${post.user_name}</h3>
-                        <span>23 hours</span>
+                        <div class="post-name">
+                            <h3>${post.user_name}</h3>
+                            <p>${time}</p>
+                        </div>
                     </div>
                     <div class="caption">
                         <p>${post.content}</p>
@@ -31,16 +44,17 @@ function renderPosts(posts) {
                             </div>  
                         </div>
                         <div class="write-comments">
+                        <form>
                             <input type="text" placeholder="Write a comment..." />
-                            <i class="far fa-paper-plane"></i>
+                            <button type="submit"><i class="far fa-paper-plane"></i></button>
+                        </form>
                         </div>
                     </div>
                 </div>
                 `
 
         postContainer.append(html)
-
-    });
+    })
 }
 
 $.get('/Web_RestAPI/loadAllPost', (res) => {
