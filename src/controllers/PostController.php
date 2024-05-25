@@ -81,6 +81,7 @@ class PostController
         $postId = $_POST['post_id'];
 
         try {
+            // Like the post
             $success = PostService::likePost($postId, $userId);
 
             if ($success) {
@@ -89,10 +90,34 @@ class PostController
                     'message' => 'Post liked successfully'
                 ));
             } else {
+                throw new Exception('Failed to like post');
+            }
+        } catch (Exception $e) {
+            echo json_encode(array(
+                'success' => false,
+                'message' => $e->getMessage()
+            ));
+        }
+    }
+
+    public function unlike()
+    {
+        HttpHelper::requirePostMethod();
+
+        $userId = $_SESSION['id'] ?? '';
+        $postId = $_POST['post_id'];
+
+        try {
+            // Unlike the post
+            $success = PostService::unlikePost($postId, $userId);
+
+            if ($success) {
                 echo json_encode(array(
-                    'success' => false,
-                    'message' => 'Failed to like post'
+                    'success' => true,
+                    'message' => 'Post unliked successfully'
                 ));
+            } else {
+                throw new Exception('Failed to unlike post');
             }
         } catch (Exception $e) {
             echo json_encode(array(
@@ -153,6 +178,83 @@ class PostController
                 'message' => 'Post updated successfully',
                 'data' => $result
             ));
+        } catch (Exception $e) {
+            echo json_encode(array(
+                'success' => false,
+                'message' => $e->getMessage()
+            ));
+        }
+    }
+
+    public function getAllComments()
+    {
+
+        header('Content-type: application/json');
+        try {
+            $postId = $_GET['id'];
+
+            $comments = PostService::getAllCommentsByPostId($postId);
+
+            echo json_encode(array(
+                'success' => true,
+                'message' => 'Comments retrieved successfully',
+                'data' => $comments
+            ));
+        } catch (Exception $e) {
+            echo json_encode(array(
+                'success' => false,
+                'message' => $e->getMessage()
+            ));
+        }
+    }
+
+    public function comment()
+    {
+        HttpHelper::requirePostMethod();
+
+        try {
+            $postId = $_POST['post_id'] ?? '';
+            $userId = $_SESSION['id'] ?? '';
+            $content = $_POST['content'] ?? '';
+
+
+            
+            $success = PostService::comment($postId, $userId, $content);
+
+            if ($success) {
+                echo json_encode(array(
+                    'success' => true,
+                    'message' => 'Comment added successfully',
+                    'data' => $success
+                ));
+            } else {
+                throw new Exception('Failed to add comment');
+            }
+        } catch (Exception $e) {
+            echo json_encode(array(
+                'success' => false,
+                'message' => $e->getMessage()
+            ));
+        }
+    }
+
+    public function deleteComment()
+    {
+        HttpHelper::requireDeleteMethod();
+
+        try {
+            $commentId = $_GET['id'];
+
+            $success = PostService::deleteComment($commentId);
+
+            if ($success) {
+                echo json_encode(array(
+                    'success' => true,
+                    'message' => 'Comment deleted successfully'
+                ));
+            } else {
+                throw new Exception('Failed to delete comment');
+            }
         } catch (Exception $e) {
             echo json_encode(array(
                 'success' => false,

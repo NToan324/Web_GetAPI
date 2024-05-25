@@ -33,14 +33,34 @@ class PostService
     public static function likePost($postId, $userId)
     {
         try {
-            $isLiked = Post::isPostLiked($postId, $userId);
-            if ($isLiked) {
-                return false;
+            if (Post::isPostLiked($postId, $userId)) {
+                return self::unlikePost($postId, $userId);
             }
 
             // Like the post
             $success = Post::like($postId, $userId);
-            return $success;
+
+            if ($success) {
+                return true;
+            } else {
+                throw new Exception('Failed to like post');
+            }
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    public static function unlikePost($postId, $userId)
+    {
+        try {
+            // Unlike the post
+            $success = Post::unlike($postId, $userId);
+
+            if ($success) {
+                return true;
+            } else {
+                throw new Exception('Failed to unlike post');
+            }
         } catch (Exception $e) {
             throw $e;
         }
@@ -87,4 +107,37 @@ class PostService
             throw $e;
         }
     }
+
+    public static function getAllCommentsByPostId($postId)
+    {
+        try {
+            $comments = Post::getAllCommentsByPostId($postId);
+            return $comments;
+        } catch (Exception $e) {
+            throw new Exception("Error while getting comments: " . $e->getMessage());
+        }
+    }
+
+    public static function comment($postId, $userId, $content)
+    {
+
+        try {
+            $success = Post::comment($postId, $userId, $content);
+            return $success;
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    public static function deleteComment($commentId)
+    {
+        try {
+            $success = Post::deleteComment($commentId);
+            return $success;
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
 }
+
+// die(var_dump(PostService::comment(11, 1, 'Day la cai comment')));

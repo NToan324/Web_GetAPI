@@ -28,7 +28,9 @@ function renderPosts(posts, user) {
                         <p>${time}</p>
                     </div>
                 </div>
-
+                <div>
+                ${post.content}
+                </div>
                 <img src="/Web_RestAPI/storage/posts/${post.image}" alt="" />
                 <div class="post-info">
                     <div class="likes">
@@ -89,14 +91,14 @@ function editPost(element) {
     formElement.find('.save-button').on('click', function () {
         const newContent = inputElement.val();
         formElement.replaceWith(`<p class="post-content" data-content="${newContent}">${newContent}</p>`);
-        
+
         // TODO: Gọi API để cập nhật nội dung mới lên server
     });
 
     inputElement.on('blur', function () {
         const newContent = inputElement.val();
         formElement.replaceWith(`<p class="post-content" data-content="${newContent}">${newContent}</p>`);
-        
+
         // TODO: Gọi API để cập nhật nội dung mới lên server
     });
 }

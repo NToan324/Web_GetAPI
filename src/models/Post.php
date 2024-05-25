@@ -95,12 +95,14 @@ class Post
         try {
             self::init();
 
-            // Delete the like record
             $query = "DELETE FROM likes WHERE post_id = ? AND user_id = ?";
             $stmt = self::$conn->prepare($query);
-            $stmt->execute([$postId, $userId]);
+            $success = $stmt->execute([$postId, $userId]);
 
-            // Decrease post's total_likes
+            if (!$success) {
+                throw new Exception("Failed to unlike post");
+            }
+
             $stmt = self::$conn->prepare("UPDATE posts SET total_likes = total_likes - 1 WHERE id = ?");
             $stmt->execute([$postId]);
 
@@ -110,19 +112,17 @@ class Post
         }
     }
 
-    public static function isPostLiked($userId, $postId)
+    public static function isPostLiked($postId, $userId)
     {
         try {
-            $likedPosts = User::getLikedPost($userId);
-            // die(var_dump($likedPosts));
+            self::init();
 
-            foreach ($likedPosts as $post) {
-                if ($post['id'] == $postId) {
-                    return true;
-                }
-            }
+            // Query the database to check if the user has already liked the post
+            $stmt = self::$conn->prepare("SELECT COUNT(*) FROM likes WHERE post_id = ? AND user_id = ?");
+            $stmt->execute([$postId, $userId]);
+            $result = $stmt->fetchColumn();
 
-            return false;
+            return $result > 0; // If there are rows returned, it means the user has already liked the post
         } catch (Exception $e) {
             throw new Exception("Error checking if post is liked: " . $e->getMessage());
         }
@@ -136,19 +136,47 @@ class Post
         return self::findById($postId);
     }
 
-    public static function comment($post_id, $user_id, $content)
+    public static function getAllCommentsByPostId($postId)
     {
         self::init();
-        $stmt = self::$conn->prepare("INSERT INTO comments (post_id, user_id, content) VALUES (?, ?, ?)");
-        return $stmt->execute([$post_id, $user_id, $content]);
+        $stmt = self::$conn->prepare("
+            SELECT c.*, u.name, u.id FROM comments c
+            INNER JOIN users u 
+            ON c.user_id = u.id
+            WHERE post_id = ?
+        ");
+        $stmt->execute([$postId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public static function deleteComment($comment_id)
+
+    public static function comment($postId, $userId, $content)
     {
-        self::init();
-        $stmt = self::$conn->prepare("DELETE FROM comments WHERE comment_id = ?");
-        return $stmt->execute([$comment_id]);
+        try {
+            self::init();
+
+            $stmt = self::$conn->prepare("INSERT INTO comments (post_id, user_id, content) VALUES (?, ?, ?)");
+            $success = $stmt->execute([$postId, $userId, $content]);
+
+            return $success;
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    public static function deleteComment($commentId)
+    {
+        try {
+            self::init();
+
+            $stmt = self::$conn->prepare("DELETE FROM comments WHERE id = ?");
+            $success = $stmt->execute([$commentId]);
+
+            return $success;
+        } catch (Exception $e) {
+            throw $e;
+        }
     }
 }
 
-Post::isPostLiked(14, 33);
+// die(var_dump(Post::deleteComment(11)));

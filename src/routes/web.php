@@ -146,8 +146,26 @@ switch ($request_parts[2]) {
             if (HttpHelper::isPostRequest()) {
                 $postController->like();
                 break;
+            } elseif (HttpHelper::isDeleteRequest()) {
+                $postController->unlike();
+                break;
             }
         }
+
+    case 'comment': {
+        if (HttpHelper::isPostRequest()) {
+            $postController->comment();
+            break;
+        } elseif (HttpHelper::isDeleteRequest()) {
+            $postController->deleteComment();
+            break;
+        }
+    }
+
+    case 'comments': {
+        $postController->getAllComments();
+        break;
+    }
 
     case 'profile': {
             if (HttpHelper::isDeleteRequest()) {

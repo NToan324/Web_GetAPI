@@ -4,64 +4,102 @@ function renderPosts(posts, user) {
         const dateB = new Date(b.created_at);
         return dateB - dateA; // Later created time comes first (descending)
     });
-    const postContainer = $('.main-posts')
+    const postContainer = $('.main-posts');
     posts.forEach((post) => {
-        let createdAt = new Date(post.created_at)
-        let now = new Date()
-        let diffInHours = Math.abs(now - createdAt) / 36e5
-        let time = ''
+        let createdAt = new Date(post.created_at);
+        let now = new Date();
+        let diffInHours = Math.abs(now - createdAt) / 36e5;
+        let time = '';
 
         if (diffInHours < 24) {
-            time = Math.floor(diffInHours) + ' hours ago'
+            time = Math.floor(diffInHours) + ' hours ago';
         } else {
-            time = createdAt.toLocaleDateString()
+            time = createdAt.toLocaleDateString();
         }
 
-        let html = `
-                    <div class="post-box">
-                    <div class="post-profile">
-                        <div class="post-img">
-                            <img src="/Web_RestAPI/storage/users/${post.avatar}" alt="" />
-                        </div>
-                        <div class="post-name">
-                            <h3>${post.user_name}</h3>
-                            <p>${time}</p>
-                        </div>
-                    </div>
-                    <img src="/Web_RestAPI/storage/posts/${post.image}" alt="" />
-                    <div class="post-info">
-                        <div class="likes">
-                            <i class="far fa-heart" onclick="liked(this)"></i>
-                        </div>
-                        <div class="comments">
-                            <i class="far fa-comment-dots"></i>
-                        </div>
-                    </div>
-                    <div class="likes-comments-info">
-                        <span>${post.total_likes} ${post.total_likes > 1 ? 'Likes' : 'Like'}</span>
-                        <div class="comments-show">
-                            <div class ="comments-user">
-                                <h4>${post.user_name}</h4>
-                                <p>${post.content}</p>
-                            </div>  
-                        </div>
-                        <form>
-                            <div class="write-comments">
-                                <input type="text" placeholder="Write a comment..." />
-                                <button type="submit"><i class="far fa-paper-plane"></i></button>
-                            </div>
-                        </form>
-                    </div>
-                `
+        fetch(`/Web_RestAPI/comments?id=${post.id}`)
+            .then(response => response.json())
+            .then(data => {
+                let commentsHtml = '';
+                if (data.data && data.data.length > 0) {
+                    data.data.forEach(comment => {
+                        commentsHtml += `
+                            <div class="comment">
+                                <h4>${comment.name}</h4>
+                                <p>${comment.content}</p>
+                            </div>`;
+                    });
+                }
 
-        postContainer.append(html)
-    })
+                let html = `
+                    <div class="post-box">
+                        <div class="post-profile">
+                            <div class="post-img">
+                                <img src="/Web_RestAPI/storage/users/${post.avatar}" alt="" />
+                            </div>
+                            <div class="post-name">
+                                <h3>${post.user_name}</h3>
+                                <p>${time}</p>
+                            </div>
+                        </div>
+                        <div>${post.content}</div>
+                        <img src="/Web_RestAPI/storage/posts/${post.image}" alt="" />
+                        <div class="post-info">
+                            <div class="likes">
+                                <i class="far fa-heart" onclick="liked(this)"></i>
+                            </div>
+                            <div class="comments">
+                                <i class="far fa-comment-dots"></i>
+                            </div>
+                        </div>
+                        <div class="likes-comments-info">
+                            <span>${post.total_likes} ${post.total_likes > 1 ? 'Likes' : 'Like'}</span>
+                            <div class="comments-show">
+                                <div class="comments-user">
+                                    ${commentsHtml}
+                                </div>
+                            </div>
+                            <form id="comment-form" method="post" action="/Web_RestAPI/comment">
+                                <input type="hidden" name="post_id" value="${post.id}" />
+                                <div class="write-comments">
+                                    <input type="text" name="content" placeholder="Write a comment..." />
+                                    <button type="submit"><i class="far fa-paper-plane"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>`;
+                postContainer.append(html);
+            })
+            .catch(error => {
+                console.error('Error fetching comments:', error);
+            });
+    });
 }
 
 $.get('/Web_RestAPI/loadAllPost', (res) => {
     if (res.success) {
-        renderPosts(res.data.posts, res.data.user)
+        renderPosts(res.data.posts, res.data.user);
     } else {
-        console.log(res)
+        console.log(res);
     }
-})
+});
+
+$('#comment-form').submit(function (e) {
+    e.preventDefault();
+    let formData = $(this).serialize();
+    fetch($(this).attr('action'), {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        window. location.reload(); // Reload the page after successful comment submission
+        if (data.success) {
+        } else {
+            console.error('Error submitting comment:', data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error submitting comment:', error);
+    });
+});
