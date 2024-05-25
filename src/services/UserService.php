@@ -89,4 +89,20 @@ class UserService
             throw $e;
         }
     }
+
+    public static function deleteUser($userId)
+    {
+        try {
+            $user = User::getById($userId);
+            if (!$user) {
+                throw new Exception('User not found');
+            }
+
+            $deleted = User::delete($userId);
+
+            return $deleted;
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
 }

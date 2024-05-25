@@ -84,4 +84,37 @@ class AccountController
             ));
         }
     }
+
+    public function delete()
+    {
+        HttpHelper::requireDeleteMethod();
+
+        try {
+            $userId = $_SESSION['id'];
+
+            if (!$userId) {
+                throw new Exception('User ID is required');
+            }
+
+            $deleted = UserService::deleteUser($userId);
+
+            if ($deleted) {
+                session_unset();
+                session_destroy();
+                // cookie
+
+                echo json_encode(array(
+                    'success' => true,
+                    'message' => 'User account deleted successfully'
+                ));
+            } else {
+                throw new Exception('Failed to delete user account');
+            }
+        } catch (Exception $e) {
+            echo json_encode(array(
+                'success' => false,
+                'message' => $e->getMessage()
+            ));
+        }
+    }
 }
