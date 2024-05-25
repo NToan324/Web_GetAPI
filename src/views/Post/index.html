@@ -32,7 +32,7 @@
                                 </td>
                             </tr>
                         </table>
-                        <textarea rows="5" cols="50" placeholder="What are you thinking?"></textarea>
+                        <textarea rows="5" cols="50" name="content" placeholder="What are you thinking?"></textarea>
                     </div>
 
                     <div class="add-post">
@@ -48,16 +48,20 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <input type="file" id="file-upload" name="image" accept="image/*" multiple>
+                                    <input type="file" id="file-upload" name="image" accept="image/*">
                                 </td>
                             </tr>
                         </table>
                     </div>
+
                     <table>
                         <tr>
+                            <p id="message" style="color: green;"></p>
                             <td><button type="button" class="btn-cancel"
                                     onclick="window.location.href='/Web_RestAPI/'">Cancel</button></td>
                             <td width="50%"><button type="submit" class="btn-post">Post</button></td>
+                        </tr>
+                        <tr>
                         </tr>
                     </table>
 
@@ -71,47 +75,45 @@
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('user-name').textContent = data.user.name;
-                    document.getElementById('avatar').src = `/Web_RestAPI/storage/users/${data.user.avatar}`
+                    document.getElementById('avatar').src = `/Web_RestAPI/storage/users/${data.user.avatar}`;
                 })
                 .catch(error => {
                     console.error('Error fetching user name:', error);
                     document.getElementById('user-name').textContent = 'Guest';
                 });
 
-            document.getElementById('post-form').addEventListener('submit', function (event) {
-                event.preventDefault();
+            // Handle form submission
+            document.getElementById('post-form').addEventListener('submit', function (e) {
+                e.preventDefault();
 
-                const form = event.target;
-                const formData = new FormData();
+                const formData = new FormData(this);
 
-                // formData.append('content', document.getElementById('content').value);
-
-                const fileInput = document.getElementById('file-upload');
-                if (fileInput.files.length > 0) {
-                    formData.append('file-upload', fileInput.files[0]);
-                }
-
-                console.log(formData)
-                fetch('/Web_RestAPI/post', {
+                fetch(this.action, {
                     method: 'POST',
                     body: formData
                 })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            // Handle success, maybe redirect to the new post or show a success message
-                            window.location.href = '/Web_RestAPI/posts/' + data.post_id;
-                        } else {
-                            // Handle failure, show error message
-                            console.error('Failed to create post:', data.message);
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
+                .then(response => response.json())
+                .then(data => {
+                    const messageElem = document.getElementById('message');
+                    if (data.success) {
+                        messageElem.style.color = 'green';
+                        messageElem.textContent = 'Post created successfully. Redirecting to home...';
+                        setTimeout(() => {
+                            window.location.href = '/Web_RestAPI/';
+                        }, 2000); // Redirect after 2 seconds
+                    } else {
+                        messageElem.style.color = 'red';
+                        messageElem.textContent = 'Error: ' + data.message;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error submitting form:', error);
+                    const messageElem = document.getElementById('message');
+                    messageElem.style.color = 'red';
+                    messageElem.textContent = 'Error: ' + error.message;
+                });
             });
         });
-
     </script>
     <script src="/Web_RestAPI/src/views/Post/script.js"></script>
 </body>
