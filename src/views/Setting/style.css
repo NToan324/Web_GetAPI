@@ -6,31 +6,38 @@
 }
 
 body {
-    background-color: #fafbfb;
-    display: flex;  
-    justify-content: center;
-    align-items: center; 
+    background-color: #e4e4e4;
+    display: flex;
+    align-items: center;
     min-height: 100vh;
+    justify-content: center;
 }
 
+.form-container-setting {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    min-width: 400px;
+}
 
 .header-post {
     border-bottom: 1px solid #ddd;
 }
-
+.container-setting {
+    width: 70%;
+}
 h2 {
     font-size: 28px;
 }
-.container-setting{
-    width: 50%;
-}
+
 .container-setting form {
     border: 2px solid #e0e0e0 ;
     background-color:rgb(255, 255, 255);
     padding: 15px;
     border-radius: 15px;
     width: 100%;
-    min-width: 315px;
 }
 
 .body-setting table {
@@ -114,4 +121,18 @@ input[type="file"] {
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
+}
+
+.back-to-home {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    background-color: #fff;
+    width: 175px;
+    border-radius: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    color: #0a00cf;
 }
