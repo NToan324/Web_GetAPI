@@ -177,9 +177,9 @@ switch ($request_parts[2]) {
             }
         }
     case 'check-like-status': {
-        $postController->checkLikeStatus();
-        break;
-    }
+            $postController->checkLikeStatus();
+            break;
+        }
 
     case 'load-profile': {
             $accountController->profile();
