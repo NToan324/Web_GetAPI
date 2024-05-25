@@ -18,6 +18,14 @@ function renderPosts(posts, user) {
         }
 
         let html = `
+            <!-- Confirm delte post -->
+            <div id="ConfirmDeletePost" class="hidden">
+                <div class="confirm-delete-post">
+                    <p>Are you sure you want to delete this post?</p>
+                    <button id="deleteBtn">Delete</button>
+                    <button id="cancelDeleteBtn">Cancel</button>
+                </div>
+            </div>
             <div class="post-box" data-id="${post.id}">
                 <div class="post-profile">
                     <div class="post-img">
@@ -45,6 +53,7 @@ function renderPosts(posts, user) {
                     <div class="delete-post">
                         <i class="far fa-trash-alt" onclick="deletePost()"></i>
                     </div>
+
                 </div>
                 <div class="likes-comments-info">
                     <span>${post.total_likes} Likes</span>
@@ -91,7 +100,7 @@ function editPost(element) {
     formElement.find('.save-button').on('click', function () {
         const newContent = inputElement.val();
         formElement.replaceWith(`<p class="post-content" data-content="${newContent}">${newContent}</p>`);
-
+        
         // TODO: Gọi API để cập nhật nội dung mới lên server
     });
 
@@ -99,7 +108,16 @@ function editPost(element) {
         const newContent = inputElement.val();
         formElement.replaceWith(`<p class="post-content" data-content="${newContent}">${newContent}</p>`);
 
-        // TODO: Gọi API để cập nhật nội dung mới lên server
+        // console.log('New content:', newContent);
+
+        const postId = postBox.data('id');
+        $.post('/Web_RestAPI/edit-post', { id: postId, content: newContent }, (res) => {
+            if (res.success) {
+                console.log('Post updated successfully');
+            } else {
+                console.log(res);
+            }
+        });
     });
 }
 
