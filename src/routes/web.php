@@ -121,7 +121,7 @@ switch ($request_parts[2]) {
         break;
     }
 
-    default: {
+        default: {
         header('Content-type: application/json');
         echo json_encode([
             'success' => true,

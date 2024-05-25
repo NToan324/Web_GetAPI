@@ -147,3 +147,4 @@ function modeMobile(id) {
 
 modeMobile('a-search');
 modeMobile('a-notification');
+    
