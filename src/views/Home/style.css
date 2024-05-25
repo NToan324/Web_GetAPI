@@ -772,6 +772,18 @@ span.icon {
 
 }
 
+
+.post-name p {
+    font-weight: normal;
+    font-size: 14px;
+    color: gray;
+    margin-left: 10px;
+}
+
+.post-name h3 {
+    margin-left: 10px;
+}
+
 .add-post table {
     margin: 2px 0 0 10px;
 }
