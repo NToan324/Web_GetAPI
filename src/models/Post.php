@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use PDO;
+use Exception;
+use App\Models\User;
 
 class Post
 {
@@ -51,26 +53,66 @@ class Post
         return $stmt->execute([$post_id]);
     }
 
-    public static function like($post_id, $user_id)
+    public static function like($postId, $userId)
     {
-        self::init();
-        // Increase total_likes column in the posts table
-        $stmt = self::$conn->prepare("UPDATE posts SET total_likes = total_likes + 1 WHERE post_id = ?");
-        $stmt->execute([$post_id]);
+        try {
+            self::init();
 
-        // Add a like to the likes table
-        Like::create($post_id, $user_id);
+            $query = "INSERT INTO likes (post_id, user_id) VALUES (?, ?)";
+            $stmt = self::$conn->prepare($query);
+            $success = $stmt->execute([$postId, $userId]);
+
+            if (!$success) {
+                throw new Exception("Failed to like post");
+            }
+
+            // Increase post's total_likes
+            $stmt = self::$conn->prepare("UPDATE posts SET total_likes = total_likes + 1 WHERE id = ?");
+            $stmt->execute([$postId]);
+
+            return true;
+        } catch (Exception $e) {
+            throw new Exception("Error while liking post: " . $e->getMessage());
+        }
     }
 
-    public static function unlike($post_id, $user_id)
+    public static function unlike($postId, $userId)
     {
-        self::init();
-        $stmt = self::$conn->prepare("UPDATE posts SET total_likes = total_likes - 1 WHERE post_id = ?");
-        $stmt->execute([$post_id]);
+        try {
+            self::init();
 
-        Like::delete($post_id, $user_id);
+            // Delete the like record
+            $query = "DELETE FROM likes WHERE post_id = ? AND user_id = ?";
+            $stmt = self::$conn->prepare($query);
+            $stmt->execute([$postId, $userId]);
+
+            // Decrease post's total_likes
+            $stmt = self::$conn->prepare("UPDATE posts SET total_likes = total_likes - 1 WHERE id = ?");
+            $stmt->execute([$postId]);
+
+            return true;
+        } catch (Exception $e) {
+            throw new Exception("Error while unliking post: " . $e->getMessage());
+        }
     }
 
+    public static function isPostLiked($userId, $postId)
+    {
+        try {
+            $likedPosts = User::getLikedPost($userId);
+            // die(var_dump($likedPosts));
+
+            foreach ($likedPosts as $post) {
+                if ($post['id'] == $postId) {
+                    return true;
+                }
+            }
+
+            return false;
+        } catch (Exception $e) {
+            throw new Exception("Error checking if post is liked: " . $e->getMessage());
+        }
+    }
     public static function comment($post_id, $user_id, $content)
     {
         self::init();
@@ -85,3 +127,5 @@ class Post
         return $stmt->execute([$comment_id]);
     }
 }
+
+Post::isPostLiked(14, 33);

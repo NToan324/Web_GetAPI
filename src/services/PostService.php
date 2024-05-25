@@ -29,4 +29,20 @@ class PostService
             throw $e;
         }
     }
+
+    public static function likePost($postId, $userId)
+    {
+        try {
+            $isLiked = Post::isPostLiked($postId, $userId);
+            if ($isLiked) {
+                return false;
+            }
+
+            // Like the post
+            $success = Post::like($postId, $userId);
+            return $success;
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
 }

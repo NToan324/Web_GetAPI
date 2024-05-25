@@ -119,7 +119,7 @@ switch ($request_parts[2]) {
             $settingController->changePassword();
             break;
         }
-    
+
     case 'post':
         if (HttpHelper::isPostRequest()) {
             $postController->create();
@@ -127,6 +127,13 @@ switch ($request_parts[2]) {
         } else {
             $postController->createView();
             break;
+        }
+
+    case 'like': {
+            if (HttpHelper::isPostRequest()) {
+                $postController->like();
+                break;
+            }
         }
 
     default: {
