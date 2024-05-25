@@ -59,6 +59,12 @@ body {
     border: 3px solid rgb(21, 0, 255);
 }
 
+.profile-img a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .profile-img img {
     width: 60px;
     height: 60px;
@@ -304,6 +310,11 @@ span.icon {
 .write-comments i {
     margin-top: 10px;
     font-size: 1.4rem;
+}
+
+.write-comments button {
+    border: none;
+    background-color: transparent;
 }
 
 /* Like effect */
@@ -972,6 +983,80 @@ input[type="file"] {
     border-radius: 50%;
     object-fit: cover;
 }
+
+/* Personal details */
+.personal-page-intro {
+    background-color: #fdfdfd;
+    border-radius: 20px;
+    padding-bottom: 20px;
+}
+.personal-page {
+    background-color: #f2f2f2;
+    border-radius: 20px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.personal-page-img img {
+    width: 100%;
+    min-width: 300px;
+    height: 400px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.personal-page-info {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    padding: 15px 20px 0 195px;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+
+.personal-page-info img {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    top:-70px;
+    left: 20px;
+    border: 3px solid #fff;
+}
+
+.personal-page-name {
+    width: 50%;
+    min-width: 170px;
+}
+
+.personal-page-name p {
+    margin-top: 7px;
+}
+
+.personal-page-info button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    background-color: #0003b9;
+    color: #fff;
+    border-radius: 15px;
+
+}
+
+.personal-page-post {
+    padding: 20px 0;
+    margin-top: 20px;
+    background-color: fdfdfd;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fdfdfd;
+}
 /* MOBILE VERSION */
 @media only screen and (max-width: 740px) {
 
@@ -1069,6 +1154,9 @@ input[type="file"] {
     }
 
     .sidebar .profile-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 33px;
         height: 33px;
     }
@@ -1261,6 +1349,7 @@ input[type="file"] {
         top: 0;
         background-color: rgb(255, 255, 255);
         padding: 10px 10px 10px 18px;
+        z-index: 100;
     }
 
     /* Add border on top and bottom */
@@ -1420,6 +1509,11 @@ input[type="file"] {
     .write-comments i {
         margin-top: 10px;
         font-size: 1.4rem;
+    }
+
+    /* Personal page */
+    .personal-page {
+        margin-top: 40px;
     }
 }
 

@@ -48,14 +48,13 @@ function renderPosts(posts, user) {
                                 <p>${post.content}</p>
                             </div>  
                         </div>
-                        <div class="write-comments">
                         <form>
-                            <input type="text" placeholder="Write a comment..." />
-                            <button type="submit"><i class="far fa-paper-plane"></i></button>
+                            <div class="write-comments">
+                                <input type="text" placeholder="Write a comment..." />
+                                <button type="submit"><i class="far fa-paper-plane"></i></button>
+                            </div>
                         </form>
-                        </div>
                     </div>
-                </div>
                 `
 
         postContainer.append(html)
