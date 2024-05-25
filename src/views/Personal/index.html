@@ -509,71 +509,64 @@
                             </tr>
                         </table>
 
-                        <p><a href="">Forgot Password?</a></p>
-                        <button class="btn-setting">Confirm</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!-- Main Home -->
-        <div class="main-home">
-            <div class="personal-page">
-                <div class="personal-page-intro">
-                    <div class="personal-page-img">
-                        <img
-                            src="/Web_RestAPI/storage/posts/image2.jpg"
-                            alt="avatar"
-                        />
-                    </div>
-                    <div class="personal-page-info">
-                        <img
-                            src="/Web_RestAPI/storage/users/default_avatar.jpg"
-                            alt="avatar"
-                            id="personal-page-avt"
-                        />
-                        <div class="personal-page-name">
-                            <h1>Loading...</h1>
-                            <p></p>
-                        </div>
-                        <a href="/Web_RestAPI/post">
-                            <i class="fas fa-plus"></i>
-                            <span>Post</span>
-                        </a>
-                    </div>
+                    <p><a href="">Forgot Password?</a></p>
+                    <button class="btn-setting">Confirm</button>
                 </div>
 
-                <div class="personal-page-post"></div>
-            </div>
+            </form>
         </div>
+    </div>
+    <!-- Main Home -->
+    <div class="main-home">
+        <div class="personal-page">
+            <div class="personal-page-intro">
+                <div class="personal-page-img">
+                    <img src="/Web_RestAPI/storage/posts/image2.jpg" alt="avatar" />
+                </div>
+                <div class="personal-page-info">
+                    <img src="/Web_RestAPI/storage/users/default_avatar.jpg" alt="avatar" id="personal-page-avt">
+                    <div class="personal-page-name">
+                        <h1>Loading...</h1>
+                        <p></p>
+                    </div>
+                    <a href="/Web_RestAPI/post">
+                        <i class="fas fa-plus"></i>
+                        <span>Post</span>
+                    </a>
+                </div>
+            </div>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                // Fetch user information
-                fetch('/Web_RestAPI/getUser')
-                    .then((response) => response.json())
-                    .then((data) => {
-                        // Update profile fields with user data
-                        document.getElementById(
-                            'personal-page-avt'
-                        ).src = `/Web_RestAPI/storage/users/${data.user.avatar}`
-                        document.querySelector(
-                            '.personal-page-name h1'
-                        ).textContent = data.user.name
-                        document.querySelector(
-                            '.personal-page-name p'
-                        ).textContent = data.user.bio
-                    })
-                    .catch((error) => {
-                        console.error('Error fetching user data:', error)
-                    })
-            })
-        </script>
-        <script src="/Web_RestAPI/src/views/Personal/load-post-profile.js"></script>
-        <script src="/Web_RestAPI/src/views/Personal/delete-post.js"></script>
-        <script src="/Web_RestAPI/src/views/Home/search.js"></script>
+            <div class="personal-page-post">
 
-        <script src="/Web_RestAPI/src/views/Home/script.js"></script>
-        <script src="/Web_RestAPI/src/views/Home/logout.js"></script>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Fetch user information
+            fetch('/Web_RestAPI/getUser')
+                .then(response => response.json())
+                .then(data => {
+                    // Update profile fields with user data
+                    document.getElementById('personal-page-avt').src = `/Web_RestAPI/storage/users/${data.user.avatar}`;
+                    document.querySelector('.personal-page-name h1').textContent = data.user.name;
+                    document.querySelector('.personal-page-name p').textContent = data.user.bio;
+                })
+                .catch(error => {
+                    console.error('Error fetching user data:', error);
+                });
+        });
+
+
+    </script>
+    <script src="/Web_RestAPI/src/views/Personal/load-post-profile.js"></script>
+    <script src="/Web_RestAPI/src/views/Personal/delete-post.js"></script>
+    <!-- <script src="/Web_RestAPI/src/views/Personal/edit-post.js"></script> -->
+
+    <script src="/Web_RestAPI/src/views/Home/script.js"></script>
+    <script src="/Web_RestAPI/src/views/Home/logout.js"></script>
 
         <script>
             document.addEventListener('DOMContentLoaded', function () {

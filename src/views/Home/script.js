@@ -120,6 +120,7 @@ function confirmLogout (id) {
 confirmLogout('logout-btn');
 confirmLogout('mobile-logout-btn')
 
+
 // Mode mobile
 function modeMobile(id) {
     document.getElementById(id).addEventListener('click', function () {
