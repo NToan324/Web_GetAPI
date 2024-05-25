@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use App\Utils\HttpHelper;
 use Exception;
 
@@ -15,11 +16,16 @@ class PostController
         try {
             $posts = Post::all();
 
+            $user = User::getById($_SESSION['id']);
+
             if ($posts) {
                 echo json_encode(array(
                     'success' => true,
                     'message' => 'Load all post successfully',
-                    'data' => $posts
+                    'data' => [
+                        'posts' => $posts,
+                        'user' => $user
+                    ]
                 ));
             } else {
                 throw new Exception('No post found');

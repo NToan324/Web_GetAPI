@@ -3,8 +3,6 @@
 namespace App\Models;
 
 use PDO;
-use Exception;
-use PDOException;
 
 class Post
 {
@@ -22,7 +20,7 @@ class Post
     {
         self::init();
         $stmt = self::$conn->query("
-            SELECT posts.*, users.name AS user_name, users.avatar AS avatar
+            SELECT posts.*, users.name AS user_name, users.avatar AS avatar, TIMEDIFF(NOW(), posts.created_at) AS time_elapsed
             FROM posts
             JOIN users ON posts.user_id = users.id
         ");

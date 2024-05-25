@@ -1,4 +1,4 @@
-function renderPosts(posts) {
+function renderPosts(posts, user) {
     const postContainer = $('.main-posts')
     posts.forEach(post => {
         let html = `
@@ -26,7 +26,7 @@ function renderPosts(posts) {
                         <span>${post.total_likes} Likes</span>
                         <div class="comments-show">
                             <div class ="comments-user">
-                                <h4>Nhật Toàn</h4>
+                                <h4>${post.user_name}</h4>
                                 <p>${post.content}</p>
                             </div>  
                         </div>
@@ -47,7 +47,7 @@ function renderPosts(posts) {
 
 $.get('/Web_RestAPI/loadAllPost', (res) => {
     if (res.success) {
-        renderPosts(res.data)
+        renderPosts(res.data.posts, res.data.user)
     } else {
         console.log(res)
     }
