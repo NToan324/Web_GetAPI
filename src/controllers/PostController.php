@@ -130,4 +130,34 @@ class PostController
             ));
         }
     }
+
+    public function update()
+    {
+        HttpHelper::requirePostMethod();
+
+        try {
+
+            $postId = $_POST['id'];
+            $userId = $_SESSION['id'];
+            $content = $_POST['content'];
+
+
+            if (!$postId) {
+                throw new Exception('Post ID is required');
+            }
+
+            $result = PostService::updatePostContent($postId, $content);
+
+            echo json_encode(array(
+                'success' => true,
+                'message' => 'Post updated successfully',
+                'data' => $result
+            ));
+        } catch (Exception $e) {
+            echo json_encode(array(
+                'success' => false,
+                'message' => $e->getMessage()
+            ));
+        }
+    }
 }

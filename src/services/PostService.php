@@ -58,9 +58,30 @@ class PostService
             $deleted = Post::delete($post['id']);
 
             if ($deleted) {
-                return $deleted; 
+                return $deleted;
             } else {
                 throw new Exception('Failed to delete post');
+            }
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    public static function updatePostContent($postId, $content)
+    {
+        try {
+            $post = Post::findById($postId);
+
+            if (!$post) {
+                throw new Exception('Post not found');
+            }
+
+            $updated = Post::updatePostContent($postId, $content);
+
+            if ($updated) {
+                return $post;
+            } else {
+                throw new Exception('Failed to update post');
             }
         } catch (Exception $e) {
             throw $e;
