@@ -124,6 +124,9 @@ switch ($request_parts[2]) {
         if (HttpHelper::isPostRequest()) {
             $postController->create();
             break;
+        } elseif (HttpHelper::isDeleteRequest()) {
+            $postController->delete();
+            break;
         } else {
             $postController->createView();
             break;
@@ -135,6 +138,17 @@ switch ($request_parts[2]) {
                 break;
             }
         }
+
+    case 'profile': {
+            $accountController->profileView();
+            break;
+        }
+
+    case 'load-profile': {
+            $accountController->profile();
+            break;
+        }
+
 
     default: {
             header('Content-type: application/json');

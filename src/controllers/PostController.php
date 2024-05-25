@@ -41,7 +41,7 @@ class PostController
 
     public function createView()
     {
-        require_once '/Web_RestAPI/src/views/Post/index.html';
+        require_once __DIR__ . '/../views/Post/index.html';
     }
 
     public function create()
@@ -98,26 +98,32 @@ class PostController
         }
     }
 
-    public function modify()
-    {
-        // TODO: cai nay sai PUT de tao nghien cuu ai
-    }
-
     public function delete()
     {
-        // TODO: cai nay sai delete
-    }
+        HttpHelper::requireDeleteMethod();
 
+        try {
+            $postId = $_GET['id'] ?? null;
 
-    public function unlike()
-    {
-    }
+            if (!$postId) {
+                throw new Exception('Post ID is required');
+            }
 
-    public function comment()
-    {
-    }
+            $deleted = PostService::deletePost($postId);
 
-    public function deleteComment()
-    {
+            if ($deleted) {
+                echo json_encode(array(
+                    'success' => true,
+                    'message' => 'Post deleted successfully'
+                ));
+            } else {
+                throw new Exception('Failed to delete post');
+            }
+        } catch (Exception $e) {
+            echo json_encode(array(
+                'success' => false,
+                'message' => $e->getMessage()
+            ));
+        }
     }
 }

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css    " />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link rel="stylesheet" href="/Web_RestAPI/src/views/Home/style.css" />
     <link rel="stylesheet" href="/Web_RestAPI/src/views/Personal/style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -31,7 +31,7 @@
         </div>
 
         <div class="menu">
-            <a href="/Web_RestAPI/src/views/Home/index.html">
+            <a href="/Web_RestAPI">
                 <span class="icon">
                     <i class="fas fa-home"></i>
                     <span class="tooltip">Home</span>
@@ -59,7 +59,7 @@
                 </span>
                 <span class="hide">Message</span>
             </a>
-            <a href="/Web_RestAPI/src/views/Post/index.html">
+            <a href="/Web_RestAPI/post">
                 <span class="icon">
                     <i class="fas fa-plus-circle"></i>
                     <span class="tooltip">Post</span>
@@ -396,34 +396,16 @@
     </div>
     <!-- Main Home -->
     <div class="main-home">
-        <div class="header">
-            <div class="search">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="search" />
-            </div>
-            <div class="setting-logout">
-                <a href="/Web_RestAPI/src/views/Setting/index.html" class="hide setting">
-                    <span class="icon hide">
-                        <i class="fas fa-cog"></i>
-                    </span>
-                </a>
-                <a href="#" class="hide logout" id="mobile-logout-btn">
-                    <span class="icon">
-                        <i class="fas fa-sign-out-alt"></i>
-                    </span>
-                </a>
-            </div>
-        </div>
         <div class="personal-page">
             <div class="personal-page-intro">
                 <div class="personal-page-img">
                     <img src="/Web_RestAPI/storage/posts/image2.jpg" alt="avatar" />
                 </div>
                 <div class="personal-page-info">
-                    <img src="/Web_RestAPI/storage/posts/avatar.jpg" alt="avatar" id="personal-page-avt">
+                    <img src="/Web_RestAPI/storage/users/default_avatar.jpg" alt="avatar" id="personal-page-avt">
                     <div class="personal-page-name">
-                        <h1>Nhat Toan</h1>
-                        <p>Hi! I'm Nhat Toan, passionate about IT. Explore my page to learn more about my work and interests. Let's connect!</p>
+                        <h1>Loading...</h1>
+                        <p></p>
                     </div>
                     <button>
                         <i class="fas fa-plus"></i>
@@ -431,48 +413,38 @@
                     </button>
                 </div>
             </div>
-            <div class="personal-page-post">
-                <div class="post-box">
-                    <div class="post-profile">
-                        <div class="post-img">
-                            <img src="/Web_RestAPI/storage/users/avatar.jpg" alt="" />
-                        </div>
-                        <div class="post-name">
-                            <h3>Nhat Toan</h3>
-                            <p>22h</p>
-                        </div>
-                    </div>
-                    <div class="caption">
-                        <p>Hinh nay that dep</p>
-                    </div>
-                    <img src="/Web_RestAPI/storage/posts/image3.jpg" alt="" />
-                    <div class="post-info">
-                        <div class="likes">
-                            <i class="far fa-heart" onclick="liked(this)"></i>
-                        </div>
-                        <div class="comments">
-                            <i class="far fa-comment-dots"></i>
-                        </div>
-                    </div>
-                    <div class="likes-comments-info">
-                        <span>5 Likes</span>
-                        <div class="comments-show">
-                            <div class ="comments-user">
-                                <h4>Nhật Toàn</h4>
-                                <p>Hi, it's so gorgeous</p>
-                            </div>  
-                        </div>
-                        <form action="">
-                            <div class="write-comments">
-                                <input type="text" placeholder="Write a comment..." />
-                                <button type="submit"><i class="far fa-paper-plane"></i></button>
-                            </div>
-                        </form>
-                    </div>
-            </div>
-        </div>
 
+            <div class="personal-page-post">
+
+            </div>
+
+        </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Fetch user information
+            fetch('/Web_RestAPI/getUser')
+                .then(response => response.json())
+                .then(data => {
+                    // Update profile fields with user data
+                    document.getElementById('personal-page-avt').src = `/Web_RestAPI/storage/users/${data.user.avatar}`;
+                    document.querySelector('.personal-page-name h1').textContent = data.user.name;
+                    document.querySelector('.personal-page-name p').textContent = data.user.bio;
+                })
+                .catch(error => {
+                    console.error('Error fetching user data:', error);
+                });
+        });
+
+
+    </script>
+    <script src="/Web_RestAPI/src/views/Personal/load-post-profile.js"></script>
+    <script src="/Web_RestAPI/src/views/Personal/delete-post.js"></script>
+
+    <script src="/Web_RestAPI/src/views/Home/script.js"></script>
+    <script src="/Web_RestAPI/src/views/Home/logout.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Fetch user information
@@ -488,8 +460,6 @@
                 });
         });
     </script>
-    <script src="/Web_RestAPI/src/views/Home/script.js"></script>
-    <script src="/Web_RestAPI/src/views/Home/logout.js"></script>
 </body>
 
 </html>
