@@ -207,6 +207,7 @@ span.icon {
 
 .post-info i {
     font-size: 1.9rem;
+    cursor: pointer;
 }
 
 .post-info i:first-child {

@@ -116,6 +116,10 @@ input[type="file"] {
     align-items: center;
 }
 
+.input-change-avt i {
+    cursor: pointer;
+}
+
 #showImage {
     width: 50px;
     height: 50px;
