@@ -147,6 +147,27 @@ class User
         } catch (Exception $e) {
             throw $e;
         }
+    }
 
+    public static function getLikedPost($userId)
+    {
+        try {
+            self::init();
+
+            $query = "SELECT p.*
+            FROM POSTS p
+            JOIN LIKES l ON p.id = l.post_id
+            WHERE l.user_id = ?;
+            
+                        ";
+
+            $stmt = self::$conn->prepare($query);
+            $stmt->execute([$userId]);
+            $likedPosts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $likedPosts;
+        } catch (Exception $e) {
+            throw new Exception("Error fetching liked posts: " . $e->getMessage());
+        }
     }
 }

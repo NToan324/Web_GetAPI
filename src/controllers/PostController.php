@@ -49,7 +49,7 @@ class PostController
         HttpHelper::requirePostMethod();
 
         try {
-            $userId = $_SESSION['id']; 
+            $userId = $_SESSION['id'];
             $content = $_POST['content'];
             $image = isset($_FILES['image']) ? $_FILES['image'] : null;
 
@@ -69,6 +69,35 @@ class PostController
         }
     }
 
+    public function like()
+    {
+        HttpHelper::requirePostMethod();
+
+        $userId = $_SESSION['id'] ?? '';
+        $postId = $_POST['post_id'];
+
+        try {
+            $success = PostService::likePost($postId, $userId);
+
+            if ($success) {
+                echo json_encode(array(
+                    'success' => true,
+                    'message' => 'Post liked successfully'
+                ));
+            } else {
+                echo json_encode(array(
+                    'success' => false,
+                    'message' => 'Failed to like post'
+                ));
+            }
+        } catch (Exception $e) {
+            echo json_encode(array(
+                'success' => false,
+                'message' => $e->getMessage()
+            ));
+        }
+    }
+
     public function modify()
     {
         // TODO: cai nay sai PUT de tao nghien cuu ai
@@ -79,9 +108,6 @@ class PostController
         // TODO: cai nay sai delete
     }
 
-    public function like($postId, $userId)
-    {
-    }
 
     public function unlike()
     {
