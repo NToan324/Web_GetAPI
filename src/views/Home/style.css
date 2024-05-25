@@ -587,7 +587,7 @@ span.icon {
 }
 
 .body-search {
-    padding: 35px;
+    padding: 0 20px;
 }
 
 .head-body-search {
@@ -1621,4 +1621,32 @@ input[type="file"] {
         border-radius: 1rem 0 0 1rem;
         padding: 15px;
     }
+}
+
+#search-container {
+    overflow-y: auto;
+}
+
+#search-results {
+    margin-top: 10px;
+    width: 105%; /* make it a bit wider than the search bar */
+}
+
+#search-results div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+}
+
+#search-results img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+#search-results p {
+    margin: 0;
 }
