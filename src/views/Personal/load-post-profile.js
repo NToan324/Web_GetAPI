@@ -60,7 +60,7 @@ function renderPosts(posts, user) {
     })
 }
 
-$.get('/Web_RestAPI/profile', (res) => {
+$.get('/Web_RestAPI/load-profile', (res) => {
     if (res.success) {
         renderPosts(res.data.posts, res.data.user)
     } else {

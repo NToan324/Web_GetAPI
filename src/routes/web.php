@@ -140,9 +140,15 @@ switch ($request_parts[2]) {
         }
 
     case 'profile': {
+            $accountController->profileView();
+            break;
+        }
+
+    case 'load-profile': {
             $accountController->profile();
             break;
         }
+
 
     default: {
             header('Content-type: application/json');

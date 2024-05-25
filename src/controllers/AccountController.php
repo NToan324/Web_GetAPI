@@ -15,6 +15,11 @@ class AccountController
         require_once __DIR__ . '/../views/Setting/index.html';
     }
 
+    public function profileView()
+    {
+        require_once __DIR__ . '/../views/Personal/index.html';
+    }
+
     public function signUp($name, $email, $password)
     {
         HttpHelper::requirePostMethod();
@@ -51,7 +56,7 @@ class AccountController
     public function profile()
     {
         header('Content-type: application/json');
-        
+
         $userId = $_SESSION['id'];
 
         try {
