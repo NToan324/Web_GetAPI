@@ -14,7 +14,7 @@
 <body>
     <div class="container-post">
         <div class="form-container-post">
-            <form action="" id="post-form" class="action">
+            <form action="/Web_RestAPI/post" method="post" id="post-form" class="action">
                 <div class="header-post">
                     <h2>Create Post</h2>
                 </div>
@@ -41,11 +41,9 @@
                                 <td>
                                     <img src="" alt="Your Picture" id="img-upload">
                                 </td>
-                                <td width="15%">
-                                    <label for="file-upload" id="label-file-upload">
-                                        <img class="img-add-post" src="./Image/post1.jpg" alt="image1">
-                                    </label>
-                                    <img class="img-add-post" src="./Image/post2.jpg" alt="image2">
+                                <td width="30%">
+                                    <label for="file-upload" id="label-file-upload">Choose an image</label>
+                                    <img class="img-add-post" src="/Web_RestAPI/src/views/Post/Image/post1.jpg" alt="image1">
                                 </td>
                             </tr>
                             <tr>
