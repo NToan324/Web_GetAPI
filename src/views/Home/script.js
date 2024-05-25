@@ -67,13 +67,6 @@ document.getElementById('a-search').addEventListener('click', function (e) {
     toggleElement('container-search', 'active');
 });
 
-// Setting
-document.getElementById('a-setting').addEventListener('click', function (e) {
-    e.preventDefault();
-    toggleElement('container-setting', 'active');
-});
-
-
 
 
 //Break sidebar when resize
@@ -111,11 +104,6 @@ window.addEventListener('resize', function () {
 window.addEventListener('resize', function () {
     if(this.document.getElementById('container-search').classList.contains('active')){
         resize('container-search');
-    }
-});
-window.addEventListener('resize', function () {
-    if(this.document.getElementById('container-setting').classList.contains('active')){
-        resize('container-setting');
     }
 });
 
