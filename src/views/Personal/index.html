@@ -430,6 +430,24 @@
     </div>
     <!-- Main Home -->
     <div class="main-home">
+        <div class="header">
+            <div class="search">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="search" />
+            </div>
+            <div class="setting-logout">
+                <a href="/Web_RestAPI/setting" class="hide setting">
+                    <span class="icon hide">
+                        <i class="fas fa-cog"></i>
+                    </span>
+                </a>
+                <a href="#" class="hide logout" id="mobile-logout-btn">
+                    <span class="icon">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
         <div class="personal-page">
             <div class="personal-page-intro">
                 <div class="personal-page-img">
@@ -449,9 +467,7 @@
             </div>
 
             <div class="personal-page-post">
-
             </div>
-
         </div>
     </div>
 
@@ -476,7 +492,6 @@
     <script src="/Web_RestAPI/src/views/Personal/load-post-profile.js"></script>
     <script src="/Web_RestAPI/src/views/Personal/delete-post.js"></script>
     <!-- <script src="/Web_RestAPI/src/views/Personal/edit-post.js"></script> -->
-
     <script src="/Web_RestAPI/src/views/Home/script.js"></script>
     <script src="/Web_RestAPI/src/views/Home/logout.js"></script>
 
