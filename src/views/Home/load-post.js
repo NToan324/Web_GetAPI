@@ -31,8 +31,10 @@ function renderPosts(posts) {
                             </div>  
                         </div>
                         <div class="write-comments">
+                        <form>
                             <input type="text" placeholder="Write a comment..." />
-                            <i class="far fa-paper-plane"></i>
+                            <button type="submit"><i class="far fa-paper-plane"></i></button>
+                        </form>
                         </div>
                     </div>
                 </div>
