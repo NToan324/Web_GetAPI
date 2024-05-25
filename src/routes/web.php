@@ -169,6 +169,11 @@ switch ($request_parts[2]) {
             break;
         }
 
+    case 'edit-post': {
+            $postController->update();
+            break;
+        }
+
 
     default: {
             header('Content-type: application/json');

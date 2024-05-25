@@ -587,7 +587,7 @@ span.icon {
 }
 
 .body-search {
-    padding: 35px;
+    padding: 0 20px;
 }
 
 .head-body-search {
@@ -916,13 +916,14 @@ span.icon {
 }
 
 /* confirm logout */
-#logoutButton {
+ /* Confirm delete post */
+#logoutButton{
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
   }
   
-  #confirmBox {
+  #confirmBox, #ConfirmDeletePost {
     visibility: hidden;
     position: fixed;
     top: 0;
@@ -936,7 +937,7 @@ span.icon {
     z-index: 101;
   }
   
-  .confirm-content {
+  .confirm-content, .confirm-delete-post {
     background-color: white;
     padding: 20px;
     border-radius: 15px;
@@ -944,11 +945,13 @@ span.icon {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
-  .confirm-content p {
+  .confirm-content p , 
+  .confirm-delete-post p {
     margin: 0 0 20px;
   }
   
-  .confirm-content button {
+  .confirm-content button,
+  .confirm-delete-post button{
     padding: 10px 20px;
     margin: 0 10px;
     cursor: pointer;
@@ -958,12 +961,14 @@ span.icon {
     border-radius: 15px;
   }
 
-  .confirm-content button:last-child {
+  .confirm-content button:last-child ,
+  .confirm-delete-post button:last-child{
     background-color: #ffffff;
     color: #000;
   }
 
-  /* Setting */
+ 
+/* Setting */
   
 input[type="file"] {
     display: none;
@@ -994,6 +999,7 @@ input[type="file"] {
     background-color: #f2f2f2;
     border-radius: 20px;
     margin-top: 20px;
+    padding: 10px;
 }
 
 .personal-page-img img {
@@ -1052,10 +1058,13 @@ input[type="file"] {
     background-color: fdfdfd;
     border-radius: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #fdfdfd;
 }
+
+
 /* MOBILE VERSION */
 @media only screen and (max-width: 740px) {
 
@@ -1441,6 +1450,7 @@ input[type="file"] {
 
     .post-info i {
         font-size: 1.9rem;
+        cursor: pointer;
     }
 
     .post-info i:first-child {
@@ -1621,4 +1631,32 @@ input[type="file"] {
         border-radius: 1rem 0 0 1rem;
         padding: 15px;
     }
+}
+
+#search-container {
+    overflow-y: auto;
+}
+
+#search-results {
+    margin-top: 10px;
+    width: 105%; /* make it a bit wider than the search bar */
+}
+
+#search-results div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+}
+
+#search-results img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+#search-results p {
+    margin: 0;
 }

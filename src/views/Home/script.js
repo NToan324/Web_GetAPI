@@ -120,6 +120,7 @@ function confirmBox (id) {
 confirmBox('logout-btn');
 confirmBox('mobile-logout-btn')
 
+
 // Mode mobile
 function modeMobile(id) {
     document.getElementById(id).addEventListener('click', function () {
@@ -139,4 +140,4 @@ function modeMobile(id) {
 
 modeMobile('a-search');
 modeMobile('a-notification');
-    
+
