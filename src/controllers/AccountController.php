@@ -57,7 +57,8 @@ class AccountController
     {
         header('Content-type: application/json');
 
-        $userId = $_SESSION['id'];
+        // $userId = $_SESSION['id'];
+        $userId = "1";
 
         try {
             $posts = Post::getAllPostOfUser($userId);

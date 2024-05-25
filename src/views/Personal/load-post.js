@@ -38,8 +38,8 @@ function renderPosts(posts, user) {
                         <div class="comments">
                             <i class="far fa-comment-dots"></i>
                         </div>
-                        <div class="delete-post">
-                            <i class="far fa-trash-alt" onclick="deletePost()"></i>
+                        <div class="delete-post"> 
+                            <i class="far fa-trash-alt" onclick="deletePost(this)"></i>
                         </div>
                     </div>
                     <div class="likes-comments-info">
@@ -63,7 +63,7 @@ function renderPosts(posts, user) {
     })
 }
 
-$.get('/Web_RestAPI/load-profile', (res) => {
+$.get('/Web_RestAPI/profile', (res) => {
     if (res.success) {
         renderPosts(res.data.posts, res.data.user)
     } else {
