@@ -19,7 +19,7 @@ function renderPosts(posts, user) {
 
         // TODO: thêm nút xoá cho mỗi post -> rồi qua file delete-post.js
         let html = `
-                    <div class="post-box">
+                    <div class="post-box" data-id="${post.id}">
                     <div class="post-profile">
                         <div class="post-img">
                             <img src="/Web_RestAPI/storage/users/${post.avatar}" alt="" />
